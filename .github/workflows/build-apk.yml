@@ -2,7 +2,11 @@ name: Build APK
 
 on:
   push:
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -37,3 +41,15 @@ jobs:
         with:
           name: zitatecke-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: APK ko 'apk' branch pe save karo
+        run: |
+          mkdir -p /tmp/out
+          cp build/app/outputs/flutter-apk/app-release.apk /tmp/out/zitatecke.apk
+          cd /tmp/out
+          git init -q -b apk
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add zitatecke.apk
+          git commit -qm "APK build ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" apk
