@@ -132,11 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 14),
-            FadeSlideIn(
-              delay: 60,
-              child: _SearchPill(onTap: () => _open(const SearchScreen())),
-            ),
             if (special != null && specialQuotes.isNotEmpty) ...[
               const SizedBox(height: 16),
               FadeSlideIn(
@@ -149,7 +144,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
             const SizedBox(height: 22),
-            const FadeSlideIn(delay: 120, child: _SectionTitle('Spruch des Tages')),
+            FadeSlideIn(
+              delay: 120,
+              child: Row(
+                children: [
+                  const Expanded(child: _SectionTitle('Spruch des Tages')),
+                  Material(
+                    color: Colors.white,
+                    shape: const CircleBorder(),
+                    child: IconButton(
+                      tooltip: 'Spruch suchen',
+                      iconSize: 26,
+                      onPressed: () => _open(const SearchScreen()),
+                      icon: const Icon(Icons.search_rounded, color: kInk),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 10),
             FadeSlideIn(
               delay: 160,
@@ -273,40 +285,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SearchPill extends StatelessWidget {
-  const _SearchPill({required this.onTap});
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(18),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-          child: Row(
-            children: [
-              Icon(Icons.search, color: kInk.withValues(alpha: 0.6)),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'Spruch suchen … z. B. „Geburtstag“',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.5)),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
