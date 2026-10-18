@@ -96,8 +96,13 @@ class SettingsScreen extends StatelessWidget {
                   context: context,
                   applicationName: kStoreTitle,
                   applicationVersion: '1.0.0',
+                  applicationIcon: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset('assets/brand/splash_logo.png', width: 48, height: 48),
+                  ),
                   applicationLegalese:
-                      'Sprüche zum Teilen für jeden Tag.\nMehr Sprüche auf $kWebsite',
+                      'Sprüche zum Teilen für jeden Tag.\nMehr Sprüche auf $kWebsite\n\n'
+                      'Fotos: gemeinfrei (CC0 / Public Domain)\nSchriften: Lora, Nunito, Dancing Script (SIL OFL)',
                 ),
               ),
             ]),
@@ -117,7 +122,7 @@ class _Header extends StatelessWidget {
         padding: const EdgeInsets.only(left: 4, bottom: 8),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: kInk),
+          style: const TextStyle(fontFamily: kFontQuote, fontSize: 19, fontWeight: FontWeight.w700, color: kInk),
         ),
       );
 }

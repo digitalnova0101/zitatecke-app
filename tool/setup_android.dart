@@ -22,19 +22,25 @@ void main() {
       .writeAsStringSync(File('android_files/proguard-rules.pro').readAsStringSync());
   stdout.writeln('✓ proguard-rules.pro added');
 
+  // WhatsApp share: FileProvider paths + MainActivity (native code).
+  final xmlDir = Directory('android/app/src/main/res/xml')..createSync(recursive: true);
+  File('${xmlDir.path}/zitatecke_file_paths.xml')
+      .writeAsStringSync(File('android_files/zitatecke_file_paths.xml').readAsStringSync());
+  _writeMainActivity();
+
   final kts = File('android/app/build.gradle.kts');
   final groovy = File('android/app/build.gradle');
   if (kts.existsSync()) {
     _patch(
       kts,
       enableLine: 'isCoreLibraryDesugaringEnabled = true',
-      depBlock: '\ndependencies {\n    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")\n}\n',
+      depBlock: '\ndependencies {\n    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")\n    implementation("androidx.core:core:1.13.1")\n}\n',
     );
   } else if (groovy.existsSync()) {
     _patch(
       groovy,
       enableLine: 'coreLibraryDesugaringEnabled true',
-      depBlock: "\ndependencies {\n    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'\n}\n",
+      depBlock: "\ndependencies {\n    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'\n    implementation 'androidx.core:core:1.13.1'\n}\n",
     );
   } else {
     stderr.writeln('android/app/build.gradle(.kts) nahi mili.');
@@ -99,4 +105,34 @@ void _disableShrinking(File f, {required bool isKts}) {
   s = s.substring(0, at) + lines + s.substring(at);
   f.writeAsStringSync(s);
   stdout.writeln('✓ release shrinking off');
+}
+
+/// flutter create wali MainActivity.kt ko WhatsApp-share wali se badlo
+/// (package line wahi rehti hai).
+void _writeMainActivity() {
+  final root = Directory('android/app/src/main/kotlin');
+  if (!root.existsSync()) {
+    stderr.writeln('kotlin folder nahi mila – MainActivity manually copy karo.');
+    return;
+  }
+  final files = root
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((f) => f.path.endsWith('MainActivity.kt'))
+      .toList();
+  if (files.isEmpty) {
+    stderr.writeln('MainActivity.kt nahi mili.');
+    return;
+  }
+  final target = files.first;
+  final pkg = RegExp(r'^package\s+([\w.]+)', multiLine: true)
+      .firstMatch(target.readAsStringSync())
+      ?.group(1);
+  if (pkg == null) {
+    stderr.writeln('MainActivity package nahi mila.');
+    return;
+  }
+  final template = File('android_files/MainActivity.kt').readAsStringSync();
+  target.writeAsStringSync(template.replaceAll('__PACKAGE__', pkg));
+  stdout.writeln('✓ MainActivity.kt (WhatsApp share) – package $pkg');
 }

@@ -21,7 +21,7 @@ class AppState extends ChangeNotifier {
   static const _kMorningTime = 'morning_time';
   static const _kNightOn = 'night_on';
   static const _kNightTime = 'night_time';
-  static const _kAskedPermission = 'asked_notification_permission';
+  static const _kOnboardingDone = 'onboarding_done';
 
   // ---------- Favoriten ----------
 
@@ -76,17 +76,30 @@ class AppState extends ChangeNotifier {
     await rescheduleNotifications();
   }
 
-  /// App start par: pehli baar permission maango, phir notifications lagao.
-  Future<void> setupNotificationsOnStart() async {
-    try {
-      if (!(_prefs.getBool(_kAskedPermission) ?? false)) {
-        await _prefs.setBool(_kAskedPermission, true);
+  // ---------- Welcome screens ----------
+
+  bool get onboardingDone => _prefs.getBool(_kOnboardingDone) ?? false;
+
+  /// Welcome ke last page par "Ja, gerne!" / "Vielleicht später".
+  Future<void> completeOnboarding({required bool notifications}) async {
+    await _prefs.setBool(_kOnboardingDone, true);
+    await _prefs.setBool(_kMorningOn, notifications);
+    await _prefs.setBool(_kNightOn, notifications);
+    if (notifications) {
+      try {
         await NotificationService.instance.requestPermission();
+      } catch (e) {
+        debugPrint('Permission request failed: $e');
       }
-      await rescheduleNotifications();
-    } catch (e) {
-      debugPrint('Notification setup failed: $e');
     }
+    notifyListeners();
+    await rescheduleNotifications();
+  }
+
+  /// App start par notifications agle dinon ke liye dobara lagao.
+  Future<void> setupNotificationsOnStart() async {
+    if (!onboardingDone) return;
+    await rescheduleNotifications();
   }
 
   Future<void> rescheduleNotifications() async {

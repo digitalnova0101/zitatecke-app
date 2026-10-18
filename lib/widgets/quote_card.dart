@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../config.dart';
 import '../models/quote.dart';
+import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
 
 /// Square quote image jo share hoti hai. Saare sizes card ki width
@@ -24,15 +25,16 @@ class QuoteCard extends StatelessWidget {
 
   double _baseFontSize(String text) {
     final n = text.length;
-    if (n <= 50) return 28;
-    if (n <= 90) return 24;
-    if (n <= 140) return 21;
-    if (n <= 200) return 18;
+    if (n <= 50) return 27;
+    if (n <= 90) return 23;
+    if (n <= 140) return 20;
+    if (n <= 200) return 17.5;
     return 16;
   }
 
   @override
   Widget build(BuildContext context) {
+    final isPhoto = style.image != null;
     // Phone ki font-size setting card ko na bigaade.
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
@@ -42,26 +44,50 @@ class QuoteCard extends StatelessWidget {
           builder: (context, constraints) {
             final s = constraints.maxWidth / 360;
             final color = style.textColor;
+            final shadows = isPhoto
+                ? [Shadow(color: Colors.black.withValues(alpha: 0.55), blurRadius: 10 * s, offset: Offset(0, 1.5 * s))]
+                : null;
             return DecoratedBox(
               decoration: BoxDecoration(gradient: style.gradient),
               child: Stack(
                 children: [
+                  if (isPhoto) ...[
+                    Positioned.fill(
+                      child: Image.asset(style.image!, fit: BoxFit.cover, gaplessPlayback: true),
+                    ),
+                    Positioned.fill(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: 0.18 + style.dim * 0.5),
+                              Colors.black.withValues(alpha: 0.30 + style.dim),
+                              Colors.black.withValues(alpha: 0.22 + style.dim * 0.6),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                   if (style.stars)
                     Positioned.fill(
                       child: CustomPaint(
                         painter: _StarsPainter(seed: quote.id.hashCode, color: color),
                       ),
                     ),
-                  Positioned(
-                    right: -18 * s,
-                    top: -22 * s,
-                    child: Opacity(
-                      opacity: 0.28,
-                      child: Text(style.emoji, style: TextStyle(fontSize: 110 * s)),
+                  if (!isPhoto)
+                    Positioned(
+                      right: -18 * s,
+                      top: -22 * s,
+                      child: Opacity(
+                        opacity: 0.28,
+                        child: Text(style.emoji, style: TextStyle(fontSize: 110 * s)),
+                      ),
                     ),
-                  ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(28 * s, 30 * s, 28 * s, 34 * s),
+                    padding: EdgeInsets.fromLTRB(28 * s, 28 * s, 28 * s, 34 * s),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -69,29 +95,27 @@ class QuoteCard extends StatelessWidget {
                           heading,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontFamily: 'serif',
-                            fontStyle: FontStyle.italic,
+                            fontFamily: kFontScript,
                             fontWeight: FontWeight.w700,
-                            fontSize: 24 * s,
+                            fontSize: 34 * s,
+                            height: 1.1,
                             color: color,
+                            shadows: shadows,
                           ),
                         ),
-                        SizedBox(height: 6 * s),
-                        Container(
-                          width: 44 * s,
-                          height: 2 * s,
-                          color: color.withValues(alpha: 0.6),
-                        ),
-                        SizedBox(height: 18 * s),
+                        SizedBox(height: 8 * s),
+                        _Ornament(color: color, scale: s),
+                        SizedBox(height: 16 * s),
                         Text(
                           quote.text,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontFamily: 'serif',
+                            fontFamily: kFontQuote,
                             fontSize: _baseFontSize(quote.text) * s,
-                            height: 1.35,
+                            height: 1.4,
                             fontWeight: FontWeight.w500,
                             color: color,
+                            shadows: shadows,
                           ),
                         ),
                         if (quote.author != null) ...[
@@ -100,9 +124,12 @@ class QuoteCard extends StatelessWidget {
                             '– ${quote.author}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: kFontQuote,
+                              fontStyle: FontStyle.italic,
                               fontSize: 14 * s,
-                              fontWeight: FontWeight.w600,
-                              color: color.withValues(alpha: 0.85),
+                              fontWeight: FontWeight.w500,
+                              color: color.withValues(alpha: 0.9),
+                              shadows: shadows,
                             ),
                           ),
                         ],
@@ -113,14 +140,17 @@ class QuoteCard extends StatelessWidget {
                     Positioned(
                       left: 0,
                       right: 0,
-                      bottom: 10 * s,
+                      bottom: 11 * s,
                       child: Text(
                         kWatermark,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontFamily: kFontUi,
+                          fontWeight: FontWeight.w700,
                           fontSize: 10 * s,
-                          letterSpacing: 0.5,
-                          color: color.withValues(alpha: 0.65),
+                          letterSpacing: 1.2,
+                          color: color.withValues(alpha: 0.75),
+                          shadows: shadows,
                         ),
                       ),
                     ),
@@ -130,6 +160,28 @@ class QuoteCard extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+/// Chhoti si sajawat: ── ✦ ──
+class _Ornament extends StatelessWidget {
+  const _Ornament({required this.color, required this.scale});
+  final Color color;
+  final double scale;
+
+  @override
+  Widget build(BuildContext context) {
+    final line = Container(width: 26 * scale, height: 1.4 * scale, color: color.withValues(alpha: 0.7));
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        line,
+        SizedBox(width: 6 * scale),
+        Text('✦', style: TextStyle(fontSize: 10 * scale, color: color.withValues(alpha: 0.85))),
+        SizedBox(width: 6 * scale),
+        line,
+      ],
     );
   }
 }

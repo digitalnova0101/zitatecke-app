@@ -7,6 +7,7 @@ import 'config.dart';
 import 'data/quote_repository.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/quote_detail_screen.dart';
 import 'screens/settings_screen.dart';
 import 'services/notification_service.dart';
@@ -55,7 +56,29 @@ class SpruecheApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const MainShell(),
+      home: const _Root(),
+    );
+  }
+}
+
+/// Pehli baar: welcome screens, uske baad normal app.
+class _Root extends StatefulWidget {
+  const _Root();
+
+  @override
+  State<_Root> createState() => _RootState();
+}
+
+class _RootState extends State<_Root> {
+  late bool _done = appState.onboardingDone;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 400),
+      child: _done
+          ? const MainShell()
+          : OnboardingScreen(onDone: () => setState(() => _done = true)),
     );
   }
 }

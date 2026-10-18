@@ -1,0 +1,47 @@
+package __PACKAGE__
+
+import android.content.Intent
+import androidx.core.content.FileProvider
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodChannel
+import java.io.File
+
+class MainActivity : FlutterActivity() {
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "zitatecke/whatsapp")
+            .setMethodCallHandler { call, result ->
+                if (call.method == "shareImage") {
+                    val path = call.argument<String>("path")
+                    val text = call.argument<String>("text")
+                    result.success(path != null && shareToWhatsApp(path, text))
+                } else {
+                    result.notImplemented()
+                }
+            }
+    }
+
+    /** Image seedha WhatsApp (ya WhatsApp Business) mein kholta hai. */
+    private fun shareToWhatsApp(path: String, text: String?): Boolean {
+        return try {
+            val uri = FileProvider.getUriForFile(this, "$packageName.zitatecke_files", File(path))
+            for (pkg in listOf("com.whatsapp", "com.whatsapp.w4b")) {
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "image/png"
+                    setPackage(pkg)
+                    putExtra(Intent.EXTRA_STREAM, uri)
+                    if (!text.isNullOrEmpty()) putExtra(Intent.EXTRA_TEXT, text)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                    return true
+                }
+            }
+            false
+        } catch (e: Exception) {
+            false
+        }
+    }
+}

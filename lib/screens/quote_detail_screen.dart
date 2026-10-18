@@ -1,12 +1,14 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../app_state.dart';
 import '../models/quote.dart';
 import '../services/share_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
+import '../widgets/animations.dart';
 import '../widgets/quote_card.dart';
 
 /// Bada card, design badlo, swipe karke agla quote, aur share.
@@ -48,16 +50,32 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Photos pehle se load – picker aur share fast rahe.
+    for (final s in kCardStyles) {
+      if (s.image != null) precacheImage(AssetImage(s.image!), context);
+    }
+  }
+
+  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
 
-  Future<void> _shareImage() async {
+  Future<void> _share({required bool whatsapp}) async {
     if (_sharing) return;
     setState(() => _sharing = true);
     try {
-      await ShareService.shareCardImage(_keyFor(_index), _current);
+      final result = whatsapp
+          ? await ShareService.shareToWhatsApp(_keyFor(_index), _current)
+          : await ShareService.shareCardImage(_keyFor(_index), _current);
+      if (whatsapp && result == ShareResultKind.sheet) {
+        _toast('WhatsApp wurde nicht gefunden – wähle eine andere App.');
+      } else if (result == ShareResultKind.failed) {
+        _toast('Teilen hat leider nicht geklappt.');
+      }
     } catch (e) {
       _toast('Teilen hat leider nicht geklappt.');
     } finally {
@@ -78,7 +96,10 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
     final title = widget.title ?? repo.category(_current.category).title;
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(title),
+        actions: [FavoriteButton(quoteId: _current.id, size: 30)],
+      ),
       body: SafeArea(
         top: false,
         child: Column(
@@ -87,25 +108,43 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: widget.quotes.length,
-                onPageChanged: (i) => setState(() => _index = i),
+                onPageChanged: (i) {
+                  HapticFeedback.selectionClick();
+                  setState(() => _index = i);
+                },
                 itemBuilder: (context, i) {
                   final quote = widget.quotes[i];
+                  final style = _styleFor(i);
                   return LayoutBuilder(
                     builder: (context, c) {
                       final side = math.max(
-                          120.0, math.min(c.maxWidth - 32, c.maxHeight - 24));
+                          120.0, math.min(c.maxWidth - 32, c.maxHeight - 16));
                       return Center(
-                        child: SizedBox(
+                        child: Container(
                           width: side,
                           height: side,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            boxShadow: [
+                              BoxShadow(
+                                color: kInk.withValues(alpha: 0.18),
+                                blurRadius: 24,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(22),
+                            borderRadius: BorderRadius.circular(24),
                             child: RepaintBoundary(
                               key: _keyFor(i),
-                              child: QuoteCard(
-                                quote: quote,
-                                style: _styleFor(i),
-                                heading: repo.headingFor(quote),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 280),
+                                child: QuoteCard(
+                                  key: ValueKey('${quote.id}-${style.id}'),
+                                  quote: quote,
+                                  style: style,
+                                  heading: repo.headingFor(quote),
+                                ),
                               ),
                             ),
                           ),
@@ -118,15 +157,18 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
             ),
             if (widget.quotes.length > 1)
               Padding(
-                padding: const EdgeInsets.only(top: 2, bottom: 6),
+                padding: const EdgeInsets.only(top: 6, bottom: 4),
                 child: Text(
-                  '${_index + 1} / ${widget.quotes.length}  ·  Wischen für mehr',
-                  style: TextStyle(color: kInk.withValues(alpha: 0.6)),
+                  '${_index + 1} / ${widget.quotes.length}  ·  Wischen für mehr  ›',
+                  style: TextStyle(color: kInk.withValues(alpha: 0.55), fontWeight: FontWeight.w600),
                 ),
               ),
             _StylePicker(
               selectedId: _styleFor(_index).id,
-              onSelected: (id) => setState(() => _styleOverride = id),
+              onSelected: (id) {
+                HapticFeedback.selectionClick();
+                setState(() => _styleOverride = id);
+              },
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
@@ -135,34 +177,29 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.icon(
-                      onPressed: _sharing ? null : _shareImage,
+                      style: FilledButton.styleFrom(
+                        backgroundColor: kWhatsApp,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: _sharing ? null : () => _share(whatsapp: true),
                       icon: _sharing
                           ? const SizedBox(
                               width: 20,
                               height: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
+                              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                             )
-                          : const Icon(Icons.share),
-                      label: const Text('Bild teilen (WhatsApp & Co.)'),
+                          : const Icon(Icons.chat_rounded),
+                      label: const Text('Per WhatsApp senden'),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: [
                       Expanded(
-                        child: ListenableBuilder(
-                          listenable: appState,
-                          builder: (context, _) {
-                            final fav = appState.isFavorite(_current.id);
-                            return OutlinedButton.icon(
-                              onPressed: () => appState.toggleFavorite(_current.id),
-                              icon: Icon(
-                                fav ? Icons.favorite : Icons.favorite_border,
-                                color: fav ? Colors.redAccent : null,
-                              ),
-                              label: Text(fav ? 'Gespeichert' : 'Merken'),
-                            );
-                          },
+                        child: OutlinedButton.icon(
+                          onPressed: _sharing ? null : () => _share(whatsapp: false),
+                          icon: const Icon(Icons.share_outlined),
+                          label: const Text('Andere Apps'),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -172,19 +209,8 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                             await ShareService.copyText(_current);
                             _toast('Text kopiert ✓');
                           },
-                          icon: const Icon(Icons.copy),
+                          icon: const Icon(Icons.copy_rounded),
                           label: const Text('Kopieren'),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      SizedBox(
-                        height: 54,
-                        child: OutlinedButton(
-                          onPressed: () => ShareService.shareText(_current),
-                          child: const Tooltip(
-                            message: 'Nur Text teilen',
-                            child: Icon(Icons.text_fields),
-                          ),
                         ),
                       ),
                     ],
@@ -199,40 +225,57 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   }
 }
 
-class _StylePicker extends StatelessWidget {
+class _StylePicker extends StatefulWidget {
   const _StylePicker({required this.selectedId, required this.onSelected});
 
   final String selectedId;
   final ValueChanged<String> onSelected;
 
   @override
+  State<_StylePicker> createState() => _StylePickerState();
+}
+
+class _StylePickerState extends State<_StylePicker> {
+  final _controller = ScrollController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 58,
+      height: 64,
       child: ListView.separated(
+        controller: _controller,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         itemCount: kCardStyles.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, i) {
           final style = kCardStyles[i];
-          final selected = style.id == selectedId;
+          final selected = style.id == widget.selectedId;
           return GestureDetector(
-            onTap: () => onSelected(style.id),
+            onTap: () => widget.onSelected(style.id),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              width: 50,
-              height: 50,
+              duration: const Duration(milliseconds: 180),
+              width: 56,
+              height: 56,
+              padding: EdgeInsets.all(selected ? 3 : 0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: style.gradient,
-                border: Border.all(
-                  color: selected ? kInk : Colors.white,
-                  width: selected ? 3 : 2,
-                ),
+                border: Border.all(color: selected ? kCoral : Colors.white, width: selected ? 3 : 2),
               ),
-              alignment: Alignment.center,
-              child: Text(style.emoji, style: const TextStyle(fontSize: 18)),
+              child: ClipOval(
+                child: style.image != null
+                    ? Image.asset(style.image!, fit: BoxFit.cover, cacheWidth: 160)
+                    : DecoratedBox(
+                        decoration: BoxDecoration(gradient: style.gradient),
+                        child: Center(child: Text(style.emoji, style: const TextStyle(fontSize: 18))),
+                      ),
+              ),
             ),
           );
         },

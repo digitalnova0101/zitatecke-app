@@ -8,6 +8,8 @@ class CardStyle {
     required this.textColor,
     required this.emoji,
     this.stars = false,
+    this.image,
+    this.dim = 0.0,
   });
 
   final String id;
@@ -15,6 +17,12 @@ class CardStyle {
   final Color textColor;
   final String emoji;
   final bool stars;
+
+  /// Photo background (assets/backgrounds/...). Null = sirf gradient.
+  final String? image;
+
+  /// Photo kitni dark ho (text padhne ke liye). 0.0 – 0.3
+  final double dim;
 
   LinearGradient get gradient => LinearGradient(
         begin: Alignment.topLeft,
@@ -24,6 +32,31 @@ class CardStyle {
 }
 
 const List<CardStyle> kCardStyles = [
+  // --- Fotos (CC0 / Public Domain) ---
+  CardStyle(id: 'p_morgenwiese', image: 'assets/backgrounds/morgenwiese.jpg', dim: 0.05, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌅'),
+  CardStyle(id: 'p_sonnenblumen', image: 'assets/backgrounds/sonnenblumen.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌻'),
+  CardStyle(id: 'p_seegold', image: 'assets/backgrounds/seegold.jpg', dim: 0.0, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌄'),
+  CardStyle(id: 'p_tau', image: 'assets/backgrounds/tau.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌿'),
+  CardStyle(id: 'p_sternenhimmel', image: 'assets/backgrounds/sternenhimmel.jpg', dim: 0.0, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '✨'),
+  CardStyle(id: 'p_mondpalmen', image: 'assets/backgrounds/mondpalmen.jpg', dim: 0.0, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌙'),
+  CardStyle(id: 'p_bergsee', image: 'assets/backgrounds/bergsee.jpg', dim: 0.05, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '⛰️'),
+  CardStyle(id: 'p_ozean', image: 'assets/backgrounds/ozean.jpg', dim: 0.05, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌊'),
+  CardStyle(id: 'p_bergrosa', image: 'assets/backgrounds/bergrosa.jpg', dim: 0.05, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🏔️'),
+  CardStyle(id: 'p_horizont', image: 'assets/backgrounds/horizont.jpg', dim: 0.18, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '☁️'),
+  CardStyle(id: 'p_rose', image: 'assets/backgrounds/rose.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌹'),
+  CardStyle(id: 'p_lavendel', image: 'assets/backgrounds/lavendel.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '💜'),
+  CardStyle(id: 'p_lavendel2', image: 'assets/backgrounds/lavendel2.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🪻'),
+  CardStyle(id: 'p_tulpen', image: 'assets/backgrounds/tulpen.jpg', dim: 0.25, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌷'),
+  CardStyle(id: 'p_wunderkerze', image: 'assets/backgrounds/wunderkerze.jpg', dim: 0.0, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🎇'),
+  CardStyle(id: 'p_bokeh', image: 'assets/backgrounds/bokeh.jpg', dim: 0.05, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '✨'),
+  CardStyle(id: 'p_schneewald', image: 'assets/backgrounds/schneewald.jpg', dim: 0.15, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '❄️'),
+  CardStyle(id: 'p_huette', image: 'assets/backgrounds/huette.jpg', dim: 0.12, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🏡'),
+  CardStyle(id: 'p_bluete', image: 'assets/backgrounds/bluete.jpg', dim: 0.2, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌸'),
+  CardStyle(id: 'p_bluete2', image: 'assets/backgrounds/bluete2.jpg', dim: 0.2, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌸'),
+  CardStyle(id: 'p_strand', image: 'assets/backgrounds/strand.jpg', dim: 0.1, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🏖️'),
+  CardStyle(id: 'p_sonnenuntergang', image: 'assets/backgrounds/sonnenuntergang.jpg', dim: 0.0, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌇'),
+  CardStyle(id: 'p_kueste', image: 'assets/backgrounds/kueste.jpg', dim: 0.08, colors: [Color(0xFF3B2A35), Color(0xFF6B4A5A)], textColor: Colors.white, emoji: '🌳'),
+  // --- Farbverläufe ---
   CardStyle(id: 'sonnenaufgang', colors: [Color(0xFFFFC371), Color(0xFFFF5F6D)], textColor: Colors.white, emoji: '☀️'),
   CardStyle(id: 'pfirsich', colors: [Color(0xFFFFE5D0), Color(0xFFFFB199)], textColor: Color(0xFF4A2C2A), emoji: '🌼'),
   CardStyle(id: 'morgenrot', colors: [Color(0xFFFBD786), Color(0xFFF7797D)], textColor: Color(0xFF4A2330), emoji: '☕'),

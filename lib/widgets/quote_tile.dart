@@ -1,89 +1,105 @@
 import 'package:flutter/material.dart';
 
-import '../app_state.dart';
 import '../models/quote.dart';
 import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
+import 'animations.dart';
 
-/// List mein ek quote (category aur favorites screen).
+/// List mein ek quote (category, search aur favorites screen).
 class QuoteTile extends StatelessWidget {
   const QuoteTile({
     super.key,
     required this.quote,
     required this.style,
     required this.onTap,
+    this.subtitle,
   });
 
   final Quote quote;
   final CardStyle style;
   final VoidCallback onTap;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(20),
       clipBehavior: Clip.antiAlias,
+      elevation: 0,
       child: InkWell(
         onTap: onTap,
-        child: IntrinsicHeight(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                width: 10,
-                decoration: BoxDecoration(gradient: style.gradient),
-              ),
+              _Thumb(style: style),
+              const SizedBox(width: 14),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 14, 4, 14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        quote.text,
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'serif',
-                          fontSize: 17,
-                          height: 1.35,
-                          color: kInk,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (subtitle != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          subtitle!,
+                          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: kCoral),
                         ),
                       ),
-                      if (quote.author != null) ...[
-                        const SizedBox(height: 6),
-                        Text(
-                          '– ${quote.author}',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: kInk.withValues(alpha: 0.65),
-                          ),
+                    Text(
+                      quote.text,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: kFontQuote,
+                        fontSize: 17,
+                        height: 1.4,
+                        color: kInk,
+                      ),
+                    ),
+                    if (quote.author != null) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        '– ${quote.author}',
+                        style: TextStyle(
+                          fontFamily: kFontQuote,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: kInk.withValues(alpha: 0.65),
                         ),
-                      ],
+                      ),
                     ],
-                  ),
+                  ],
                 ),
               ),
-              ListenableBuilder(
-                listenable: appState,
-                builder: (context, _) {
-                  final fav = appState.isFavorite(quote.id);
-                  return IconButton(
-                    tooltip: fav ? 'Aus Favoriten entfernen' : 'Zu Favoriten',
-                    iconSize: 28,
-                    onPressed: () => appState.toggleFavorite(quote.id),
-                    icon: Icon(
-                      fav ? Icons.favorite : Icons.favorite_border,
-                      color: fav ? Colors.redAccent : kInk.withValues(alpha: 0.5),
-                    ),
-                  );
-                },
-              ),
+              FavoriteButton(quoteId: quote.id),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Thumb extends StatelessWidget {
+  const _Thumb({required this.style});
+  final CardStyle style;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: SizedBox(
+        width: 58,
+        height: 58,
+        child: style.image != null
+            ? Image.asset(style.image!, fit: BoxFit.cover, cacheWidth: 180)
+            : DecoratedBox(
+                decoration: BoxDecoration(gradient: style.gradient),
+                child: Center(child: Text(style.emoji, style: const TextStyle(fontSize: 24))),
+              ),
       ),
     );
   }

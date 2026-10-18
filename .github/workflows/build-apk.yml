@@ -34,6 +34,11 @@ jobs:
       - name: Notifications + package ID setup
         run: dart run tool/setup_android.dart
 
+      - name: App icon + splash screen
+        run: |
+          dart run flutter_launcher_icons
+          dart run flutter_native_splash:create
+
       - name: APK build
         run: flutter build apk --release && grep -nE "Minify|Shrink|release" android/app/build.gradle* || true
 
@@ -67,6 +72,7 @@ jobs:
           api-level: 34
           arch: x86_64
           target: google_apis
+          profile: pixel_6
           disable-animations: true
           script: bash tool/emulator_test.sh
 

@@ -1,7 +1,7 @@
 name: guten_morgen_app
 description: "Zitatecke: Sprüche & Grüße – Guten Morgen, Gute Nacht und Motivation."
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.1.0+2
 
 environment:
   sdk: ^3.5.0
@@ -21,8 +21,55 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.1
 
 flutter:
   uses-material-design: true
   assets:
     - assets/quotes.json
+    - assets/brand/
+    - assets/backgrounds/
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/Lora-Regular.ttf
+        - asset: assets/fonts/Lora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Lora-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Lora-MediumItalic.ttf
+          weight: 500
+          style: italic
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript-Bold.ttf
+          weight: 700
+
+# App icon:  dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/brand/icon.png"
+  adaptive_icon_background: "assets/brand/icon_background.png"
+  adaptive_icon_foreground: "assets/brand/icon_foreground.png"
+  min_sdk_android: 21
+
+# Splash screen:  dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#FFF8F1"
+  image: assets/brand/splash_logo.png
+  android_12:
+    color: "#FFF8F1"
+    image: assets/brand/splash_android12.png
+  ios: false
+  web: false

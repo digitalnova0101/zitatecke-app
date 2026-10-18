@@ -2,25 +2,40 @@ import 'package:flutter/material.dart';
 
 const Color kCream = Color(0xFFFFF8F1);
 const Color kInk = Color(0xFF3B2A35);
-const Color kAccent = Color(0xFFE07A3F);
+const Color kCoral = Color(0xFFEB5A5F);
+const Color kAmber = Color(0xFFFFB24C);
+const Color kWhatsApp = Color(0xFF25D366);
+
+/// Fonts (assets/fonts, OFL license).
+const String kFontUi = 'Nunito';
+const String kFontQuote = 'Lora';
+const String kFontScript = 'DancingScript';
+
+const LinearGradient kBrandGradient = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [kAmber, kCoral],
+);
 
 /// Bade buttons aur bada text – older users ke liye aasaan.
 ThemeData buildAppTheme() {
   final scheme = ColorScheme.fromSeed(
-    seedColor: kAccent,
+    seedColor: kCoral,
     brightness: Brightness.light,
     surface: kCream,
-  );
+  ).copyWith(primary: kCoral, onPrimary: Colors.white);
+
   return ThemeData(
     useMaterial3: true,
     colorScheme: scheme,
+    fontFamily: kFontUi,
     scaffoldBackgroundColor: kCream,
     appBarTheme: const AppBarTheme(
       backgroundColor: kCream,
       surfaceTintColor: Colors.transparent,
       foregroundColor: kInk,
       titleTextStyle: TextStyle(
-        fontFamily: 'serif',
+        fontFamily: kFontQuote,
         fontSize: 24,
         fontWeight: FontWeight.w700,
         color: kInk,
@@ -28,25 +43,37 @@ ThemeData buildAppTheme() {
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        minimumSize: const Size(0, 54),
-        textStyle: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        minimumSize: const Size(0, 56),
+        textStyle: const TextStyle(fontFamily: kFontUi, fontSize: 17, fontWeight: FontWeight.w800),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(0, 54),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        foregroundColor: kInk,
+        side: BorderSide(color: kInk.withValues(alpha: 0.18)),
+        textStyle: const TextStyle(fontFamily: kFontUi, fontSize: 16, fontWeight: FontWeight.w700),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
+    ),
+    chipTheme: ChipThemeData(
+      labelStyle: const TextStyle(fontFamily: kFontUi, fontWeight: FontWeight.w700),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: Colors.white,
-      indicatorColor: scheme.primaryContainer,
+      indicatorColor: kCoral.withValues(alpha: 0.14),
+      iconTheme: WidgetStateProperty.resolveWith((states) => IconThemeData(
+            color: states.contains(WidgetState.selected) ? kCoral : kInk.withValues(alpha: 0.7),
+          )),
       labelTextStyle: WidgetStateProperty.all(
-        const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+        const TextStyle(fontFamily: kFontUi, fontSize: 13, fontWeight: FontWeight.w700),
       ),
     ),
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
+      TargetPlatform.android: ZoomPageTransitionsBuilder(),
+    }),
   );
 }
 

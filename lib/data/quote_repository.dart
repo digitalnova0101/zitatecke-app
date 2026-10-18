@@ -44,6 +44,37 @@ class QuoteRepository {
     return list[days % list.length];
   }
 
+  /// "Geburtstag Oma" → saare shabd hone chahiye. Umlaut ke bina bhi chalta hai
+  /// (z.B. "gluckwunsch" ya "glueckwunsch" findet "Glückwunsch").
+  List<Quote> search(String query) {
+    final terms = _norm(query).split(' ').where((t) => t.isNotEmpty).toList();
+    if (terms.isEmpty) return const [];
+    final results = <Quote>[];
+    for (final q in quotes) {
+      final cat = category(q.category);
+      String tagLabel = '';
+      for (final t in cat.tags) {
+        if (t.id == q.tag) tagLabel = '${t.label} ${t.heading}';
+      }
+      final hay = _norm('${q.text} ${q.author ?? ''} ${cat.title} ${cat.heading} $tagLabel');
+      if (terms.every(hay.contains)) results.add(q);
+    }
+    return results;
+  }
+
+  static String _norm(String s) => s
+      .toLowerCase()
+      .replaceAll('ß', 'ss')
+      .replaceAll('ä', 'a')
+      .replaceAll('ö', 'o')
+      .replaceAll('ü', 'u')
+      .replaceAll('ae', 'a')
+      .replaceAll('oe', 'o')
+      .replaceAll('ue', 'u')
+      .replaceAll(RegExp(r'[^a-z0-9 ]'), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
+
   /// Category ke designs baari-baari se, taaki har card alag dikhe.
   String defaultStyleId(Quote q, int index) {
     final styles = category(q.category).styles;

@@ -8,10 +8,12 @@
       "subtitle": "Für einen schönen Start in den Tag",
       "heading": "Guten Morgen",
       "styles": [
+        "p_morgenwiese",
+        "p_sonnenblumen",
+        "p_seegold",
+        "p_tau",
         "sonnenaufgang",
-        "pfirsich",
-        "morgenrot",
-        "zitrone"
+        "pfirsich"
       ]
     },
     {
@@ -21,6 +23,8 @@
       "subtitle": "Liebe Grüße zum Einschlafen",
       "heading": "Gute Nacht",
       "styles": [
+        "p_sternenhimmel",
+        "p_mondpalmen",
         "nachthimmel",
         "mitternacht",
         "lavendelnacht"
@@ -33,9 +37,12 @@
       "subtitle": "Sprüche, die Kraft geben",
       "heading": "Gedanke des Tages",
       "styles": [
+        "p_bergsee",
+        "p_ozean",
+        "p_bergrosa",
+        "p_horizont",
         "meer",
-        "wald",
-        "energie"
+        "wald"
       ]
     },
     {
@@ -45,10 +52,12 @@
       "subtitle": "Von Montag bis Sonntag",
       "heading": "Schöne Woche",
       "styles": [
+        "p_sonnenblumen",
+        "p_bluete",
+        "p_kueste",
+        "p_tau",
         "pfirsich",
-        "meer",
-        "zitrone",
-        "lavendel"
+        "meer"
       ],
       "tags": [
         {
@@ -95,9 +104,10 @@
       "subtitle": "Endlich frei!",
       "heading": "Schönes Wochenende",
       "styles": [
-        "sommer",
-        "meer",
-        "pfirsich"
+        "p_strand",
+        "p_sonnenuntergang",
+        "p_kueste",
+        "sommer"
       ]
     },
     {
@@ -107,9 +117,11 @@
       "subtitle": "Für liebe Menschen",
       "heading": "Für dich",
       "styles": [
-        "rose",
-        "lavendel",
-        "pfirsich"
+        "p_rose",
+        "p_lavendel",
+        "p_tulpen",
+        "p_lavendel2",
+        "rose"
       ]
     },
     {
@@ -119,9 +131,10 @@
       "subtitle": "Glückwünsche von Herzen",
       "heading": "Alles Gute",
       "styles": [
-        "konfetti",
-        "rose",
-        "zitrone"
+        "p_wunderkerze",
+        "p_bokeh",
+        "p_rose",
+        "konfetti"
       ]
     },
     {
@@ -131,9 +144,11 @@
       "subtitle": "Weihnachten, Neujahr, Ostern",
       "heading": "Frohe Feiertage",
       "styles": [
-        "weihnacht",
-        "winter",
-        "fruehling"
+        "p_bokeh",
+        "p_schneewald",
+        "p_huette",
+        "p_bluete2",
+        "weihnacht"
       ],
       "tags": [
         {
