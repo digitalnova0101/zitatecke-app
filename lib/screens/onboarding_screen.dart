@@ -170,7 +170,7 @@ class _Page extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontFamily: kFontQuote, fontSize: 28, fontWeight: FontWeight.w700, color: kInk, height: 1.2),
+            style: TextStyle(fontFamily: kFontQuote, fontSize: 28, fontWeight: FontWeight.w700, color: kInk, height: 1.2),
           ),
           const SizedBox(height: 12),
           Text(
@@ -221,7 +221,7 @@ class _TimeChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14)),
-        child: Text('$emoji  $text Uhr', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
+        decoration: BoxDecoration(color: kCard, borderRadius: BorderRadius.circular(14)),
+        child: Text('$emoji  $text Uhr', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
       );
 }

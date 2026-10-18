@@ -10,20 +10,25 @@ import '../theme/app_theme.dart';
 import '../theme/card_fonts.dart';
 import '../theme/card_styles.dart';
 import '../widgets/animations.dart';
+import '../widgets/quote_actions.dart';
 import '../widgets/quote_card.dart';
+import '../widgets/share_actions.dart';
 
-/// Bada card, design badlo, swipe karke agla quote, aur share.
+/// Bada card + neeche ek bar: [🎨 Gestalten] [Teilen] [WhatsApp].
+/// "Gestalten" se Bild / Schrift panel khulta hai.
 class QuoteDetailScreen extends StatefulWidget {
   const QuoteDetailScreen({
     super.key,
     required this.quotes,
     this.initialIndex = 0,
     this.title,
+    this.startEditing = false,
   });
 
   final List<Quote> quotes;
   final int initialIndex;
   final String? title;
+  final bool startEditing;
 
   @override
   State<QuoteDetailScreen> createState() => _QuoteDetailScreenState();
@@ -32,17 +37,17 @@ class QuoteDetailScreen extends StatefulWidget {
 class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   late final PageController _pageController;
   late int _index;
+  late bool _editing = widget.startEditing;
   String? _styleOverride;
   bool _fontTab = false; // false = Bild, true = Schrift
-  bool _sharing = false;
   final Map<int, GlobalKey> _cardKeys = {};
 
   GlobalKey _keyFor(int i) => _cardKeys.putIfAbsent(i, () => GlobalKey());
 
   Quote get _current => widget.quotes[_index];
 
-  CardStyle _styleFor(int i) => styleById(
-      _styleOverride ?? appState.repo.defaultStyleId(widget.quotes[i], i));
+  CardStyle _styleFor(int i) =>
+      styleById(_styleOverride ?? appState.repo.defaultStyleId(widget.quotes[i], i));
 
   @override
   void initState() {
@@ -57,41 +62,32 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
     super.dispose();
   }
 
-  Future<void> _share({required bool whatsapp}) async {
-    if (_sharing) return;
-    setState(() => _sharing = true);
-    try {
-      final result = whatsapp
-          ? await ShareService.shareToWhatsApp(_keyFor(_index), _current)
-          : await ShareService.shareCardImage(_keyFor(_index), _current);
-      if (whatsapp && result == ShareResultKind.sheet) {
-        _toast('WhatsApp wurde nicht gefunden – wähle eine andere App.');
-      } else if (result == ShareResultKind.failed) {
-        _toast('Teilen hat leider nicht geklappt.');
-      }
-    } catch (e) {
-      _toast('Teilen hat leider nicht geklappt.');
-    } finally {
-      if (mounted) setState(() => _sharing = false);
-    }
-  }
-
-  void _toast(String msg) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(msg)));
-  }
+  Future<void> _share({required bool whatsapp}) =>
+      Sharer.shareVisible(context, key: _keyFor(_index), quote: _current, whatsapp: whatsapp);
 
   @override
   Widget build(BuildContext context) {
     final repo = appState.repo;
     final title = widget.title ?? repo.category(_current.category).title;
+    final font = appState.cardFont;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        actions: [FavoriteButton(quoteId: _current.id, size: 30)],
+        actions: [
+          IconButton(
+            tooltip: 'Text kopieren',
+            icon: const Icon(Icons.copy_rounded),
+            onPressed: () async {
+              await ShareService.copyText(_current);
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Text kopiert ✓')));
+              }
+            },
+          ),
+          FavoriteButton(quoteId: _current.id, size: 28),
+          const SizedBox(width: 4),
+        ],
       ),
       body: SafeArea(
         top: false,
@@ -110,34 +106,33 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                   final style = _styleFor(i);
                   return LayoutBuilder(
                     builder: (context, c) {
-                      final side = math.max(
-                          120.0, math.min(c.maxWidth - 32, c.maxHeight - 16));
+                      final side = math.max(120.0, math.min(c.maxWidth - 32, c.maxHeight - 16));
                       return Center(
-                        child: Container(
-                          width: side,
-                          height: side,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            boxShadow: [
-                              BoxShadow(
-                                color: kInk.withValues(alpha: 0.18),
-                                blurRadius: 24,
-                                offset: const Offset(0, 10),
+                        child: GestureDetector(
+                          onLongPress: () => showQuoteActions(context, quote, style: style, list: widget.quotes, index: i),
+                          child: Hero(
+                            tag: 'card-${quote.id}',
+                            child: Container(
+                              width: side,
+                              height: side,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Ui.rCard),
+                                boxShadow: Ui.shadow(1.4),
                               ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: RepaintBoundary(
-                              key: _keyFor(i),
-                              child: AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 280),
-                                child: QuoteCard(
-                                  key: ValueKey('${quote.id}-${style.id}-${appState.cardFont.id}'),
-                                  font: appState.cardFont,
-                                  quote: quote,
-                                  style: style,
-                                  heading: repo.headingFor(quote),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(Ui.rCard),
+                                child: RepaintBoundary(
+                                  key: _keyFor(i),
+                                  child: AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 280),
+                                    child: QuoteCard(
+                                      key: ValueKey('${quote.id}-${style.id}-${font.id}'),
+                                      quote: quote,
+                                      style: style,
+                                      heading: repo.headingFor(quote),
+                                      font: font,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -151,84 +146,98 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
             ),
             if (widget.quotes.length > 1)
               Padding(
-                padding: const EdgeInsets.only(top: 6, bottom: 4),
+                padding: const EdgeInsets.only(top: 6),
                 child: Text(
                   '${_index + 1} / ${widget.quotes.length}  ·  Wischen für mehr  ›',
-                  style: TextStyle(color: kInk.withValues(alpha: 0.55), fontWeight: FontWeight.w600),
+                  style: TextStyle(color: kInk.withValues(alpha: 0.5), fontWeight: FontWeight.w700),
                 ),
               ),
-            _PickerTabs(
-              fontTab: _fontTab,
-              onChanged: (v) {
-                HapticFeedback.selectionClick();
-                setState(() => _fontTab = v);
-              },
-            ),
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: _fontTab
-                  ? _FontPicker(
-                      key: const ValueKey('fonts'),
-                      selectedId: appState.cardFont.id,
-                      onSelected: (id) async {
-                        HapticFeedback.selectionClick();
-                        await appState.setCardFont(id);
-                        if (mounted) setState(() {});
-                      },
+            // Gestalten-Panel (Bild / Schrift)
+            AnimatedSize(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOutCubic,
+              child: _editing
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        children: [
+                          _PickerTabs(
+                            fontTab: _fontTab,
+                            onChanged: (v) {
+                              HapticFeedback.selectionClick();
+                              setState(() => _fontTab = v);
+                            },
+                          ),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 200),
+                            child: _fontTab
+                                ? _FontPicker(
+                                    key: const ValueKey('fonts'),
+                                    selectedId: font.id,
+                                    onSelected: (id) async {
+                                      HapticFeedback.selectionClick();
+                                      await appState.setCardFont(id);
+                                      if (mounted) setState(() {});
+                                    },
+                                  )
+                                : _StylePicker(
+                                    key: const ValueKey('styles'),
+                                    selectedId: _styleFor(_index).id,
+                                    onSelected: (id) {
+                                      HapticFeedback.selectionClick();
+                                      setState(() => _styleOverride = id);
+                                    },
+                                  ),
+                          ),
+                        ],
+                      ),
                     )
-                  : _StylePicker(
-                      key: const ValueKey('styles'),
-                      selectedId: _styleFor(_index).id,
-                      onSelected: (id) {
-                        HapticFeedback.selectionClick();
-                        setState(() => _styleOverride = id);
-                      },
-                    ),
+                  : const SizedBox(width: double.infinity),
             ),
+            // Bottom bar
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-              child: Column(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
+              child: Row(
                 children: [
                   SizedBox(
-                    width: double.infinity,
+                    height: 56,
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 14),
+                        backgroundColor: _editing ? kCoral.withValues(alpha: 0.14) : kCard,
+                        side: BorderSide(color: _editing ? kCoral : kInk.withValues(alpha: 0.15), width: _editing ? 2 : 1),
+                      ),
+                      onPressed: () {
+                        HapticFeedback.selectionClick();
+                        setState(() => _editing = !_editing);
+                      },
+                      icon: Icon(_editing ? Icons.check_rounded : Icons.palette_outlined,
+                          color: _editing ? kCoral : kInk),
+                      label: Text(_editing ? 'Fertig' : 'Gestalten'),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  SizedBox(
+                    width: 56,
+                    height: 56,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
+                      onPressed: () => _share(whatsapp: false),
+                      child: const Tooltip(message: 'Andere Apps', child: Icon(Icons.ios_share_rounded)),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
                     child: FilledButton.icon(
                       style: FilledButton.styleFrom(
                         backgroundColor: kWhatsApp,
                         foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                       ),
-                      onPressed: _sharing ? null : () => _share(whatsapp: true),
-                      icon: _sharing
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                            )
-                          : const Icon(Icons.chat_rounded),
-                      label: const Text('Per WhatsApp senden'),
+                      onPressed: () => _share(whatsapp: true),
+                      icon: const Icon(Icons.chat_rounded),
+                      label: const FittedBox(child: Text('WhatsApp')),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: _sharing ? null : () => _share(whatsapp: false),
-                          icon: const Icon(Icons.share_outlined),
-                          label: const Text('Andere Apps'),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: () async {
-                            await ShareService.copyText(_current);
-                            _toast('Text kopiert ✓');
-                          },
-                          icon: const Icon(Icons.copy_rounded),
-                          label: const Text('Kopieren'),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
@@ -263,7 +272,7 @@ class _StylePickerState extends State<_StylePicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 64,
+      height: 68,
       child: ListView.separated(
         controller: _controller,
         scrollDirection: Axis.horizontal,
@@ -277,12 +286,12 @@ class _StylePickerState extends State<_StylePicker> {
             onTap: () => widget.onSelected(style.id),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 180),
-              width: 56,
-              height: 56,
+              width: 58,
+              height: 58,
               padding: EdgeInsets.all(selected ? 3 : 0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: selected ? kCoral : Colors.white, width: selected ? 3 : 2),
+                border: Border.all(color: selected ? kCoral : kCard, width: selected ? 3 : 2),
               ),
               child: ClipOval(
                 child: style.hasPhoto
@@ -300,7 +309,6 @@ class _StylePickerState extends State<_StylePicker> {
   }
 }
 
-
 /// "🖼️ Bild | Aa Schrift"
 class _PickerTabs extends StatelessWidget {
   const _PickerTabs({required this.fontTab, required this.onChanged});
@@ -316,11 +324,9 @@ class _PickerTabs extends StatelessWidget {
               duration: const Duration(milliseconds: 180),
               padding: const EdgeInsets.symmetric(vertical: 9),
               decoration: BoxDecoration(
-                color: selected ? Colors.white : Colors.transparent,
+                color: selected ? kCard : Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: selected
-                    ? [BoxShadow(color: kInk.withValues(alpha: 0.08), blurRadius: 6, offset: const Offset(0, 2))]
-                    : null,
+                boxShadow: selected ? Ui.shadow(0.5) : null,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -338,10 +344,10 @@ class _PickerTabs extends StatelessWidget {
           ),
         );
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 4, 16, 6),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
       child: Container(
         padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(color: kInk.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(color: kInk.withValues(alpha: 0.07), borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             tab('Bild', Icons.image_outlined, !fontTab, () => onChanged(false)),
@@ -362,7 +368,7 @@ class _FontPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 64,
+      height: 68,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
@@ -375,10 +381,10 @@ class _FontPicker extends StatelessWidget {
             onTap: () => onSelected(f.id),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 180),
-              width: 74,
+              width: 76,
               decoration: BoxDecoration(
-                color: selected ? kCoral.withValues(alpha: 0.12) : Colors.white,
-                borderRadius: BorderRadius.circular(14),
+                color: selected ? kCoral.withValues(alpha: 0.14) : kCard,
+                borderRadius: BorderRadius.circular(Ui.rChip),
                 border: Border.all(color: selected ? kCoral : kInk.withValues(alpha: 0.12), width: selected ? 2.5 : 1),
               ),
               child: Column(

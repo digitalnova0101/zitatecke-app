@@ -1,4 +1,7 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +17,7 @@ import 'services/content_service.dart';
 import 'services/notification_service.dart';
 import 'theme/app_theme.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,24 +48,68 @@ void _openQuoteFromNotification(String quoteId) {
   );
 }
 
-class SpruecheApp extends StatelessWidget {
+class SpruecheApp extends StatefulWidget {
   const SpruecheApp({super.key});
 
   @override
+  State<SpruecheApp> createState() => _SpruecheAppState();
+}
+
+class _SpruecheAppState extends State<SpruecheApp> with WidgetsBindingObserver {
+  bool? _lastDark;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangePlatformBrightness() => setState(() {});
+
+  bool _isDark(BuildContext context) {
+    switch (appState.themeSetting) {
+      case 'dark':
+        return true;
+      case 'light':
+        return false;
+      default: // auto: Handy-Einstellung oder nachts
+        return MediaQuery.platformBrightnessOf(context) == Brightness.dark || isNightHour(DateTime.now());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: kAppName,
-      debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      theme: buildAppTheme(),
-      locale: const Locale('de'),
-      supportedLocales: const [Locale('de')],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: const _Root(),
+    return ListenableBuilder(
+      listenable: appState,
+      builder: (context, _) {
+        final dark = _isDark(context);
+        if (_lastDark != null && _lastDark != dark) {
+          navigatorKey = GlobalKey<NavigatorState>(); // komplett neu aufbauen
+        }
+        _lastDark = dark;
+        return MaterialApp(
+          key: ValueKey(dark), // Farbwechsel → alles neu zeichnen
+          title: kAppName,
+          debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+          theme: buildAppTheme(dark: dark),
+          locale: const Locale('de'),
+          supportedLocales: const [Locale('de')],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: const _Root(),
+        );
+      },
     );
   }
 }
@@ -129,6 +176,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: IndexedStack(
         index: _tab,
         children: const [
@@ -137,26 +185,96 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
           SettingsScreen(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _tab,
-        onDestinationSelected: (i) => setState(() => _tab = i),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Start',
+      bottomNavigationBar: _FloatingNav(
+        index: _tab,
+        onTap: (i) {
+          HapticFeedback.selectionClick();
+          setState(() => _tab = i);
+        },
+      ),
+    );
+  }
+}
+
+/// Schwebende "Pille" unten, mit Blur.
+class _FloatingNav extends StatelessWidget {
+  const _FloatingNav({required this.index, required this.onTap});
+  final int index;
+  final ValueChanged<int> onTap;
+
+  static const _items = [
+    (Icons.home_outlined, Icons.home_rounded, 'Start'),
+    (Icons.favorite_border_rounded, Icons.favorite_rounded, 'Favoriten'),
+    (Icons.settings_outlined, Icons.settings_rounded, 'Einstellungen'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 0, 16, bottom + 12),
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(32), boxShadow: Ui.shadow(1.3)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(32),
+          child: BackdropFilter(
+            filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+            child: Container(
+              height: 68,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                color: kCard.withValues(alpha: 0.86),
+                borderRadius: BorderRadius.circular(32),
+                border: Border.all(color: kInk.withValues(alpha: 0.06)),
+              ),
+              child: Row(
+                children: [
+                  for (final (i, it) in _items.indexed)
+                    Expanded(
+                      child: Semantics(
+                        button: true,
+                        selected: i == index,
+                        label: it.$3,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => onTap(i),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 220),
+                            curve: Curves.easeOutCubic,
+                            margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: i == index ? kCoral.withValues(alpha: 0.14) : Colors.transparent,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(i == index ? it.$2 : it.$1,
+                                    color: i == index ? kCoral : kInk.withValues(alpha: 0.65), size: 26),
+                                if (i == index) ...[
+                                  const SizedBox(width: 6),
+                                  Flexible(
+                                    child: Text(
+                                      it.$3,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
+                                      style: const TextStyle(
+                                          color: kCoral, fontWeight: FontWeight.w800, fontSize: 14),
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite_border),
-            selectedIcon: Icon(Icons.favorite),
-            label: 'Favoriten',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Einstellungen',
-          ),
-        ],
+        ),
       ),
     );
   }

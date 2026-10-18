@@ -85,11 +85,11 @@ class _CityScreenState extends State<CityScreen> {
             onChanged: _onChanged,
             textInputAction: TextInputAction.search,
             onSubmitted: _search,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: kInk),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: kInk),
             decoration: InputDecoration(
               hintText: 'Stadt suchen … z. B. Köln',
               filled: true,
-              fillColor: Colors.white,
+              fillColor: kCard,
               prefixIcon: const Icon(Icons.location_city_rounded),
               suffixIcon: _loading
                   ? const Padding(
@@ -126,7 +126,7 @@ class _CityScreenState extends State<CityScreen> {
               child: Text(_error!, style: const TextStyle(color: kCoral, fontWeight: FontWeight.w700)),
             ),
           if (q.isEmpty) ...[
-            const Text('Beliebte Städte', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
+            Text('Beliebte Städte', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
@@ -177,12 +177,12 @@ class _Tile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: kCard,
       borderRadius: BorderRadius.circular(16),
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         leading: Icon(icon, color: highlight ? kCoral : kInk.withValues(alpha: 0.6)),
-        title: Text(title, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
+        title: Text(title, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
         subtitle: Text(subtitle),
         onTap: onTap,
       ),

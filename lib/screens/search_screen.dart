@@ -4,6 +4,7 @@ import '../app_state.dart';
 import '../models/quote.dart';
 import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
+import '../widgets/quote_actions.dart';
 import '../widgets/quote_tile.dart';
 import 'quote_detail_screen.dart';
 
@@ -52,11 +53,11 @@ class _SearchScreenState extends State<SearchScreen> {
             autofocus: true,
             textInputAction: TextInputAction.search,
             onChanged: _search,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: kInk),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: kInk),
             decoration: InputDecoration(
               hintText: 'Spruch suchen …',
               filled: true,
-              fillColor: Colors.white,
+              fillColor: kCard,
               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               prefixIcon: const Icon(Icons.search),
               suffixIcon: query.isEmpty
@@ -81,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ? ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                const Text(
+                Text(
                   'Beliebte Suchen',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: kInk),
                 ),
@@ -126,6 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       quote: q,
                       subtitle: repo.headingFor(q),
                       style: styleById(repo.defaultStyleId(q, i - 1)),
+                      onLongPress: () => showQuoteActions(context, q, list: _results, index: i - 1),
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         Navigator.of(context).push(MaterialPageRoute(

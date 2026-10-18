@@ -28,8 +28,41 @@ class SettingsScreen extends StatelessWidget {
       body: ListenableBuilder(
         listenable: appState,
         builder: (context, _) => ListView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+          padding: EdgeInsets.fromLTRB(16, 8, 16, MediaQuery.paddingOf(context).bottom + 24),
           children: [
+            const _Header('Erscheinungsbild'),
+            _Box(children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 6),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: SegmentedButton<String>(
+                    showSelectedIcon: false,
+                    style: SegmentedButton.styleFrom(
+                      selectedBackgroundColor: kCoral.withValues(alpha: 0.16),
+                      selectedForegroundColor: kCoral,
+                      foregroundColor: kInk,
+                      textStyle: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+                    ),
+                    segments: const [
+                      ButtonSegment(value: 'auto', icon: Icon(Icons.brightness_auto_rounded), label: Text('Auto')),
+                      ButtonSegment(value: 'light', icon: Icon(Icons.light_mode_rounded), label: Text('Hell')),
+                      ButtonSegment(value: 'dark', icon: Icon(Icons.dark_mode_rounded), label: Text('Dunkel')),
+                    ],
+                    selected: {appState.themeSetting},
+                    onSelectionChanged: (v) => appState.setThemeSetting(v.first),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(18, 2, 18, 14),
+                child: Text(
+                  'Auto: dunkel, wenn dein Handy auf dunkel steht – und abends ab 21 Uhr.',
+                  style: TextStyle(fontSize: 13.5, height: 1.35, color: kInk.withValues(alpha: 0.6)),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 24),
             const _Header('Tägliche Erinnerung'),
             _Box(children: [
               SwitchListTile(
@@ -175,7 +208,7 @@ class _Header extends StatelessWidget {
         padding: const EdgeInsets.only(left: 4, bottom: 8),
         child: Text(
           text,
-          style: const TextStyle(fontFamily: kFontQuote, fontSize: 19, fontWeight: FontWeight.w700, color: kInk),
+          style: TextStyle(fontFamily: kFontQuote, fontSize: 19, fontWeight: FontWeight.w700, color: kInk),
         ),
       );
 }
@@ -186,7 +219,7 @@ class _Box extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: Colors.white,
+        color: kCard,
         borderRadius: BorderRadius.circular(18),
         clipBehavior: Clip.antiAlias,
         child: Column(children: children),

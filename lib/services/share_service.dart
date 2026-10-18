@@ -10,7 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import '../config.dart';
 import '../models/quote.dart';
 
-enum ShareResultKind { whatsapp, sheet, failed }
+enum ShareResultKind { whatsapp, sheet, dismissed, failed }
 
 class ShareService {
   ShareService._();
@@ -52,8 +52,8 @@ class ShareService {
     } catch (_) {
       // Native channel nahi mila – neeche share sheet.
     }
-    await _sheet(file);
-    return ShareResultKind.sheet;
+    final ok = await _sheet(file);
+    return ok ? ShareResultKind.sheet : ShareResultKind.dismissed;
   }
 
   /// Share sheet (Telegram, Facebook, Signal, E-Mail ...).
@@ -61,17 +61,19 @@ class ShareService {
     HapticFeedback.mediumImpact();
     final file = await _renderCard(key, quote);
     if (file == null) return ShareResultKind.failed;
-    await _sheet(file);
-    return ShareResultKind.sheet;
+    final ok = await _sheet(file);
+    return ok ? ShareResultKind.sheet : ShareResultKind.dismissed;
   }
 
-  static Future<void> _sheet(File file) async {
-    await SharePlus.instance.share(
+  /// true = user ne koi app chuni (dismiss nahi kiya).
+  static Future<bool> _sheet(File file) async {
+    final r = await SharePlus.instance.share(
       ShareParams(
         files: [XFile(file.path, mimeType: 'image/png')],
         text: kPlayStoreLink.isEmpty ? null : kPlayStoreLink,
       ),
     );
+    return r.status != ShareResultStatus.dismissed;
   }
 
   static Future<void> shareText(Quote quote) async {

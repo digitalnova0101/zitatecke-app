@@ -18,6 +18,7 @@ class QuoteCard extends StatelessWidget {
     required this.heading,
     this.showWatermark = true,
     this.font,
+    this.thumbnail = false,
   });
 
   final Quote quote;
@@ -27,6 +28,9 @@ class QuoteCard extends StatelessWidget {
 
   /// Spruch ka font (user chunta hai). Null = Lora.
   final CardFont? font;
+
+  /// Grid ke chhote cards: kam memory wali photo.
+  final bool thumbnail;
 
   double _baseFontSize(String text) {
     final n = text.length;
@@ -59,7 +63,7 @@ class QuoteCard extends StatelessWidget {
                 children: [
                   if (isPhoto) ...[
                     Positioned.fill(
-                      child: Image(image: style.imageProvider!, fit: BoxFit.cover, gaplessPlayback: true),
+                      child: Image(image: thumbnail ? style.thumbProvider(420)! : style.imageProvider!, fit: BoxFit.cover, gaplessPlayback: true),
                     ),
                     Positioned.fill(
                       child: DecoratedBox(

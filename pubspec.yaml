@@ -1,7 +1,7 @@
 name: guten_morgen_app
 description: "Zitatecke: Sprüche & Grüße – Guten Morgen, Gute Nacht und Motivation."
 publish_to: 'none'
-version: 1.3.0+4
+version: 1.4.0+5
 
 environment:
   sdk: ^3.5.0

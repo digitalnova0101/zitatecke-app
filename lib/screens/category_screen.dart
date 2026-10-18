@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../app_state.dart';
+import '../models/quote.dart';
 import '../theme/app_theme.dart';
-import '../theme/card_styles.dart';
-import '../widgets/quote_tile.dart';
-import 'quote_detail_screen.dart';
+import '../widgets/quote_grid.dart';
+import 'reels_screen.dart';
 
+/// Kategorie: 2-Spalten Foto-Grid. Tippen → Vollbild (Reels).
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key, required this.categoryId, this.initialTag});
 
@@ -34,9 +35,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final repo = appState.repo;
     final category = repo.category(widget.categoryId);
     final quotes = repo.byCategory(category.id, tag: _tag);
+    final bottom = MediaQuery.paddingOf(context).bottom;
 
     return Scaffold(
-      appBar: AppBar(title: Text('${category.emoji}  ${category.title}')),
+      appBar: AppBar(
+        title: Text('${category.emoji}  ${category.title}'),
+        actions: [
+          if (quotes.isNotEmpty)
+            IconButton(
+              tooltip: 'Vollbild',
+              icon: const Icon(Icons.play_circle_outline_rounded, size: 28),
+              onPressed: () => _openReels(quotes, 0, category.title),
+            ),
+        ],
+      ),
       body: Column(
         children: [
           if (category.tags.isNotEmpty)
@@ -52,30 +64,37 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ],
               ),
             ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
+            child: Row(
+              children: [
+                Text('${quotes.length} Sprüche',
+                    style: TextStyle(fontWeight: FontWeight.w800, color: kInk.withValues(alpha: 0.55))),
+                const Spacer(),
+                Text('Gedrückt halten für mehr',
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.45))),
+              ],
+            ),
+          ),
           Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-              itemCount: quotes.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
-              itemBuilder: (context, i) => QuoteTile(
-                quote: quotes[i],
-                subtitle: repo.isNewToday(quotes[i]) ? '✨ NEU HEUTE' : null,
-                style: styleById(repo.defaultStyleId(quotes[i], i)),
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => QuoteDetailScreen(
-                      quotes: quotes,
-                      initialIndex: i,
-                      title: category.title,
-                    ),
-                  ),
-                ),
+            child: ListenableBuilder(
+              listenable: appState,
+              builder: (context, _) => QuoteGrid(
+                quotes: quotes,
+                padding: EdgeInsets.fromLTRB(16, 8, 16, bottom + 24),
+                onTap: (i) => _openReels(quotes, i, category.title),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _openReels(List<Quote> quotes, int i, String title) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => ReelsScreen(quotes: quotes, initialIndex: i, title: title),
+    ));
   }
 
   Widget _chip(String label, bool selected, VoidCallback onTap) => Padding(

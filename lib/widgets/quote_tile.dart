@@ -13,22 +13,25 @@ class QuoteTile extends StatelessWidget {
     required this.style,
     required this.onTap,
     this.subtitle,
+    this.onLongPress,
   });
 
   final Quote quote;
   final CardStyle style;
   final VoidCallback onTap;
+  final VoidCallback? onLongPress;
   final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(20),
+      color: kCard,
+      borderRadius: BorderRadius.circular(Ui.rTile),
       clipBehavior: Clip.antiAlias,
       elevation: 0,
       child: InkWell(
         onTap: onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
           child: Row(
@@ -51,7 +54,7 @@ class QuoteTile extends StatelessWidget {
                       quote.text,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: kFontQuote,
                         fontSize: 17,
                         height: 1.4,

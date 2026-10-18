@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 
 import '../app_state.dart';
 import '../models/quote.dart';
-import '../services/share_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
 import '../widgets/animations.dart';
+import '../widgets/quote_actions.dart';
 import '../widgets/quote_card.dart';
+import '../widgets/share_actions.dart';
 import '../services/weather_service.dart';
 import 'category_screen.dart';
 import 'city_screen.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Map<int, GlobalKey> _cardKeys = {};
   int _page = 0;
   String? _listFor;
-  bool _sharing = false;
+  final bool _sharing = false;
 
   GlobalKey _keyFor(int i) => _cardKeys.putIfAbsent(i, () => GlobalKey());
 
@@ -45,22 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return (greeting: 'Gute Nacht!', categoryId: 'gute_nacht');
   }
 
-  Future<void> _share(Quote quote, {required bool whatsapp}) async {
-    if (_sharing) return;
-    setState(() => _sharing = true);
-    try {
-      final r = whatsapp
-          ? await ShareService.shareToWhatsApp(_keyFor(_page), quote)
-          : await ShareService.shareCardImage(_keyFor(_page), quote);
-      if (whatsapp && r == ShareResultKind.sheet && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('WhatsApp wurde nicht gefunden – wähle eine andere App.'),
-        ));
-      }
-    } finally {
-      if (mounted) setState(() => _sharing = false);
-    }
-  }
+  Future<void> _share(Quote quote, {required bool whatsapp}) =>
+      Sharer.shareVisible(context, key: _keyFor(_page), quote: quote, whatsapp: whatsapp);
 
   void _open(Widget screen) =>
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
@@ -96,42 +83,25 @@ class _HomeScreenState extends State<HomeScreen> {
     final special = repo.specialFor(now);
     final specialQuotes = repo.specialQuotes(now);
 
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
-          children: [
-            FadeSlideIn(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          germanDate(now),
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.55)),
-                        ),
-                        Text(
-                          ctx.greeting,
-                          style: const TextStyle(
-                            fontFamily: kFontScript,
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                            color: kInk,
-                            height: 1.15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
-                    child: Image.asset('assets/brand/splash_logo.png', width: 46, height: 46),
-                  ),
-                ],
-              ),
-            ),
+    final bottomPad = MediaQuery.paddingOf(context).bottom + 24;
+    final headerDark = dayPartOf(now) == DayPart.night || isDarkPalette;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: headerDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        body: RefreshIndicator(
+          color: kCoral,
+          edgeOffset: MediaQuery.paddingOf(context).top,
+          onRefresh: () => appState.refreshContent(force: true),
+          child: ListView(
+            padding: EdgeInsets.only(bottom: bottomPad),
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
+              _DynamicHeader(now: now, greeting: ctx.greeting),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Ui.gap),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
             if (special != null && specialQuotes.isNotEmpty) ...[
               const SizedBox(height: 16),
               FadeSlideIn(
@@ -150,13 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const Expanded(child: _SectionTitle('Spruch des Tages')),
                   Material(
-                    color: Colors.white,
+                    color: kCard,
                     shape: const CircleBorder(),
                     child: IconButton(
                       tooltip: 'Spruch suchen',
                       iconSize: 26,
                       onPressed: () => _open(const SearchScreen()),
-                      icon: const Icon(Icons.search_rounded, color: kInk),
+                      icon: Icon(Icons.search_rounded, color: kInk),
                     ),
                   ),
                 ],
@@ -186,14 +156,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.fromLTRB(6, 4, 6, 26),
                             child: GestureDetector(
                               onTap: () => _open(QuoteDetailScreen(quotes: list, initialIndex: i, title: 'Spruch des Tages')),
+                              onLongPress: () => showQuoteActions(context, q, style: st, list: list, index: i),
                               child: Stack(
                                 children: [
-                                  Container(
+                                  Hero(
+                                    tag: 'card-${q.id}',
+                                    child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(24),
-                                      boxShadow: [
-                                        BoxShadow(color: kInk.withValues(alpha: 0.18), blurRadius: 20, offset: const Offset(0, 8)),
-                                      ],
+                                      boxShadow: Ui.shadow(),
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(24),
@@ -208,6 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                     ),
+                                  ),
                                   ),
                                   if (repo.isNewToday(q))
                                     const Positioned(top: 12, left: 12, child: _NewBadge()),
@@ -243,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
                       onPressed: _sharing ? null : () => _share(quote, whatsapp: false),
-                      child: const Icon(Icons.share_outlined),
+                      child: const Icon(Icons.ios_share_rounded),
                     ),
                   ),
                 ],
@@ -284,7 +256,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
               ],
             ),
-          ],
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -298,7 +274,7 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Text(
         text,
-        style: const TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
+        style: TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
       );
 }
 
@@ -314,8 +290,8 @@ class _TodayBanner extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: kCard,
+          borderRadius: BorderRadius.circular(Ui.rTile),
         ),
         child: Row(
           children: [
@@ -336,7 +312,7 @@ class _TodayBanner extends StatelessWidget {
                 children: [
                   Text(
                     'Heute ist $weekday',
-                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk),
                   ),
                   Text(
                     'Passende Sprüche für heute',
@@ -345,7 +321,7 @@ class _TodayBanner extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: kInk),
+            Icon(Icons.chevron_right_rounded, color: kInk),
           ],
         ),
       ),
@@ -478,7 +454,7 @@ class _SpecialBanner extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: Colors.white),
+            const Icon(Icons.chevron_right_rounded, color: Colors.white),
           ],
         ),
       ),
@@ -499,7 +475,7 @@ class _WeatherSectionState extends State<_WeatherSection> {
   Future<WeatherNow?>? _future;
   String? _forCity;
   DateTime? _at;
-  bool _sharing = false;
+  final bool _sharing = false;
 
   void _ensureFuture(City city) {
     final key = '${city.lat},${city.lon}';
@@ -511,22 +487,8 @@ class _WeatherSectionState extends State<_WeatherSection> {
     }
   }
 
-  Future<void> _share(Quote q, {required bool whatsapp}) async {
-    if (_sharing) return;
-    setState(() => _sharing = true);
-    try {
-      final r = whatsapp
-          ? await ShareService.shareToWhatsApp(_cardKey, q)
-          : await ShareService.shareCardImage(_cardKey, q);
-      if (whatsapp && r == ShareResultKind.sheet && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('WhatsApp wurde nicht gefunden – wähle eine andere App.'),
-        ));
-      }
-    } finally {
-      if (mounted) setState(() => _sharing = false);
-    }
-  }
+  Future<void> _share(Quote q, {required bool whatsapp}) =>
+      Sharer.shareVisible(context, key: _cardKey, quote: q, whatsapp: whatsapp);
 
   void _pickCity() => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CityScreen()));
 
@@ -539,8 +501,8 @@ class _WeatherSectionState extends State<_WeatherSection> {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            color: kCard,
+            borderRadius: BorderRadius.circular(Ui.rTile),
             border: Border.all(color: kCoral.withValues(alpha: 0.35), width: 1.5),
           ),
           child: Row(
@@ -551,13 +513,13 @@ class _WeatherSectionState extends State<_WeatherSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Wetter-Sprüche', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
+                    Text('Wetter-Sprüche', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
                     Text('Wähle deine Stadt für Sprüche passend zum Wetter',
                         style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.6))),
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: kInk),
+              Icon(Icons.chevron_right_rounded, color: kInk),
             ],
           ),
         ),
@@ -577,15 +539,15 @@ class _WeatherSectionState extends State<_WeatherSection> {
                     : 'Heute in ${city.name}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
+                style: TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
               ),
             ),
             if (w != null)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14)),
+                decoration: BoxDecoration(color: kCard, borderRadius: BorderRadius.circular(14)),
                 child: Text('${w.emoji} ${w.tempText} · ${w.label}',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
               )
             else
               IconButton(
@@ -658,7 +620,7 @@ class _WeatherSectionState extends State<_WeatherSection> {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
                     onPressed: _sharing ? null : () => _share(q, whatsapp: false),
-                    child: const Icon(Icons.share_outlined),
+                    child: const Icon(Icons.ios_share_rounded),
                   ),
                 ),
               ],
@@ -705,4 +667,116 @@ class _Dots extends StatelessWidget {
       ],
     );
   }
+}
+
+
+/// Kopfbereich – Farbe nach Tageszeit (Morgen, Tag, Abend, Nacht).
+class _DynamicHeader extends StatelessWidget {
+  const _DynamicHeader({required this.now, required this.greeting});
+  final DateTime now;
+  final String greeting;
+
+  @override
+  Widget build(BuildContext context) {
+    final part = dayPartOf(now);
+    final colors = switch (part) {
+      DayPart.morning => const [Color(0xFFFFE3BF), Color(0xFFFFB9A6)],
+      DayPart.day => const [Color(0xFFCFE9FF), Color(0xFFFFF1E2)],
+      DayPart.evening => const [Color(0xFFFFC9A6), Color(0xFFBFA3F0)],
+      DayPart.night => const [Color(0xFF1B2440), Color(0xFF3B2E5E)],
+    };
+    final dark = isDarkPalette;
+    final c = dark ? colors.map((x) => Color.lerp(x, Colors.black, 0.45)!).toList() : colors;
+    final onDark = part == DayPart.night || dark;
+    final fg = onDark ? Colors.white : const Color(0xFF3B2A35);
+    final top = MediaQuery.paddingOf(context).top;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 18),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: c),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+      ),
+      child: Stack(
+        children: [
+          if (part == DayPart.night)
+            Positioned.fill(child: CustomPaint(painter: _HeaderStars())),
+          if (part == DayPart.morning || part == DayPart.day)
+            Positioned(
+              right: -40,
+              top: -30 + top,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(colors: [
+                    Colors.white.withValues(alpha: 0.65),
+                    Colors.white.withValues(alpha: 0.0),
+                  ]),
+                ),
+              ),
+            ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, top + 16, 20, 26),
+            child: FadeSlideIn(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          germanDate(now),
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: fg.withValues(alpha: 0.7)),
+                        ),
+                        Text(
+                          greeting,
+                          style: TextStyle(
+                            fontFamily: kFontScript,
+                            fontSize: 42,
+                            fontWeight: FontWeight.w700,
+                            color: fg,
+                            height: 1.15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), boxShadow: Ui.shadow(0.8)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset('assets/brand/splash_logo.png', width: 50, height: 50),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HeaderStars extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Paint();
+    var seed = 7;
+    double rnd() {
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      return seed / 0x7fffffff;
+    }
+
+    for (var i = 0; i < 40; i++) {
+      p.color = Colors.white.withValues(alpha: 0.25 + rnd() * 0.6);
+      canvas.drawCircle(Offset(rnd() * size.width, rnd() * size.height), 0.6 + rnd() * 1.4, p);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

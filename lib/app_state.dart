@@ -42,6 +42,26 @@ class AppState extends ChangeNotifier {
     return changed;
   }
 
+  // ---------- Erscheinungsbild (hell / dunkel) ----------
+
+  /// 'auto' = Handy-Einstellung oder nachts; 'light'; 'dark'.
+  String get themeSetting => _prefs.getString('theme_mode') ?? 'auto';
+
+  Future<void> setThemeSetting(String v) async {
+    await _prefs.setString('theme_mode', v);
+    notifyListeners();
+  }
+
+  // ---------- Geteilt-Zähler ----------
+
+  int get shareCount => _prefs.getInt('share_count') ?? 0;
+
+  Future<int> countShare() async {
+    final n = shareCount + 1;
+    await _prefs.setInt('share_count', n);
+    return n;
+  }
+
   // ---------- Schrift (font) ----------
 
   /// User ka chuna hua font – home aur share images mein bhi.
