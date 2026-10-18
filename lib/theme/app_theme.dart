@@ -115,6 +115,20 @@ ThemeData buildAppTheme({bool dark = false}) {
       side: BorderSide(color: kInk.withValues(alpha: 0.15)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Ui.rChip)),
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: kCard,
+      surfaceTintColor: Colors.transparent,
+      indicatorColor: kCoral.withValues(alpha: 0.14),
+      iconTheme: WidgetStateProperty.resolveWith((states) => IconThemeData(
+            color: states.contains(WidgetState.selected) ? kCoral : kInk.withValues(alpha: 0.7),
+          )),
+      labelTextStyle: WidgetStateProperty.resolveWith((states) => TextStyle(
+            fontFamily: kFontUi,
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: states.contains(WidgetState.selected) ? kCoral : kInk.withValues(alpha: 0.7),
+          )),
+    ),
     listTileTheme: ListTileThemeData(
       iconColor: kInk.withValues(alpha: 0.75),
       textColor: kInk,
