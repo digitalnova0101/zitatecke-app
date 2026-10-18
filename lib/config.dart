@@ -1,0 +1,22 @@
+/// Yahan app ki basic settings badlo.
+library;
+
+/// App ka naam (app ke andar dikhta hai).
+const String kAppName = 'Zitatecke';
+
+/// Play Store wala poora title (max 30 characters).
+const String kStoreTitle = 'Zitatecke: Sprüche & Grüße';
+
+/// Website.
+const String kWebsite = 'zitatecke.de';
+
+/// Har share ki gayi image ke neeche chhota sa text (free promotion).
+const String kWatermark = 'zitatecke.de';
+
+/// Play Store link. App publish hone ke baad yahan daalo,
+/// phir har share ke saath link bhi jayega. Khali rakho to link nahi jayega.
+/// Example: 'https://play.google.com/store/apps/details?id=de.zitatecke.app'
+const String kPlayStoreLink = '';
+
+/// Kitne din aage tak notifications schedule karni hain.
+const int kNotificationDays = 21;

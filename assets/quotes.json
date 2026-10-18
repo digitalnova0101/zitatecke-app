@@ -1,0 +1,907 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "guten_morgen",
+      "title": "Guten Morgen",
+      "emoji": "☀️",
+      "subtitle": "Für einen schönen Start in den Tag",
+      "heading": "Guten Morgen",
+      "styles": [
+        "sonnenaufgang",
+        "pfirsich",
+        "morgenrot",
+        "zitrone"
+      ]
+    },
+    {
+      "id": "gute_nacht",
+      "title": "Gute Nacht",
+      "emoji": "🌙",
+      "subtitle": "Liebe Grüße zum Einschlafen",
+      "heading": "Gute Nacht",
+      "styles": [
+        "nachthimmel",
+        "mitternacht",
+        "lavendelnacht"
+      ]
+    },
+    {
+      "id": "motivation",
+      "title": "Motivation",
+      "emoji": "💪",
+      "subtitle": "Sprüche, die Kraft geben",
+      "heading": "Gedanke des Tages",
+      "styles": [
+        "meer",
+        "wald",
+        "energie"
+      ]
+    },
+    {
+      "id": "wochentage",
+      "title": "Wochentage",
+      "emoji": "📅",
+      "subtitle": "Von Montag bis Sonntag",
+      "heading": "Schöne Woche",
+      "styles": [
+        "pfirsich",
+        "meer",
+        "zitrone",
+        "lavendel"
+      ],
+      "tags": [
+        {
+          "id": "montag",
+          "label": "Montag",
+          "heading": "Schönen Montag"
+        },
+        {
+          "id": "dienstag",
+          "label": "Dienstag",
+          "heading": "Schönen Dienstag"
+        },
+        {
+          "id": "mittwoch",
+          "label": "Mittwoch",
+          "heading": "Schönen Mittwoch"
+        },
+        {
+          "id": "donnerstag",
+          "label": "Donnerstag",
+          "heading": "Schönen Donnerstag"
+        },
+        {
+          "id": "freitag",
+          "label": "Freitag",
+          "heading": "Schönen Freitag"
+        },
+        {
+          "id": "samstag",
+          "label": "Samstag",
+          "heading": "Schönen Samstag"
+        },
+        {
+          "id": "sonntag",
+          "label": "Sonntag",
+          "heading": "Schönen Sonntag"
+        }
+      ]
+    },
+    {
+      "id": "wochenende",
+      "title": "Wochenende",
+      "emoji": "🌴",
+      "subtitle": "Endlich frei!",
+      "heading": "Schönes Wochenende",
+      "styles": [
+        "sommer",
+        "meer",
+        "pfirsich"
+      ]
+    },
+    {
+      "id": "freundschaft",
+      "title": "Freundschaft",
+      "emoji": "💛",
+      "subtitle": "Für liebe Menschen",
+      "heading": "Für dich",
+      "styles": [
+        "rose",
+        "lavendel",
+        "pfirsich"
+      ]
+    },
+    {
+      "id": "geburtstag",
+      "title": "Geburtstag",
+      "emoji": "🎂",
+      "subtitle": "Glückwünsche von Herzen",
+      "heading": "Alles Gute",
+      "styles": [
+        "konfetti",
+        "rose",
+        "zitrone"
+      ]
+    },
+    {
+      "id": "feiertage",
+      "title": "Feiertage",
+      "emoji": "🎄",
+      "subtitle": "Weihnachten, Neujahr, Ostern",
+      "heading": "Frohe Feiertage",
+      "styles": [
+        "weihnacht",
+        "winter",
+        "fruehling"
+      ],
+      "tags": [
+        {
+          "id": "weihnachten",
+          "label": "Weihnachten",
+          "heading": "Frohe Weihnachten"
+        },
+        {
+          "id": "neujahr",
+          "label": "Neujahr",
+          "heading": "Frohes neues Jahr"
+        },
+        {
+          "id": "ostern",
+          "label": "Ostern",
+          "heading": "Frohe Ostern"
+        }
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "id": "guten_morgen_001",
+      "category": "guten_morgen",
+      "text": "Guten Morgen! Ein neuer Tag, eine neue Chance – mach etwas Schönes daraus."
+    },
+    {
+      "id": "guten_morgen_002",
+      "category": "guten_morgen",
+      "text": "Der Kaffee ist heiß, die Sonne ist wach – jetzt fehlt nur noch dein Lächeln."
+    },
+    {
+      "id": "guten_morgen_003",
+      "category": "guten_morgen",
+      "text": "Jeder Morgen ist ein kleines Geschenk. Pack es mit Freude aus!"
+    },
+    {
+      "id": "guten_morgen_004",
+      "category": "guten_morgen",
+      "text": "Ich wünsche dir einen Morgen voller Sonnenschein und einen Tag voller schöner Momente."
+    },
+    {
+      "id": "guten_morgen_005",
+      "category": "guten_morgen",
+      "text": "Steh auf mit einem Lächeln – der Tag wartet schon auf dich."
+    },
+    {
+      "id": "guten_morgen_006",
+      "category": "guten_morgen",
+      "text": "Heute ist ein guter Tag für einen guten Tag."
+    },
+    {
+      "id": "guten_morgen_007",
+      "category": "guten_morgen",
+      "text": "Ein kleiner Gruß am Morgen, damit du weißt: Jemand denkt an dich."
+    },
+    {
+      "id": "guten_morgen_008",
+      "category": "guten_morgen",
+      "text": "Möge dein Tag so gut werden wie dein erster Kaffee."
+    },
+    {
+      "id": "guten_morgen_009",
+      "category": "guten_morgen",
+      "text": "Guten Morgen! Lass die Sorgen von gestern los und begrüße das Heute."
+    },
+    {
+      "id": "guten_morgen_010",
+      "category": "guten_morgen",
+      "text": "Die Sonne geht nicht nur am Himmel auf, sondern auch in deinem Herzen."
+    },
+    {
+      "id": "guten_morgen_011",
+      "category": "guten_morgen",
+      "text": "Ein neuer Morgen, ein neuer Anfang. Alles ist möglich."
+    },
+    {
+      "id": "guten_morgen_012",
+      "category": "guten_morgen",
+      "text": "Schick ein Lächeln in die Welt – es kommt bestimmt zurück. Guten Morgen!"
+    },
+    {
+      "id": "guten_morgen_013",
+      "category": "guten_morgen",
+      "text": "Ich hoffe, du hast gut geschlafen. Hab einen wunderschönen Tag!"
+    },
+    {
+      "id": "guten_morgen_014",
+      "category": "guten_morgen",
+      "text": "Kleine Freuden machen den Tag hell: ein warmer Kaffee, ein liebes Wort, ein Sonnenstrahl."
+    },
+    {
+      "id": "guten_morgen_015",
+      "category": "guten_morgen",
+      "text": "Guten Morgen, du Sonnenschein! Lass es heute ruhig angehen."
+    },
+    {
+      "id": "guten_morgen_016",
+      "category": "guten_morgen",
+      "text": "Wer mit Dankbarkeit aufsteht, hat schon gewonnen."
+    },
+    {
+      "id": "guten_morgen_017",
+      "category": "guten_morgen",
+      "text": "Heute darfst du stolz auf dich sein – einfach, weil du du bist."
+    },
+    {
+      "id": "guten_morgen_018",
+      "category": "guten_morgen",
+      "text": "Ein fröhlicher Morgen ist schon der halbe Tag."
+    },
+    {
+      "id": "guten_morgen_019",
+      "category": "guten_morgen",
+      "text": "Gönn dir heute etwas Gutes. Du hast es verdient."
+    },
+    {
+      "id": "guten_morgen_020",
+      "category": "guten_morgen",
+      "text": "Der Morgen gehört den Mutigen – und denen mit genug Kaffee."
+    },
+    {
+      "id": "guten_morgen_021",
+      "category": "guten_morgen",
+      "text": "Öffne das Fenster, atme tief durch und sag Hallo zum neuen Tag."
+    },
+    {
+      "id": "guten_morgen_022",
+      "category": "guten_morgen",
+      "text": "Ich schicke dir eine Tasse voll guter Laune. Guten Morgen!"
+    },
+    {
+      "id": "guten_morgen_023",
+      "category": "guten_morgen",
+      "text": "Jeder Tag hat etwas Schönes. Manchmal muss man nur genauer hinsehen."
+    },
+    {
+      "id": "guten_morgen_024",
+      "category": "guten_morgen",
+      "text": "Ein liebes Guten Morgen an dich – mögest du heute nur nette Menschen treffen."
+    },
+    {
+      "id": "guten_morgen_025",
+      "category": "guten_morgen",
+      "text": "Morgenstund hat Gold im Mund.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "gute_nacht_001",
+      "category": "gute_nacht",
+      "text": "Gute Nacht! Lass den Tag los und träum etwas Schönes."
+    },
+    {
+      "id": "gute_nacht_002",
+      "category": "gute_nacht",
+      "text": "Der Mond wacht über dich. Schlaf gut und erhol dich gut."
+    },
+    {
+      "id": "gute_nacht_003",
+      "category": "gute_nacht",
+      "text": "Schließ die Augen, atme tief durch – morgen ist ein neuer Tag."
+    },
+    {
+      "id": "gute_nacht_004",
+      "category": "gute_nacht",
+      "text": "Ich wünsche dir eine ruhige Nacht und süße Träume."
+    },
+    {
+      "id": "gute_nacht_005",
+      "category": "gute_nacht",
+      "text": "Die Sterne leuchten heute nur für dich. Gute Nacht!"
+    },
+    {
+      "id": "gute_nacht_006",
+      "category": "gute_nacht",
+      "text": "Was heute nicht geklappt hat, darf bis morgen warten. Schlaf gut."
+    },
+    {
+      "id": "gute_nacht_007",
+      "category": "gute_nacht",
+      "text": "Ein letzter Gruß für heute: Du hast das gut gemacht. Gute Nacht!"
+    },
+    {
+      "id": "gute_nacht_008",
+      "category": "gute_nacht",
+      "text": "Möge dein Schlaf tief und deine Träume bunt sein."
+    },
+    {
+      "id": "gute_nacht_009",
+      "category": "gute_nacht",
+      "text": "Kuschel dich ein, mach die Augen zu – die Nacht schenkt dir Ruhe."
+    },
+    {
+      "id": "gute_nacht_010",
+      "category": "gute_nacht",
+      "text": "Gute Nacht, schlaf gut und lass dich von schönen Träumen tragen."
+    },
+    {
+      "id": "gute_nacht_011",
+      "category": "gute_nacht",
+      "text": "Der Tag ist vorbei, die Sorgen dürfen schlafen gehen. Du auch."
+    },
+    {
+      "id": "gute_nacht_012",
+      "category": "gute_nacht",
+      "text": "Ein kleiner Gute-Nacht-Gruß, damit du mit einem Lächeln einschläfst."
+    },
+    {
+      "id": "gute_nacht_013",
+      "category": "gute_nacht",
+      "text": "Danke für diesen Tag. Morgen geht es mit neuer Kraft weiter."
+    },
+    {
+      "id": "gute_nacht_014",
+      "category": "gute_nacht",
+      "text": "Sanfte Träume und eine erholsame Nacht wünsche ich dir."
+    },
+    {
+      "id": "gute_nacht_015",
+      "category": "gute_nacht",
+      "text": "Der Mond sagt: Feierabend! Gute Nacht."
+    },
+    {
+      "id": "gute_nacht_016",
+      "category": "gute_nacht",
+      "text": "Lass die Gedanken ziehen wie Wolken am Nachthimmel."
+    },
+    {
+      "id": "gute_nacht_017",
+      "category": "gute_nacht",
+      "text": "Jeder Abend ist ein kleines Dankeschön an den Tag."
+    },
+    {
+      "id": "gute_nacht_018",
+      "category": "gute_nacht",
+      "text": "Schlaf schön, und vergiss nicht: Morgen scheint wieder die Sonne."
+    },
+    {
+      "id": "gute_nacht_019",
+      "category": "gute_nacht",
+      "text": "Ruh dich aus – du hast heute genug geleistet."
+    },
+    {
+      "id": "gute_nacht_020",
+      "category": "gute_nacht",
+      "text": "Gute Nacht! Ich denke an dich."
+    },
+    {
+      "id": "gute_nacht_021",
+      "category": "gute_nacht",
+      "text": "Die Nacht ist still, das Herz wird leicht. Schlaf gut."
+    },
+    {
+      "id": "gute_nacht_022",
+      "category": "gute_nacht",
+      "text": "Ein Stern für dich, ein Traum für dich, eine gute Nacht für dich."
+    },
+    {
+      "id": "gute_nacht_023",
+      "category": "gute_nacht",
+      "text": "Mach das Licht aus und die Träume an. Gute Nacht!"
+    },
+    {
+      "id": "gute_nacht_024",
+      "category": "gute_nacht",
+      "text": "Möge die Nacht dir Ruhe schenken und der Morgen neue Freude."
+    },
+    {
+      "id": "gute_nacht_025",
+      "category": "gute_nacht",
+      "text": "Schlaf gut, träum süß und wach fröhlich auf."
+    },
+    {
+      "id": "motivation_001",
+      "category": "motivation",
+      "text": "Es ist nicht genug zu wissen, man muss auch anwenden; es ist nicht genug zu wollen, man muss auch tun.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "motivation_002",
+      "category": "motivation",
+      "text": "Früh übt sich, was ein Meister werden will.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "motivation_003",
+      "category": "motivation",
+      "text": "Was mich nicht umbringt, macht mich stärker.",
+      "author": "Friedrich Nietzsche"
+    },
+    {
+      "id": "motivation_004",
+      "category": "motivation",
+      "text": "Ich weiß nicht, ob es besser wird, wenn es anders wird. Aber es muss anders werden, wenn es besser werden soll.",
+      "author": "Georg Christoph Lichtenberg"
+    },
+    {
+      "id": "motivation_005",
+      "category": "motivation",
+      "text": "Der kluge Mann baut vor.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "motivation_006",
+      "category": "motivation",
+      "text": "Kleine Schritte sind auch Schritte. Hauptsache, du gehst weiter."
+    },
+    {
+      "id": "motivation_007",
+      "category": "motivation",
+      "text": "Du musst nicht perfekt sein, um anzufangen. Aber du musst anfangen, um besser zu werden."
+    },
+    {
+      "id": "motivation_008",
+      "category": "motivation",
+      "text": "Glaub an dich – auch an den Tagen, an denen es schwerfällt."
+    },
+    {
+      "id": "motivation_009",
+      "category": "motivation",
+      "text": "Jeder Profi war einmal ein Anfänger."
+    },
+    {
+      "id": "motivation_010",
+      "category": "motivation",
+      "text": "Mut bedeutet nicht, keine Angst zu haben, sondern trotzdem weiterzumachen."
+    },
+    {
+      "id": "motivation_011",
+      "category": "motivation",
+      "text": "Der beste Zeitpunkt, etwas zu beginnen, ist jetzt."
+    },
+    {
+      "id": "motivation_012",
+      "category": "motivation",
+      "text": "Hinfallen ist keine Schande. Liegen bleiben schon."
+    },
+    {
+      "id": "motivation_013",
+      "category": "motivation",
+      "text": "Vergleiche dich nicht mit anderen, sondern mit dem, der du gestern warst."
+    },
+    {
+      "id": "motivation_014",
+      "category": "motivation",
+      "text": "Große Dinge beginnen mit kleinen Gedanken."
+    },
+    {
+      "id": "motivation_015",
+      "category": "motivation",
+      "text": "Wer immer nur wartet, verpasst das Beste. Fang einfach an."
+    },
+    {
+      "id": "motivation_016",
+      "category": "motivation",
+      "text": "Aufgeben ist keine Option. Pausen schon."
+    },
+    {
+      "id": "motivation_017",
+      "category": "motivation",
+      "text": "Deine Geduld von heute ist dein Erfolg von morgen."
+    },
+    {
+      "id": "motivation_018",
+      "category": "motivation",
+      "text": "Sei stolz auf jeden Schritt, egal wie klein er ist."
+    },
+    {
+      "id": "motivation_019",
+      "category": "motivation",
+      "text": "Wo ein Wille ist, ist auch ein Weg.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "motivation_020",
+      "category": "motivation",
+      "text": "Übung macht den Meister.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "motivation_021",
+      "category": "motivation",
+      "text": "Heute ist der perfekte Tag, um stolz auf dich zu sein."
+    },
+    {
+      "id": "motivation_022",
+      "category": "motivation",
+      "text": "Aller Anfang ist schwer.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "motivation_023",
+      "category": "motivation",
+      "text": "Erfolg ist kein Zufall, sondern das Ergebnis vieler kleiner Entscheidungen."
+    },
+    {
+      "id": "motivation_024",
+      "category": "motivation",
+      "text": "Nach jedem Regen kommt wieder Sonnenschein."
+    },
+    {
+      "id": "motivation_025",
+      "category": "motivation",
+      "text": "Du bist stärker, als du denkst."
+    },
+    {
+      "id": "wochentage_001",
+      "category": "wochentage",
+      "text": "Schönen Montag! Starte entspannt in die neue Woche – du schaffst das.",
+      "tag": "montag"
+    },
+    {
+      "id": "wochentage_002",
+      "category": "wochentage",
+      "text": "Montag ist der perfekte Tag für einen Neuanfang. Hab eine gute Woche!",
+      "tag": "montag"
+    },
+    {
+      "id": "wochentage_003",
+      "category": "wochentage",
+      "text": "Ein Kaffee, ein Lächeln – und schon ist der Montag halb so schlimm.",
+      "tag": "montag"
+    },
+    {
+      "id": "wochentage_004",
+      "category": "wochentage",
+      "text": "Schönen Dienstag! Die Woche nimmt Fahrt auf – genieß den Schwung.",
+      "tag": "dienstag"
+    },
+    {
+      "id": "wochentage_005",
+      "category": "wochentage",
+      "text": "Der Montag ist geschafft. Heute wird ein guter Dienstag!",
+      "tag": "dienstag"
+    },
+    {
+      "id": "wochentage_006",
+      "category": "wochentage",
+      "text": "Ich wünsche dir einen sonnigen Dienstag mit vielen schönen Momenten.",
+      "tag": "dienstag"
+    },
+    {
+      "id": "wochentage_007",
+      "category": "wochentage",
+      "text": "Schönen Mittwoch! Die Hälfte der Woche ist schon geschafft.",
+      "tag": "mittwoch"
+    },
+    {
+      "id": "wochentage_008",
+      "category": "wochentage",
+      "text": "Bergfest! Ab heute geht es Richtung Wochenende.",
+      "tag": "mittwoch"
+    },
+    {
+      "id": "wochentage_009",
+      "category": "wochentage",
+      "text": "Ein fröhlicher Mittwochsgruß – halte durch, das Wochenende kommt!",
+      "tag": "mittwoch"
+    },
+    {
+      "id": "wochentage_010",
+      "category": "wochentage",
+      "text": "Schönen Donnerstag! Das Wochenende ist schon in Sicht.",
+      "tag": "donnerstag"
+    },
+    {
+      "id": "wochentage_011",
+      "category": "wochentage",
+      "text": "Donnerstag ist der kleine Freitag. Genieß den Tag!",
+      "tag": "donnerstag"
+    },
+    {
+      "id": "wochentage_012",
+      "category": "wochentage",
+      "text": "Ich schicke dir einen lieben Gruß und ganz viel Energie für diesen Donnerstag.",
+      "tag": "donnerstag"
+    },
+    {
+      "id": "wochentage_013",
+      "category": "wochentage",
+      "text": "Endlich Freitag! Ich wünsche dir einen schönen Start ins Wochenende.",
+      "tag": "freitag"
+    },
+    {
+      "id": "wochentage_014",
+      "category": "wochentage",
+      "text": "Schönen Freitag! Nur noch ein paar Stunden, dann heißt es: Füße hoch.",
+      "tag": "freitag"
+    },
+    {
+      "id": "wochentage_015",
+      "category": "wochentage",
+      "text": "Freitag ist der Tag, an dem das Lächeln von ganz allein kommt.",
+      "tag": "freitag"
+    },
+    {
+      "id": "wochentage_016",
+      "category": "wochentage",
+      "text": "Schönen Samstag! Schlaf aus, genieß den Tag und mach, was dir Freude macht.",
+      "tag": "samstag"
+    },
+    {
+      "id": "wochentage_017",
+      "category": "wochentage",
+      "text": "Samstag heißt: keine Eile, kein Wecker, nur gute Laune.",
+      "tag": "samstag"
+    },
+    {
+      "id": "wochentage_018",
+      "category": "wochentage",
+      "text": "Ein lieber Samstagsgruß – hab einen herrlichen Tag!",
+      "tag": "samstag"
+    },
+    {
+      "id": "wochentage_019",
+      "category": "wochentage",
+      "text": "Schönen Sonntag! Ein Tag zum Ausruhen, Genießen und Krafttanken.",
+      "tag": "sonntag"
+    },
+    {
+      "id": "wochentage_020",
+      "category": "wochentage",
+      "text": "Sonntag ist Ruhetag fürs Herz. Mach es dir gemütlich.",
+      "tag": "sonntag"
+    },
+    {
+      "id": "wochentage_021",
+      "category": "wochentage",
+      "text": "Ich wünsche dir einen gemütlichen Sonntag mit lieben Menschen und einem Stück Kuchen.",
+      "tag": "sonntag"
+    },
+    {
+      "id": "wochenende_001",
+      "category": "wochenende",
+      "text": "Schönes Wochenende! Lass die Arbeit liegen und genieß die freie Zeit."
+    },
+    {
+      "id": "wochenende_002",
+      "category": "wochenende",
+      "text": "Das Wochenende ist da – Zeit für Familie, Freunde und gute Laune."
+    },
+    {
+      "id": "wochenende_003",
+      "category": "wochenende",
+      "text": "Zwei Tage nur für dich. Mach das Beste daraus!"
+    },
+    {
+      "id": "wochenende_004",
+      "category": "wochenende",
+      "text": "Ich wünsche dir ein entspanntes Wochenende ohne Stress."
+    },
+    {
+      "id": "wochenende_005",
+      "category": "wochenende",
+      "text": "Wochenende: endlich Zeit für die schönen Dinge im Leben."
+    },
+    {
+      "id": "wochenende_006",
+      "category": "wochenende",
+      "text": "Füße hoch, Handy leise, Herz auf. Schönes Wochenende!"
+    },
+    {
+      "id": "wochenende_007",
+      "category": "wochenende",
+      "text": "Möge dein Wochenende voller Sonne, Lachen und Ruhe sein."
+    },
+    {
+      "id": "wochenende_008",
+      "category": "wochenende",
+      "text": "Das Leben ist zu kurz für langweilige Wochenenden. Viel Spaß!"
+    },
+    {
+      "id": "wochenende_009",
+      "category": "wochenende",
+      "text": "Ein schönes Wochenende wünsche ich dir und deinen Liebsten."
+    },
+    {
+      "id": "wochenende_010",
+      "category": "wochenende",
+      "text": "Genieß die freien Tage – du hast sie dir verdient."
+    },
+    {
+      "id": "freundschaft_001",
+      "category": "freundschaft",
+      "text": "Danke, dass es dich gibt. Du machst mein Leben schöner."
+    },
+    {
+      "id": "freundschaft_002",
+      "category": "freundschaft",
+      "text": "Wahre Freundschaft braucht keine Worte – aber ein lieber Gruß tut immer gut."
+    },
+    {
+      "id": "freundschaft_003",
+      "category": "freundschaft",
+      "text": "Mit dir ist jeder Tag ein bisschen heller."
+    },
+    {
+      "id": "freundschaft_004",
+      "category": "freundschaft",
+      "text": "Freunde sind wie Sterne: Man sieht sie nicht immer, aber man weiß, dass sie da sind."
+    },
+    {
+      "id": "freundschaft_005",
+      "category": "freundschaft",
+      "text": "Ich denke an dich und schicke dir eine feste Umarmung."
+    },
+    {
+      "id": "freundschaft_006",
+      "category": "freundschaft",
+      "text": "Egal wie weit weg du bist – in meinem Herzen bist du ganz nah."
+    },
+    {
+      "id": "freundschaft_007",
+      "category": "freundschaft",
+      "text": "Ein guter Freund ist eines der schönsten Geschenke des Lebens."
+    },
+    {
+      "id": "freundschaft_008",
+      "category": "freundschaft",
+      "text": "Zusammen lachen, zusammen weinen, zusammen stark sein – das ist Freundschaft."
+    },
+    {
+      "id": "freundschaft_009",
+      "category": "freundschaft",
+      "text": "Für die schönsten Momente braucht man die richtigen Menschen. Danke, dass du dazugehörst."
+    },
+    {
+      "id": "freundschaft_010",
+      "category": "freundschaft",
+      "text": "Ein kleiner Gruß von Herzen an einen ganz besonderen Menschen."
+    },
+    {
+      "id": "freundschaft_011",
+      "category": "freundschaft",
+      "text": "Freundschaft ist, wenn man sich auch nach Jahren noch alles erzählen kann."
+    },
+    {
+      "id": "freundschaft_012",
+      "category": "freundschaft",
+      "text": "Schön, dass wir uns haben."
+    },
+    {
+      "id": "geburtstag_001",
+      "category": "geburtstag",
+      "text": "Alles Liebe zum Geburtstag! Möge dein neues Lebensjahr voller Glück sein."
+    },
+    {
+      "id": "geburtstag_002",
+      "category": "geburtstag",
+      "text": "Herzlichen Glückwunsch! Ich wünsche dir Gesundheit, Freude und viele schöne Momente."
+    },
+    {
+      "id": "geburtstag_003",
+      "category": "geburtstag",
+      "text": "Happy Birthday! Bleib so, wie du bist – genau so bist du wunderbar."
+    },
+    {
+      "id": "geburtstag_004",
+      "category": "geburtstag",
+      "text": "Zum Geburtstag wünsche ich dir Sonne im Herzen und ein Lächeln im Gesicht."
+    },
+    {
+      "id": "geburtstag_005",
+      "category": "geburtstag",
+      "text": "Ein Jahr älter, ein Jahr weiser – und immer noch genauso toll. Alles Gute!"
+    },
+    {
+      "id": "geburtstag_006",
+      "category": "geburtstag",
+      "text": "Möge jeder Tag deines neuen Lebensjahres ein kleines Fest sein."
+    },
+    {
+      "id": "geburtstag_007",
+      "category": "geburtstag",
+      "text": "Herzlichen Glückwunsch zum Geburtstag! Lass dich heute richtig feiern."
+    },
+    {
+      "id": "geburtstag_008",
+      "category": "geburtstag",
+      "text": "Für dein neues Lebensjahr: viel Glück, viel Liebe und ganz viel Kuchen."
+    },
+    {
+      "id": "geburtstag_009",
+      "category": "geburtstag",
+      "text": "Alles Gute zum Geburtstag! Schön, dass es dich gibt."
+    },
+    {
+      "id": "geburtstag_010",
+      "category": "geburtstag",
+      "text": "Ich wünsche dir einen Geburtstag, so schön und besonders wie du."
+    },
+    {
+      "id": "feiertage_001",
+      "category": "feiertage",
+      "text": "Frohe Weihnachten! Möge das Fest dir Ruhe, Wärme und Freude schenken.",
+      "tag": "weihnachten"
+    },
+    {
+      "id": "feiertage_002",
+      "category": "feiertage",
+      "text": "Ich wünsche dir besinnliche Feiertage im Kreis deiner Liebsten.",
+      "tag": "weihnachten"
+    },
+    {
+      "id": "feiertage_003",
+      "category": "feiertage",
+      "text": "Kerzenlicht, Plätzchenduft und liebe Menschen – frohe Weihnachten!",
+      "tag": "weihnachten"
+    },
+    {
+      "id": "feiertage_004",
+      "category": "feiertage",
+      "text": "Mögen deine Weihnachtstage voller Liebe und Frieden sein.",
+      "tag": "weihnachten"
+    },
+    {
+      "id": "feiertage_005",
+      "category": "feiertage",
+      "text": "Frohe Weihnachten und ein paar ruhige Tage zum Durchatmen.",
+      "tag": "weihnachten"
+    },
+    {
+      "id": "feiertage_006",
+      "category": "feiertage",
+      "text": "Frohes neues Jahr! Möge es dir Gesundheit, Glück und viele schöne Momente bringen.",
+      "tag": "neujahr"
+    },
+    {
+      "id": "feiertage_007",
+      "category": "feiertage",
+      "text": "Ein neues Jahr, 365 neue Chancen. Alles Gute!",
+      "tag": "neujahr"
+    },
+    {
+      "id": "feiertage_008",
+      "category": "feiertage",
+      "text": "Guten Rutsch und einen fröhlichen Start ins neue Jahr!",
+      "tag": "neujahr"
+    },
+    {
+      "id": "feiertage_009",
+      "category": "feiertage",
+      "text": "Ich wünsche dir ein neues Jahr voller Freude, Liebe und Erfolg.",
+      "tag": "neujahr"
+    },
+    {
+      "id": "feiertage_010",
+      "category": "feiertage",
+      "text": "Frohe Ostern! Ich wünsche dir sonnige Feiertage und eine schöne Zeit mit der Familie.",
+      "tag": "ostern"
+    },
+    {
+      "id": "feiertage_011",
+      "category": "feiertage",
+      "text": "Viel Freude beim Eiersuchen und frohe Ostertage!",
+      "tag": "ostern"
+    },
+    {
+      "id": "feiertage_012",
+      "category": "feiertage",
+      "text": "Frühling im Herzen und Sonne im Gesicht – frohe Ostern!",
+      "tag": "ostern"
+    },
+    {
+      "id": "feiertage_013",
+      "category": "feiertage",
+      "text": "Ein lieber Ostergruß von mir zu dir. Genieß die Feiertage!",
+      "tag": "ostern"
+    }
+  ]
+}
