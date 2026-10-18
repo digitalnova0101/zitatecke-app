@@ -5,6 +5,9 @@ class Quote {
     required this.text,
     this.author,
     this.tag,
+    this.heading,
+    this.mood,
+    this.date,
   });
 
   final String id;
@@ -13,12 +16,23 @@ class Quote {
   final String? author;
   final String? tag;
 
-  factory Quote.fromJson(Map<String, dynamic> json) => Quote(
+  /// AI quotes: card ki heading ("Schönen Montag"), photo mood ("kaffee")
+  /// aur din ("2026-10-19"). App ke andar wale quotes mein ye null hain.
+  final String? heading;
+  final String? mood;
+  final String? date;
+
+  bool get isAi => date != null;
+
+  factory Quote.fromJson(Map<String, dynamic> json, {String? category}) => Quote(
         id: json['id'] as String,
-        category: json['category'] as String,
+        category: category ?? json['category'] as String,
         text: json['text'] as String,
         author: json['author'] as String?,
         tag: json['tag'] as String?,
+        heading: json['heading'] as String?,
+        mood: json['mood'] as String?,
+        date: json['date'] as String?,
       );
 
   /// Text jo copy / share hota hai.

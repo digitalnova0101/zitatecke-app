@@ -59,6 +59,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               separatorBuilder: (_, __) => const SizedBox(height: 12),
               itemBuilder: (context, i) => QuoteTile(
                 quote: quotes[i],
+                subtitle: repo.isNewToday(quotes[i]) ? '✨ NEU HEUTE' : null,
                 style: styleById(repo.defaultStyleId(quotes[i], i)),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(

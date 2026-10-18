@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../app_state.dart';
 import '../config.dart';
+import '../services/content_service.dart';
+import 'city_screen.dart';
 import '../theme/app_theme.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -67,6 +69,44 @@ class SettingsScreen extends StatelessWidget {
               ),
             ]),
             const SizedBox(height: 24),
+            const _Header('Wetter'),
+            _Box(children: [
+              ListTile(
+                leading: const Text('🌦️', style: TextStyle(fontSize: 26)),
+                title: const Text('Meine Stadt', style: TextStyle(fontSize: 17)),
+                subtitle: Text(appState.weather.city == null
+                    ? 'Nicht gewählt – für Wetter-Sprüche antippen'
+                    : '${appState.weather.city!.name} · ${appState.weather.city!.region}'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CityScreen())),
+              ),
+            ]),
+            const SizedBox(height: 24),
+            const _Header('Neue Sprüche'),
+            _Box(children: [
+              ListTile(
+                leading: const Text('✨', style: TextStyle(fontSize: 26)),
+                title: const Text('Täglich neue Sprüche', style: TextStyle(fontSize: 17)),
+                subtitle: Text(_lastUpdateText()),
+              ),
+              ListTile(
+                leading: appState.refreshing
+                    ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))
+                    : const Icon(Icons.refresh_rounded),
+                title: const Text('Jetzt aktualisieren'),
+                enabled: !appState.refreshing,
+                onTap: () async {
+                  final changed = await appState.refreshContent(force: true);
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(changed
+                        ? 'Neue Sprüche geladen ✓'
+                        : 'Keine Verbindung – bitte später erneut versuchen.'),
+                  ));
+                },
+              ),
+            ]),
+            const SizedBox(height: 24),
             const _Header('Info'),
             _Box(children: [
               ListTile(
@@ -77,8 +117,11 @@ class SettingsScreen extends StatelessWidget {
                   builder: (context) => AlertDialog(
                     title: const Text('Datenschutz'),
                     content: const Text(
-                      'Diese App sammelt keine persönlichen Daten. '
-                      'Deine Favoriten und Einstellungen werden nur auf deinem Gerät gespeichert.',
+                      'Diese App sammelt keine persönlichen Daten und nutzt kein Tracking.\n\n'
+                      '• Favoriten und Einstellungen werden nur auf deinem Gerät gespeichert.\n'
+                      '• Neue Sprüche und Bilder werden von $kWebsite geladen.\n'
+                      '• Für Wetter-Sprüche wird nur die von dir gewählte Stadt (Koordinaten) an Open-Meteo '
+                      '(open-meteo.com) gesendet. Dein Standort wird nicht abgefragt.',
                     ),
                     actions: [
                       TextButton(
@@ -111,6 +154,16 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+String _lastUpdateText() {
+  final t = ContentService.instance.lastFetch;
+  if (t == null) return 'Noch nicht geladen';
+  final hh = t.hour.toString().padLeft(2, '0');
+  final mm = t.minute.toString().padLeft(2, '0');
+  final now = DateTime.now();
+  final sameDay = t.year == now.year && t.month == now.month && t.day == now.day;
+  return sameDay ? 'Zuletzt aktualisiert: heute, $hh:$mm Uhr' : 'Zuletzt aktualisiert: ${t.day}.${t.month}., $hh:$mm Uhr';
 }
 
 class _Header extends StatelessWidget {

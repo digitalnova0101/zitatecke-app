@@ -7,7 +7,9 @@ import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
 import '../widgets/animations.dart';
 import '../widgets/quote_card.dart';
+import '../services/weather_service.dart';
 import 'category_screen.dart';
+import 'city_screen.dart';
 import 'quote_detail_screen.dart';
 import 'search_screen.dart';
 
@@ -52,13 +54,20 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) =>
+      ListenableBuilder(listenable: appState, builder: (context, _) => _build(context));
+
+  Widget _build(BuildContext context) {
     final repo = appState.repo;
     final now = DateTime.now();
     final ctx = _timeContext(now);
     final quote = repo.quoteOfTheDay(ctx.categoryId, now);
-    final heroStyle = styleById(repo.category(ctx.categoryId).styles.first);
+    final heroStyle = quote.isAi
+        ? styleById(repo.defaultStyleId(quote, 0))
+        : styleById(repo.category(ctx.categoryId).styles.first);
     final today = kWeekdays[now.weekday - 1];
+    final special = repo.specialFor(now);
+    final specialQuotes = repo.specialQuotes(now);
 
     return Scaffold(
       body: SafeArea(
@@ -101,6 +110,17 @@ class _HomeScreenState extends State<HomeScreen> {
               delay: 60,
               child: _SearchPill(onTap: () => _open(const SearchScreen())),
             ),
+            if (special != null && specialQuotes.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              FadeSlideIn(
+                delay: 90,
+                child: _SpecialBanner(
+                  name: special.name,
+                  count: specialQuotes.length,
+                  onTap: () => _open(QuoteDetailScreen(quotes: specialQuotes, title: special.name)),
+                ),
+              ),
+            ],
             const SizedBox(height: 22),
             const FadeSlideIn(delay: 120, child: _SectionTitle('Spruch des Tages')),
             const SizedBox(height: 10),
@@ -108,24 +128,34 @@ class _HomeScreenState extends State<HomeScreen> {
               delay: 160,
               child: GestureDetector(
                 onTap: () => _open(QuoteDetailScreen(quotes: [quote])),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(color: kInk.withValues(alpha: 0.18), blurRadius: 24, offset: const Offset(0, 10)),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: RepaintBoundary(
-                      key: _heroKey,
-                      child: QuoteCard(
-                        quote: quote,
-                        style: heroStyle,
-                        heading: repo.headingFor(quote),
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(color: kInk.withValues(alpha: 0.18), blurRadius: 24, offset: const Offset(0, 10)),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: RepaintBoundary(
+                          key: _heroKey,
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 400),
+                            child: QuoteCard(
+                              key: ValueKey('${quote.id}-${heroStyle.id}'),
+                              quote: quote,
+                              style: heroStyle,
+                              heading: repo.headingFor(quote),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    if (repo.isNewToday(quote))
+                      const Positioned(top: 12, left: 12, child: _NewBadge()),
+                  ],
                 ),
               ),
             ),
@@ -155,6 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 26),
+            FadeSlideIn(delay: 220, child: _WeatherSection(key: ValueKey(appState.weather.city?.name))),
             const SizedBox(height: 16),
             FadeSlideIn(
               delay: 240,
@@ -181,6 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       emoji: c.emoji,
                       title: c.title,
                       count: repo.byCategory(c.id).length,
+                      newCount: repo.newTodayCount(c.id),
                       style: styleById(c.styles.first),
                       onTap: () => _open(CategoryScreen(categoryId: c.id)),
                     ),
@@ -297,17 +330,19 @@ class _CategoryTile extends StatelessWidget {
     required this.count,
     required this.style,
     required this.onTap,
+    this.newCount = 0,
   });
 
   final String emoji;
   final String title;
   final int count;
+  final int newCount;
   final CardStyle style;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final isPhoto = style.image != null;
+    final isPhoto = style.hasPhoto;
     final textColor = isPhoto ? Colors.white : style.textColor;
     return PressScale(
       onTap: onTap,
@@ -317,7 +352,7 @@ class _CategoryTile extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             if (isPhoto)
-              Image.asset(style.image!, fit: BoxFit.cover, cacheWidth: 500)
+              Image(image: style.thumbProvider(500)!, fit: BoxFit.cover)
             else
               DecoratedBox(decoration: BoxDecoration(gradient: style.gradient)),
             if (isPhoto)
@@ -335,7 +370,19 @@ class _CategoryTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(emoji, style: const TextStyle(fontSize: 30)),
+                  Row(
+                    children: [
+                      Text(emoji, style: const TextStyle(fontSize: 30)),
+                      const Spacer(),
+                      if (newCount > 0)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(color: kCoral, borderRadius: BorderRadius.circular(10)),
+                          child: Text('+$newCount neu',
+                              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800)),
+                        ),
+                    ],
+                  ),
                   const Spacer(),
                   Text(
                     title,
@@ -353,6 +400,242 @@ class _CategoryTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class _NewBadge extends StatelessWidget {
+  const _NewBadge();
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          gradient: kBrandGradient,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 6)],
+        ),
+        child: const Text('NEU ✨', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w800)),
+      );
+}
+
+class _SpecialBanner extends StatelessWidget {
+  const _SpecialBanner({required this.name, required this.count, required this.onTap});
+  final String name;
+  final int count;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return PressScale(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(gradient: kBrandGradient, borderRadius: BorderRadius.circular(20)),
+        child: Row(
+          children: [
+            const Text('🎉', style: TextStyle(fontSize: 34)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Heute ist $name',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
+                  Text('$count neue Sprüche zum Anlass',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.9))),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Colors.white),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Mausam: "Heute in Köln · 🌧️ 12°" + passender Spruch.
+class _WeatherSection extends StatefulWidget {
+  const _WeatherSection({super.key});
+
+  @override
+  State<_WeatherSection> createState() => _WeatherSectionState();
+}
+
+class _WeatherSectionState extends State<_WeatherSection> {
+  final GlobalKey _cardKey = GlobalKey();
+  Future<WeatherNow?>? _future;
+  String? _forCity;
+  DateTime? _at;
+  bool _sharing = false;
+
+  void _ensureFuture(City city) {
+    final key = '${city.lat},${city.lon}';
+    final stale = _at == null || DateTime.now().difference(_at!) > const Duration(minutes: 30);
+    if (_future == null || _forCity != key || stale) {
+      _forCity = key;
+      _at = DateTime.now();
+      _future = appState.weather.current();
+    }
+  }
+
+  Future<void> _share(Quote q, {required bool whatsapp}) async {
+    if (_sharing) return;
+    setState(() => _sharing = true);
+    try {
+      final r = whatsapp
+          ? await ShareService.shareToWhatsApp(_cardKey, q)
+          : await ShareService.shareCardImage(_cardKey, q);
+      if (whatsapp && r == ShareResultKind.sheet && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('WhatsApp wurde nicht gefunden – wähle eine andere App.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _sharing = false);
+    }
+  }
+
+  void _pickCity() => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CityScreen()));
+
+  @override
+  Widget build(BuildContext context) {
+    final city = appState.weather.city;
+    if (city == null) {
+      return PressScale(
+        onTap: _pickCity,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: kCoral.withValues(alpha: 0.35), width: 1.5),
+          ),
+          child: Row(
+            children: [
+              const Text('🌦️', style: TextStyle(fontSize: 34)),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Wetter-Sprüche', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
+                    Text('Wähle deine Stadt für Sprüche passend zum Wetter',
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.6))),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: kInk),
+            ],
+          ),
+        ),
+      );
+    }
+    _ensureFuture(city);
+    return FutureBuilder<WeatherNow?>(
+      future: _future,
+      builder: (context, snap) {
+        final w = snap.data;
+        final header = Row(
+          children: [
+            Expanded(
+              child: Text(
+                w == null
+                    ? (snap.connectionState == ConnectionState.waiting ? 'Wetter in ${city.name} …' : 'Wetter in ${city.name}')
+                    : 'Heute in ${city.name}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
+              ),
+            ),
+            if (w != null)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14)),
+                child: Text('${w.emoji} ${w.tempText} · ${w.label}',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
+              )
+            else
+              IconButton(
+                tooltip: 'Stadt ändern',
+                onPressed: _pickCity,
+                icon: const Icon(Icons.edit_location_alt_outlined),
+              ),
+          ],
+        );
+        if (w == null) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return Column(children: [header, const SizedBox(height: 12), const LinearProgressIndicator()]);
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              header,
+              const SizedBox(height: 6),
+              Text('Wetter gerade nicht verfügbar (keine Internetverbindung?).',
+                  style: TextStyle(fontSize: 15, color: kInk.withValues(alpha: 0.6))),
+              TextButton(
+                onPressed: () => setState(() => _future = appState.weather.current(force: true)),
+                child: const Text('Erneut versuchen'),
+              ),
+            ],
+          );
+        }
+        final repo = appState.repo;
+        final q = repo.weatherQuote(w.type);
+        if (q == null) return header;
+        final style = styleById(repo.defaultStyleId(q, 0));
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            header,
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => QuoteDetailScreen(quotes: [q], title: 'Wetter-Spruch'),
+              )),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [BoxShadow(color: kInk.withValues(alpha: 0.15), blurRadius: 20, offset: const Offset(0, 8))],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(24),
+                  child: RepaintBoundary(
+                    key: _cardKey,
+                    child: QuoteCard(quote: q, style: style, heading: repo.headingFor(q)),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    style: FilledButton.styleFrom(backgroundColor: kWhatsApp, foregroundColor: Colors.white),
+                    onPressed: _sharing ? null : () => _share(q, whatsapp: true),
+                    icon: const Icon(Icons.chat_rounded),
+                    label: const Text('Per WhatsApp senden'),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
+                    onPressed: _sharing ? null : () => _share(q, whatsapp: false),
+                    child: const Icon(Icons.share_outlined),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

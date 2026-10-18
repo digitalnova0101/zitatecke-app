@@ -50,15 +50,6 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Photos pehle se load – picker aur share fast rahe.
-    for (final s in kCardStyles) {
-      if (s.image != null) precacheImage(AssetImage(s.image!), context);
-    }
-  }
-
-  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
@@ -237,6 +228,7 @@ class _StylePicker extends StatefulWidget {
 
 class _StylePickerState extends State<_StylePicker> {
   final _controller = ScrollController();
+  final List<CardStyle> _styles = pickerStyles();
 
   @override
   void dispose() {
@@ -252,10 +244,10 @@ class _StylePickerState extends State<_StylePicker> {
         controller: _controller,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        itemCount: kCardStyles.length,
+        itemCount: _styles.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, i) {
-          final style = kCardStyles[i];
+          final style = _styles[i];
           final selected = style.id == widget.selectedId;
           return GestureDetector(
             onTap: () => widget.onSelected(style.id),
@@ -269,8 +261,8 @@ class _StylePickerState extends State<_StylePicker> {
                 border: Border.all(color: selected ? kCoral : Colors.white, width: selected ? 3 : 2),
               ),
               child: ClipOval(
-                child: style.image != null
-                    ? Image.asset(style.image!, fit: BoxFit.cover, cacheWidth: 160)
+                child: style.hasPhoto
+                    ? Image(image: style.thumbProvider(160)!, fit: BoxFit.cover)
                     : DecoratedBox(
                         decoration: BoxDecoration(gradient: style.gradient),
                         child: Center(child: Text(style.emoji, style: const TextStyle(fontSize: 18))),

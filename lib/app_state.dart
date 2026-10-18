@@ -3,18 +3,48 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/quote_repository.dart';
 import 'models/quote.dart';
+import 'services/content_service.dart';
 import 'services/notification_service.dart';
+import 'services/weather_service.dart';
 
 /// Poori app ka state: favorites + notification settings.
 late final AppState appState;
 
 class AppState extends ChangeNotifier {
   AppState(this.repo, this._prefs)
-      : _favorites = List<String>.of(_prefs.getStringList(_kFavorites) ?? const []);
+      : _favorites = List<String>.of(_prefs.getStringList(_kFavorites) ?? const []),
+        weather = WeatherService(_prefs);
 
   final QuoteRepository repo;
   final SharedPreferences _prefs;
   final List<String> _favorites;
+  final WeatherService weather;
+
+  // ---------- Online content ----------
+
+  bool _refreshing = false;
+  bool get refreshing => _refreshing;
+
+  /// Naye AI quotes + photos laao. [force] = settings ka "Jetzt aktualisieren".
+  Future<bool> refreshContent({bool force = false}) async {
+    if (_refreshing) return false;
+    _refreshing = true;
+    notifyListeners();
+    var changed = false;
+    try {
+      changed = await ContentService.instance.refresh(repo, force: force);
+    } finally {
+      _refreshing = false;
+      notifyListeners();
+    }
+    if (changed) await rescheduleNotifications();
+    return changed;
+  }
+
+  Future<void> setCity(City? c) async {
+    await weather.setCity(c);
+    notifyListeners();
+  }
 
   static const _kFavorites = 'favorites';
   static const _kMorningOn = 'morning_on';

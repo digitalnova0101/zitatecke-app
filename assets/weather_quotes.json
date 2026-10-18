@@ -1,0 +1,66 @@
+{
+  "sonne": [
+    "Die Sonne lacht – lach einfach mit! Ich wünsche dir einen strahlenden Tag. ☀️",
+    "Heute scheint die Sonne nur für dich. Genieß jeden warmen Moment.",
+    "Blauer Himmel, gute Laune – mehr braucht ein schöner Tag nicht.",
+    "Sonnenschein draußen und hoffentlich auch in deinem Herzen.",
+    "Raus mit dir! So ein sonniger Tag ist ein kleines Geschenk.",
+    "Ich schicke dir einen extra Sonnenstrahl – für alle Fälle."
+  ],
+  "wolken": [
+    "Grauer Himmel? Egal – ein Lächeln bringt Farbe in jeden Tag.",
+    "Auch hinter den dicksten Wolken scheint die Sonne weiter. Kopf hoch!",
+    "Heute ist es grau draußen, also machen wir es drinnen umso gemütlicher.",
+    "Ein Gruß gegen trübe Wolken: Du machst jeden Tag ein bisschen heller.",
+    "Wolken ziehen vorbei. Gute Laune darf bleiben.",
+    "Der Himmel ist grau, aber dein Tag muss es nicht sein."
+  ],
+  "regen": [
+    "Regen draußen, Sonne im Herzen. Ich wünsche dir einen gemütlichen Tag. ☔",
+    "Bei Regen schmeckt der Kaffee doppelt gut. Mach es dir schön!",
+    "Ein bisschen Regen, ein bisschen Ruhe – manchmal genau das Richtige.",
+    "Lass es draußen ruhig regnen. Drinnen ist es warm und schön.",
+    "Regentropfen sind die Musik für einen gemütlichen Tag.",
+    "Kein Wetter ist zu schlecht für liebe Grüße. Hier sind meine!"
+  ],
+  "schnee": [
+    "Draußen glitzert der Schnee – ich wünsche dir einen zauberhaften Wintertag. ❄️",
+    "Schneeflocken tanzen und ich schicke dir warme Grüße dazu.",
+    "Ein weißer Tag wie aus dem Bilderbuch. Pass auf dich auf!",
+    "Heute ist Kakao-Wetter. Mach es dir richtig gemütlich.",
+    "Leise rieselt der Schnee – und ganz leise denke ich an dich.",
+    "Winterzauber vor dem Fenster, Wärme im Herzen."
+  ],
+  "nebel": [
+    "Der Nebel macht die Welt heute ein bisschen geheimnisvoll. Hab einen schönen Tag!",
+    "Auch im Nebel findet man den Weg – Schritt für Schritt.",
+    "Ein nebliger Morgen, ein warmer Gruß. Bald kommt die Sonne durch.",
+    "Wenn draußen alles grau verschwimmt, ist ein lieber Gruß umso schöner.",
+    "Nebel draußen, Klarheit im Herzen. Ich wünsche dir einen guten Tag.",
+    "Heute zeigt sich die Welt ganz sanft. Genieß die Ruhe."
+  ],
+  "wind": [
+    "Heute weht ein frischer Wind – vielleicht bringt er dir etwas Schönes mit.",
+    "Halt deinen Hut fest und deine gute Laune auch! 🌬️",
+    "Der Wind pustet heute alle Sorgen davon. Ich wünsche dir einen schönen Tag.",
+    "Stürmisch draußen, gemütlich drinnen. Pass gut auf dich auf!",
+    "Frischer Wind, frische Gedanken. Mach was Gutes aus dem Tag.",
+    "Lass dich vom Wind nicht umpusten – du bist stärker!"
+  ],
+  "hitze": [
+    "Heute wird's heiß! Trink genug und gönn dir ein Eis. ☀️",
+    "Bei dieser Hitze wünsche ich dir einen schattigen Platz und kühle Getränke.",
+    "Sommer pur! Lass es heute ganz entspannt angehen.",
+    "Heiße Grüße an dich – und bitte nicht vergessen: Wasser trinken!",
+    "So ein warmer Tag schreit nach Eis, Schatten und guter Laune.",
+    "Die Sonne meint es heute gut. Pass auf dich auf!"
+  ],
+  "kaelte": [
+    "Draußen ist es frostig – ich schicke dir eine warme Umarmung. 🧣",
+    "Bei dieser Kälte hilft nur eins: Tee, Decke und liebe Gedanken.",
+    "Zieh dich warm an und lass dir den Tag nicht verfrieren!",
+    "Kalte Nasen, warme Herzen. Ich wünsche dir einen schönen Tag.",
+    "Frost am Fenster, Wärme im Herzen. Liebe Grüße!",
+    "Heute ist Mützenwetter. Bleib schön warm!"
+  ]
+}

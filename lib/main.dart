@@ -10,6 +10,7 @@ import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/quote_detail_screen.dart';
 import 'screens/settings_screen.dart';
+import 'services/content_service.dart';
 import 'services/notification_service.dart';
 import 'theme/app_theme.dart';
 
@@ -20,6 +21,11 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final repo = await QuoteRepository.load();
   appState = AppState(repo, prefs);
+  try {
+    await ContentService.instance.init(repo); // pehle se save AI quotes (offline)
+  } catch (e) {
+    debugPrint('Content init failed: $e');
+  }
 
   try {
     await NotificationService.instance.init();
@@ -90,12 +96,25 @@ class MainShell extends StatefulWidget {
   State<MainShell> createState() => _MainShellState();
 }
 
-class _MainShellState extends State<MainShell> {
+class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
   int _tab = 0;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // App wapas khuli (agle din) → naye quotes check.
+    if (state == AppLifecycleState.resumed) appState.refreshContent();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final payload = NotificationService.instance.launchPayload;
       if (payload != null) {
@@ -103,6 +122,7 @@ class _MainShellState extends State<MainShell> {
         _openQuoteFromNotification(payload);
       }
       appState.setupNotificationsOnStart();
+      appState.refreshContent(); // naye AI quotes (background)
     });
   }
 

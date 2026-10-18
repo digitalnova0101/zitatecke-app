@@ -34,6 +34,9 @@ jobs:
       - name: Notifications + package ID setup
         run: dart run tool/setup_android.dart
 
+      - name: Tests (code check)
+        run: flutter test
+
       - name: App icon + splash screen
         run: |
           dart run flutter_launcher_icons

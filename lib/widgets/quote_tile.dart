@@ -94,8 +94,8 @@ class _Thumb extends StatelessWidget {
       child: SizedBox(
         width: 58,
         height: 58,
-        child: style.image != null
-            ? Image.asset(style.image!, fit: BoxFit.cover, cacheWidth: 180)
+        child: style.hasPhoto
+            ? Image(image: style.thumbProvider(180)!, fit: BoxFit.cover)
             : DecoratedBox(
                 decoration: BoxDecoration(gradient: style.gradient),
                 child: Center(child: Text(style.emoji, style: const TextStyle(fontSize: 24))),

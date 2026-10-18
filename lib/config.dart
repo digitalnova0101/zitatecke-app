@@ -20,3 +20,13 @@ const String kPlayStoreLink = '';
 
 /// Kitne din aage tak notifications schedule karni hain.
 const int kNotificationDays = 21;
+
+/// Roz ke AI quotes + photos yahan se aate hain (GitHub job upload karta hai).
+const String kContentBase = 'https://app.zitatecke.de/';
+const String kFeedUrl = '${kContentBase}feed.json';
+
+/// Feed kitni der baad dobara check ho.
+const Duration kFeedRefreshEvery = Duration(hours: 3);
+
+/// Phone mein max kitni online photos rakhni hain.
+const int kMaxCachedPhotos = 120;

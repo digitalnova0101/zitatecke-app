@@ -34,7 +34,7 @@ class QuoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isPhoto = style.image != null;
+    final isPhoto = style.hasPhoto;
     // Phone ki font-size setting card ko na bigaade.
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
@@ -53,7 +53,7 @@ class QuoteCard extends StatelessWidget {
                 children: [
                   if (isPhoto) ...[
                     Positioned.fill(
-                      child: Image.asset(style.image!, fit: BoxFit.cover, gaplessPlayback: true),
+                      child: Image(image: style.imageProvider!, fit: BoxFit.cover, gaplessPlayback: true),
                     ),
                     Positioned.fill(
                       child: DecoratedBox(
