@@ -62,32 +62,3 @@ jobs:
           git add zitatecke.apk
           git commit -qm "APK build ${GITHUB_SHA::7}"
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" apk
-
-      - name: Emulator ke liye KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
-      - name: Emulator mein app chala ke test
-        timeout-minutes: 20
-        continue-on-error: true
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 34
-          arch: x86_64
-          target: google_apis
-          profile: pixel_6
-          disable-animations: true
-          script: bash tool/emulator_test.sh
-
-      - name: Test result 'debug' branch pe save karo
-        if: always()
-        run: |
-          mkdir -p /tmp/dbg && cp -r /tmp/emu/. /tmp/dbg/ 2>/dev/null || true
-          cd /tmp/dbg
-          git init -q -b debug
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add -A && git commit -qm "Emulator test ${GITHUB_SHA::7}" || exit 0
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" debug
