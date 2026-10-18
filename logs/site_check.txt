@@ -1,0 +1,79 @@
+== DNS
+162.249.172.230 zitatecke.moezzadigital.com
+162.249.172.230 moezzadigital.com
+== https://zitatecke.moezzadigital.com/feed.json
+HTTP/2 404 
+cache-control: private, no-cache, no-store, must-revalidate, max-age=0
+pragma: no-cache
+content-type: text/html
+content-length: 1251
+date: Sun, 18 Oct 2026 18:02:31 GMT
+server: LiteSpeed
+alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
+
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title> 404 Not Found
+</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>
+<body style="color: #444; margin:0
+== http://zitatecke.moezzadigital.com/feed.json
+HTTP/1.1 404 Not Found
+Connection: Keep-Alive
+Keep-Alive: timeout=5, max=100
+Cache-Control: private, no-cache, no-store, must-revalidate, max-age=0
+Pragma: no-cache
+Content-Type: text/html
+Content-Length: 1251
+Date: Sun, 18 Oct 2026 18:02:31 GMT
+Server: LiteSpeed
+
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title> 404 Not Found
+</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>
+<body style="color: #444; margin:0
+== https://zitatecke.moezzadigital.com/
+HTTP/2 200 
+content-type: text/html; charset=UTF-8
+date: Sun, 18 Oct 2026 18:02:32 GMT
+server: LiteSpeed
+alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/_autoindex/assets/css/autoindex.css" /><script src="/_autoindex/assets/js/tablesort.js"></script><scri
+== http://zitatecke.moezzadigital.com/
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Keep-Alive: timeout=5, max=100
+Content-Type: text/html; charset=UTF-8
+Content-Length: 1597
+Date: Sun, 18 Oct 2026 18:02:32 GMT
+Server: LiteSpeed
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/_autoindex/assets/css/autoindex.css" /><script src="/_autoindex/assets/js/tablesort.js"></script><scri
+== https insecure
+404
+== cert
+subject=CN = zitatecke.moezzadigital.com
+issuer=C = US, O = Let's Encrypt, CN = YR1
+X509v3 Subject Alternative Name: 
+    DNS:www.zitatecke.moezzadigital.com, DNS:zitatecke.moezzadigital.com
+== FTP pwd / list
+.
+..
+.ftpquota
+photos
+feed.json
+index.html
+.ftp-deploy-sync-state.json
+== FTP parent list
+.
+..
+.ftpquota
+photos
+feed.json
+index.html
+.ftp-deploy-sync-state.json
