@@ -17,6 +17,11 @@ void main() {
   manifestDst.writeAsStringSync(manifestSrc.readAsStringSync());
   stdout.writeln('✓ AndroidManifest.xml updated');
 
+  // Flutter ka gradle plugin android/app/proguard-rules.pro apne aap use karta hai.
+  File('android/app/proguard-rules.pro')
+      .writeAsStringSync(File('android_files/proguard-rules.pro').readAsStringSync());
+  stdout.writeln('✓ proguard-rules.pro added');
+
   final kts = File('android/app/build.gradle.kts');
   final groovy = File('android/app/build.gradle');
   if (kts.existsSync()) {
