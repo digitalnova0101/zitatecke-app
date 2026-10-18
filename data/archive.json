@@ -1207,5 +1207,316 @@
    }
   ]
  },
- "photos": []
+ "photos": [
+  {
+   "id": "ph_8e27becbc0",
+   "file": "photos/ph_8e27becbc0.jpg",
+   "tags": [
+    "kerzen",
+    "nacht",
+    "winter"
+   ],
+   "dim": 0.1,
+   "source": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4NTYxMDQzLWltYWdlLWt3dnZkcXQ0LmpwZw.jpg",
+   "page": "https://www.rawpixel.com/image/5908018/image-background-xmas-light",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_5b94cceaeb",
+   "file": "photos/ph_5b94cceaeb.jpg",
+   "tags": [
+    "kerzen",
+    "winter",
+    "feier"
+   ],
+   "dim": 0.1,
+   "source": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4MTM1NTg2OC1pbWFnZS1rd3Z2eHoxdi5qcGc.jpg",
+   "page": "https://www.rawpixel.com/image/5911347/image-background-xmas-light",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_6303b25cab",
+   "file": "photos/ph_6303b25cab.jpg",
+   "tags": [
+    "himmel",
+    "wald"
+   ],
+   "dim": 0.15,
+   "source": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJjbG91ZF9oaW1tZWxfYmx1ZV9za3ktaW1hZ2Uta3liZHh1N3kuanBn.jpg",
+   "page": "https://www.rawpixel.com/image/6039106/photo-image-background-cloud-public-domain",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_a6a309da0f",
+   "file": "photos/ph_a6a309da0f.jpg",
+   "tags": [
+    "himmel"
+   ],
+   "dim": 0.15,
+   "source": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL2ZyY2xvdWRzX3dhdmVzX3BsdW1lc19za3lfMC1pbWFnZS1reWJicnppcC5qcGc.jpg",
+   "page": "https://www.rawpixel.com/image/6026117/photo-image-cloud-public-domain-blue",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_55f70a92b8",
+   "file": "photos/ph_55f70a92b8.jpg",
+   "tags": [
+    "herbst",
+    "wald",
+    "natur"
+   ],
+   "dim": 0.15,
+   "source": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Nature_Forest_Light.jpg",
+   "page": "https://commons.wikimedia.org/w/index.php?curid=105654023",
+   "credit": "Unknown authorUnknown author",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_f561eb3f14",
+   "file": "photos/ph_f561eb3f14.jpg",
+   "tags": [
+    "himmel",
+    "sommer"
+   ],
+   "dim": 0.2,
+   "source": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJza3lfY2xvdWRzX2JsdWVfbmF0dXJlXzctaW1hZ2Uta3liY25wMXYuanBn.jpg",
+   "page": "https://www.rawpixel.com/image/6031834/photo-image-background-cloud-public-domain",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_c321107e61",
+   "file": "photos/ph_c321107e61.jpg",
+   "tags": [
+    "blumen",
+    "sommer",
+    "natur"
+   ],
+   "dim": 0.2,
+   "source": "https://live.staticflickr.com/8331/8426180058_687827845b_b.jpg",
+   "page": "https://www.flickr.com/photos/41284017@N08/8426180058",
+   "credit": "USDAgov",
+   "license": "PDM",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_2d0092af4f",
+   "file": "photos/ph_2d0092af4f.jpg",
+   "tags": [
+    "mond",
+    "nacht",
+    "himmel"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/8864/18223556746_551fda7800_b.jpg",
+   "page": "https://www.flickr.com/photos/132795455@N08/18223556746",
+   "credit": "Image Catalog",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_d3581723ba",
+   "file": "photos/ph_d3581723ba.jpg",
+   "tags": [
+    "mond",
+    "nacht",
+    "berge"
+   ],
+   "dim": 0.1,
+   "source": "https://live.staticflickr.com/8166/7509140478_0951d979fd_b.jpg",
+   "page": "https://www.flickr.com/photos/80223459@N05/7509140478",
+   "credit": "YellowstoneNPS",
+   "license": "PDM",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_6527287192",
+   "file": "photos/ph_6527287192.jpg",
+   "tags": [
+    "sterne",
+    "nacht",
+    "himmel"
+   ],
+   "dim": 0.1,
+   "source": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2Zyc2t5X3N0YXJzX25pZ2h0X3NwYWNlLWltYWdlLWt5YmNwMmJmLmpwZw.jpg",
+   "page": "https://www.rawpixel.com/image/6031865/starry-night-sky-free-public-domain-cc0-image",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_bb30b26173",
+   "file": "photos/ph_bb30b26173.jpg",
+   "tags": [
+    "rosen",
+    "blumen",
+    "herz"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/5553/30306194522_0cbbcd0600_b.jpg",
+   "page": "https://www.flickr.com/photos/134679901@N08/30306194522",
+   "credit": "vieninsweden",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_e09029da74",
+   "file": "photos/ph_e09029da74.jpg",
+   "tags": [
+    "blumen",
+    "natur",
+    "sonnenaufgang"
+   ],
+   "dim": 0.15,
+   "source": "https://pd.w.org/2024/05/726632647a5fc584.52261264-2048x1365.jpg",
+   "page": "https://wordpress.org/photos/photo/726632647a/",
+   "credit": "Nilo Velez",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_5747681e76",
+   "file": "photos/ph_5747681e76.jpg",
+   "tags": [
+    "rosen",
+    "blumen",
+    "natur",
+    "herz"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/4453/37482731122_940f735a8b_b.jpg",
+   "page": "https://www.flickr.com/photos/151415985@N06/37482731122",
+   "credit": "Wallboat",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_698756893f",
+   "file": "photos/ph_698756893f.jpg",
+   "tags": [
+    "rosen",
+    "blumen",
+    "natur",
+    "herz"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/8191/8098196847_240109ab79_b.jpg",
+   "page": "https://www.flickr.com/photos/88123769@N02/8098196847",
+   "credit": "Bernard Spragg",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_af1fe25458",
+   "file": "photos/ph_af1fe25458.jpg",
+   "tags": [
+    "winter",
+    "schnee",
+    "wald"
+   ],
+   "dim": 0.2,
+   "source": "https://live.staticflickr.com/7519/27114819613_6756118d7c_b.jpg",
+   "page": "https://www.flickr.com/photos/104736837@N03/27114819613",
+   "credit": "Amsterdam free photos & pictures of the Dutch city",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_97ab48500f",
+   "file": "photos/ph_97ab48500f.jpg",
+   "tags": [
+    "meer",
+    "himmel",
+    "sonnenaufgang"
+   ],
+   "dim": 0.15,
+   "source": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL2ZybGlnaHRob3VzZV9iZWFjb25fbGlnaHRfaG91c2VfMC1pbWFnZV8xLmpwZw.jpg",
+   "page": "https://www.rawpixel.com/image/8809248/photo-image-clouds-light-sky",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_fa3ddab96d",
+   "file": "photos/ph_fa3ddab96d.jpg",
+   "tags": [
+    "sonnenaufgang",
+    "himmel",
+    "berge"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/65535/52693186409_4a9567050d_b.jpg",
+   "page": "https://www.flickr.com/photos/184765059@N02/52693186409",
+   "credit": "jhvanwa",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_2c74bb2139",
+   "file": "photos/ph_2c74bb2139.jpg",
+   "tags": [
+    "sonnenaufgang",
+    "himmel",
+    "berge"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/65535/52568257189_305f1b3122_b.jpg",
+   "page": "https://www.flickr.com/photos/184765059@N02/52568257189",
+   "credit": "jhvanwa",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_264a2d1c3c",
+   "file": "photos/ph_264a2d1c3c.jpg",
+   "tags": [
+    "herbst",
+    "natur"
+   ],
+   "dim": 0.2,
+   "source": "https://live.staticflickr.com/7790/17865748978_1c06aacdc8_b.jpg",
+   "page": "https://www.flickr.com/photos/132795455@N08/17865748978",
+   "credit": "Image Catalog",
+   "license": "CC0",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_35a718f86e",
+   "file": "photos/ph_35a718f86e.jpg",
+   "tags": [
+    "herbst",
+    "natur"
+   ],
+   "dim": 0.15,
+   "source": "https://live.staticflickr.com/1594/24893186921_fb53756515_b.jpg",
+   "page": "https://www.flickr.com/photos/43288043@N04/24893186921",
+   "credit": "GlacierNPS",
+   "license": "PDM",
+   "added": "2026-10-18"
+  },
+  {
+   "id": "ph_acce89d112",
+   "file": "photos/ph_acce89d112.jpg",
+   "tags": [
+    "kerzen",
+    "feier"
+   ],
+   "dim": 0.15,
+   "source": "https://cdn.stocksnap.io/img-thumbs/960w/M1WALPLAUD.jpg",
+   "page": "https://stocksnap.io/photo/holiday-candles-M1WALPLAUD",
+   "credit": "Kelly Ishmael",
+   "license": "CC0",
+   "added": "2026-10-18"
+  }
+ ]
 }
