@@ -58,7 +58,12 @@ ThemeData buildAppTheme() {
       ),
     ),
     chipTheme: ChipThemeData(
-      labelStyle: const TextStyle(fontFamily: kFontUi, fontWeight: FontWeight.w700),
+      labelStyle: const TextStyle(fontFamily: kFontUi, fontWeight: FontWeight.w700, color: kInk),
+      secondaryLabelStyle: const TextStyle(fontFamily: kFontUi, fontWeight: FontWeight.w800, color: kInk),
+      backgroundColor: Colors.white,
+      selectedColor: kCoral.withValues(alpha: 0.18),
+      checkmarkColor: kCoral,
+      side: BorderSide(color: kInk.withValues(alpha: 0.15)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
     navigationBarTheme: NavigationBarThemeData(
