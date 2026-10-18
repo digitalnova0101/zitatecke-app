@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final specialQuotes = repo.specialQuotes(now);
 
     final bottomPad = MediaQuery.paddingOf(context).bottom + 24;
-    final headerDark = dayPartOf(now) == DayPart.night || isDarkPalette;
+    final headerDark = isDarkPalette;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: headerDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Scaffold(
@@ -670,7 +670,7 @@ class _Dots extends StatelessWidget {
 }
 
 
-/// Kopfbereich – Farbe nach Tageszeit (Morgen, Tag, Abend, Nacht).
+/// Kopfbereich: Datum, Begrüßung und Logo (einfach, wie vorher).
 class _DynamicHeader extends StatelessWidget {
   const _DynamicHeader({required this.now, required this.greeting});
   final DateTime now;
@@ -678,105 +678,40 @@ class _DynamicHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final part = dayPartOf(now);
-    final colors = switch (part) {
-      DayPart.morning => const [Color(0xFFFFE3BF), Color(0xFFFFB9A6)],
-      DayPart.day => const [Color(0xFFCFE9FF), Color(0xFFFFF1E2)],
-      DayPart.evening => const [Color(0xFFFFC9A6), Color(0xFFBFA3F0)],
-      DayPart.night => const [Color(0xFF1B2440), Color(0xFF3B2E5E)],
-    };
-    final dark = isDarkPalette;
-    final c = dark ? colors.map((x) => Color.lerp(x, Colors.black, 0.45)!).toList() : colors;
-    final onDark = part == DayPart.night || dark;
-    final fg = onDark ? Colors.white : const Color(0xFF3B2A35);
     final top = MediaQuery.paddingOf(context).top;
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 18),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: c),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-      ),
-      child: Stack(
-        children: [
-          if (part == DayPart.night)
-            Positioned.fill(child: CustomPaint(painter: _HeaderStars())),
-          if (part == DayPart.morning || part == DayPart.day)
-            Positioned(
-              right: -40,
-              top: -30 + top,
-              child: Container(
-                width: 160,
-                height: 160,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(colors: [
-                    Colors.white.withValues(alpha: 0.65),
-                    Colors.white.withValues(alpha: 0.0),
-                  ]),
-                ),
-              ),
-            ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(20, top + 16, 20, 26),
-            child: FadeSlideIn(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(Ui.gap, top + 12, Ui.gap, 18),
+      child: FadeSlideIn(
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          germanDate(now),
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: fg.withValues(alpha: 0.7)),
-                        ),
-                        Text(
-                          greeting,
-                          style: TextStyle(
-                            fontFamily: kFontScript,
-                            fontSize: 42,
-                            fontWeight: FontWeight.w700,
-                            color: fg,
-                            height: 1.15,
-                          ),
-                        ),
-                      ],
-                    ),
+                  Text(
+                    germanDate(now),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.55)),
                   ),
-                  Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), boxShadow: Ui.shadow(0.8)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset('assets/brand/splash_logo.png', width: 50, height: 50),
+                  Text(
+                    greeting,
+                    style: TextStyle(
+                      fontFamily: kFontScript,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700,
+                      color: kInk,
+                      height: 1.15,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Image.asset('assets/brand/splash_logo.png', width: 46, height: 46),
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-class _HeaderStars extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final p = Paint();
-    var seed = 7;
-    double rnd() {
-      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-      return seed / 0x7fffffff;
-    }
-
-    for (var i = 0; i < 40; i++) {
-      p.color = Colors.white.withValues(alpha: 0.25 + rnd() * 0.6);
-      canvas.drawCircle(Offset(rnd() * size.width, rnd() * size.height), 0.6 + rnd() * 1.4, p);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
