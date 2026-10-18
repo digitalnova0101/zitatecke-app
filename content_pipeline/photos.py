@@ -46,10 +46,20 @@ def _get(url, headers=None, timeout=40):
 
 
 def _openverse(query):
+    # Bina login: page_size max 20, aur thoda dheere (warna 429).
+    import time
     url = "https://api.openverse.org/v1/images/?" + urllib.parse.urlencode(
-        {"q": query, "license": "cc0,pdm", "page_size": 30, "mature": "false"})
-    data = json.loads(_get(url, {**UA, "Accept": "application/json"}))
-    return data.get("results", [])
+        {"q": query, "license": "cc0,pdm", "page_size": 20, "mature": "false"})
+    for attempt in range(4):
+        time.sleep(4 + attempt * 20)
+        try:
+            data = json.loads(_get(url, {**UA, "Accept": "application/json"}))
+            return data.get("results", [])
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or attempt == 3:
+                raise
+            print("   openverse 429, warte …")
+    return []
 
 
 def _square(img, size):

@@ -62,7 +62,7 @@ jobs:
             done
           } | tee content/logs/ftp_check.txt
           if ! getent hosts "$H" >/dev/null; then
-            for c in ftp.cameraclickz.com cameraclickz.com ftp.moezzadigital.com zitatecke.moezzadigital.com; do
+            for c in ftp.moezzadigital.com moezzadigital.com; do
               if getent hosts "$c" >/dev/null; then H="$c"; break; fi
             done
           fi
