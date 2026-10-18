@@ -41,6 +41,7 @@ void main() {
     exit(1);
   }
   _setApplicationId(kts.existsSync() ? kts : groovy);
+  _disableShrinking(kts.existsSync() ? kts : groovy, isKts: kts.existsSync());
   stdout.writeln('\nSab ready! Ab chalao:  flutter run');
 }
 
@@ -75,4 +76,27 @@ void _patch(File f, {required String enableLine, required String depBlock}) {
   s = s + depBlock;
   f.writeAsStringSync(s);
   stdout.writeln('✓ ${f.path} updated (desugaring on)');
+}
+
+/// Release build mein R8 shrinking band – warna plugins ke methods hat jaate hain
+/// aur app white screen pe atak jaati hai.
+void _disableShrinking(File f, {required bool isKts}) {
+  var s = f.readAsStringSync();
+  if (s.contains('isMinifyEnabled') || s.contains('minifyEnabled')) {
+    stdout.writeln('✓ shrinking setting pehle se hai');
+    return;
+  }
+  final lines = isKts
+      ? '\n            isMinifyEnabled = false\n            isShrinkResources = false'
+      : '\n            minifyEnabled false\n            shrinkResources false';
+  final bt = s.indexOf('buildTypes');
+  final m = bt == -1 ? null : RegExp(r'release\s*\{').firstMatch(s.substring(bt));
+  if (m == null) {
+    stderr.writeln('buildTypes.release nahi mila – shrinking manually band karo.');
+    return;
+  }
+  final at = bt + m.end;
+  s = s.substring(0, at) + lines + s.substring(at);
+  f.writeAsStringSync(s);
+  stdout.writeln('✓ release shrinking off');
 }

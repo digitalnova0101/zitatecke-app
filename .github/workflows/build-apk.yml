@@ -28,13 +28,13 @@ jobs:
         run: flutter create --project-name guten_morgen_app --org de.zitatecke --platforms android .
 
       - name: Packages
-        run: flutter pub get
+        run: flutter pub get && grep -A4 -E 'shared_preferences_android|path_provider_android|^  jni:' pubspec.lock
 
       - name: Notifications + package ID setup
         run: dart run tool/setup_android.dart
 
       - name: APK build
-        run: flutter build apk --release
+        run: flutter build apk --release && grep -nE "Minify|Shrink|release" android/app/build.gradle* || true
 
       - name: APK download ke liye upload
         uses: actions/upload-artifact@v4

@@ -12,3 +12,8 @@
 -keep public class * implements java.lang.reflect.Type
 
 -dontwarn com.google.android.play.core.**
+
+# Kotlin coroutines / plugin method signatures (JNI se call hote hain)
+-keep class kotlin.** { *; }
+-keep class kotlinx.** { *; }
+-keepclassmembers class ** { *** getAll(...); }
