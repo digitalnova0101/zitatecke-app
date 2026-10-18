@@ -1,0 +1,29 @@
+name: Site check
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        env:
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          REPO="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git clone -q --depth 1 --branch content "$REPO" c
+          mkdir -p c/logs
+          {
+            echo "== DNS"; getent hosts zitatecke.moezzadigital.com moezzadigital.com
+            for url in https://zitatecke.moezzadigital.com/feed.json http://zitatecke.moezzadigital.com/feed.json https://zitatecke.moezzadigital.com/ http://zitatecke.moezzadigital.com/; do
+              echo "== $url"; curl -sS -m 20 -o /tmp/b -D - "$url" 2>&1 | head -12; head -c 300 /tmp/b 2>/dev/null; echo
+            done
+            echo "== https insecure"; curl -sSk -m 20 -o /dev/null -w "%{http_code}\n" https://zitatecke.moezzadigital.com/feed.json 2>&1
+            echo "== cert"; echo | openssl s_client -connect zitatecke.moezzadigital.com:443 -servername zitatecke.moezzadigital.com 2>/dev/null | openssl x509 -noout -subject -issuer -ext subjectAltName 2>&1 | head -8
+            echo "== FTP pwd / list"
+            curl -sS -m 30 --ssl-reqd -k --user "$U:$P" "ftp://ftp.moezzadigital.com/" -Q "PWD" --list-only 2>&1 | head -40
+            echo "== FTP parent list"
+            curl -sS -m 30 --ssl-reqd -k --user "$U:$P" "ftp://ftp.moezzadigital.com/../" --list-only 2>&1 | head -40
+          } 2>&1 | tee c/logs/site_check.txt
+          cd c && git config user.name gha && git config user.email gha@users.noreply.github.com && git add -A && git commit -qm "site check" && git push -q origin content
