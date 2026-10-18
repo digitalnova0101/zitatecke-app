@@ -22,7 +22,7 @@ const String kPlayStoreLink = '';
 const int kNotificationDays = 21;
 
 /// Roz ke AI quotes + photos yahan se aate hain (GitHub job upload karta hai).
-const String kContentBase = 'https://app.zitatecke.de/';
+const String kContentBase = 'https://zitatecke.moezzadigital.com/';
 const String kFeedUrl = '${kContentBase}feed.json';
 
 /// Feed kitni der baad dobara check ho.

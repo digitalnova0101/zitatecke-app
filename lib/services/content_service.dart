@@ -10,7 +10,7 @@ import '../models/quote.dart';
 import 'http_util.dart';
 import 'photo_library.dart';
 
-/// Roz ke AI quotes (app.zitatecke.de/feed.json) laana, phone mein save karna.
+/// Roz ke AI quotes (zitatecke.moezzadigital.com/feed.json) laana, phone mein save karna.
 class ContentService {
   ContentService._();
   static final ContentService instance = ContentService._();

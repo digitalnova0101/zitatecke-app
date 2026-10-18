@@ -56,7 +56,7 @@ jobs:
           git commit -qm "Content $(date -u +%F)" || echo "no changes"
           git push -q origin content
 
-      - name: app.zitatecke.de pe upload (FTP)
+      - name: zitatecke.moezzadigital.com pe upload (FTP)
         if: env.HAS_FTP == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
