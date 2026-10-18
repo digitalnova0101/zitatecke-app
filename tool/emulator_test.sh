@@ -5,6 +5,11 @@ APK=build/app/outputs/flutter-apk/app-release.apk
 UI="python3 tool/ui.py"
 shot() { sleep "${2:-3}"; adb exec-out screencap -p > "/tmp/emu/$1.png"; echo "shot $1"; }
 
+# Emulator ko settle hone do, system error popups band
+adb shell settings put global hide_error_dialogs 1
+adb shell settings put global anr_show_background 0
+sleep 45
+adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS >/dev/null 2>&1
 adb install -r "$APK" > /tmp/emu/install.txt 2>&1
 adb logcat -c
 adb shell monkey -p de.zitatecke.app -c android.intent.category.LAUNCHER 1 > /tmp/emu/launch.txt 2>&1

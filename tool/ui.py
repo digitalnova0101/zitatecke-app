@@ -20,7 +20,21 @@ def nodes():
             yield (text + " " + desc), tuple(int(x) for x in b.groups())
 
 
+def dismiss_system_dialogs():
+    """Emulator ka 'isn't responding' popup → Wait."""
+    for txt, (x0, y0, x1, y1) in nodes():
+        if "isn't responding" in txt or "reagiert nicht" in txt:
+            for t2, (a0, b0, a1, b1) in nodes():
+                if t2.strip() in ("Wait", "Warten"):
+                    adb("input", "tap", str((a0 + a1) // 2), str((b0 + b1) // 2))
+                    print("dismissed system ANR dialog")
+                    time.sleep(2)
+                    return True
+    return False
+
+
 def tap(label):
+    dismiss_system_dialogs()
     for _ in range(4):
         for txt, (x0, y0, x1, y1) in nodes():
             if label.lower() in txt.lower() and x1 > x0 and y1 > y0:
