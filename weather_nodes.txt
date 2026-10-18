@@ -1,0 +1,10 @@
+(43, 128, 1037, 364) Gedanke des Tages&#10;✦&#10;Aller Anfang ist schwer.&#10;– Sprichwort&#10;zitate
+(1037, 128, 1080, 364) Gedanke des Tages&#10;✦&#10;Erfolg ist kein Zufall, sondern das Ergebnis vieler 
+(42, 364, 1038, 448) Wischen für mehr Sprüche  ›
+(42, 485, 865, 632) Per WhatsApp senden
+(42, 700, 1038, 1990) Heute in Hamburg&#10;☁️ 13° · Bewölkt&#10;Grauer Tag? Kopf hoch!&#10;✦&#10;Auch 
+(42, 1843, 865, 1990) Per WhatsApp senden
+(42, 2032, 1038, 2127) So&#10;Heute ist Sonntag&#10;Passende Sprüche für heute
+(0, 2127, 360, 2337) Start&#10;Tab 1 von 3
+(360, 2127, 720, 2337) Favoriten&#10;Tab 2 von 3
+(720, 2127, 1080, 2337) Einstellungen&#10;Tab 3 von 3

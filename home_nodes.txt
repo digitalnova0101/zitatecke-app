@@ -1,0 +1,3 @@
+(133, 1030, 947, 1163) Allow Zitatecke to send you notifications?
+(133, 1231, 947, 1378) Allow
+(133, 1388, 947, 1535) Don’t allow

@@ -1,0 +1,393 @@
+10-18 15:01:35.964   522   807 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10192, mPackageName='de.zitatecke.app, mAppProcessToken='null'}
+10-18 15:01:35.979  1056  1336 D ImsResolver: maybeAddedImsService, packageName: de.zitatecke.app
+10-18 15:01:36.013   853   853 I SafetyLabelChangedBroadcastReceiver: received broadcast packageName: de.zitatecke.app, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+10-18 15:01:36.052  1056  1056 D CarrierSvcBindHelper: onPackageModified: de.zitatecke.app
+10-18 15:01:36.063  1056  1336 D ImsResolver: maybeAddedImsService, packageName: de.zitatecke.app
+10-18 15:01:36.205  5642  5642 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:01:36.208  5642  5642 I AndroidRuntime: Using default boot image
+10-18 15:01:36.208  5642  5642 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:01:36.227  1624  1624 I AiAiEcho: AppFetcherImplV2 updateApps package:[de.zitatecke.app], userId:[0], reason:[package is added.].
+10-18 15:01:36.330  1624  1624 I AiAiEcho: AppFetcherImpl onPackageChanged de.zitatecke.app.
+10-18 15:01:36.331  1624  2359 I AiAiEcho: AppIndexer Package:[de.zitatecke.app] UserProfile:[0] Enabled:[true].
+10-18 15:01:36.331  1624  2359 I AiAiEcho: AppFetcherImplV2 updateApps package:[de.zitatecke.app], userId:[0], reason:[package is updated.].
+10-18 15:01:36.388  5642  5642 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+10-18 15:01:36.388  5642  5642 W Monkey  : args: [-p, de.zitatecke.app, -c, android.intent.category.LAUNCHER, 1]
+10-18 15:01:36.388  5642  5642 W Monkey  :  arg: "de.zitatecke.app"
+10-18 15:01:36.388  5642  5642 W Monkey  : data="de.zitatecke.app"
+10-18 15:01:36.626   838   860 V WindowManagerShell: Transition requested: android.os.BinderProxy@fe93f52 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=1 lastActiveTime=88293 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@3072223} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{826320 de.zitatecke.guten_morgen_app.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:01:36.655   522  1764 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} with LAUNCH_SINGLE_TOP from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-18 15:01:36.666   522  2399 D CoreBackPreview: Window{9291604 u0 Splash Screen de.zitatecke.app}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@176bb88, mPriority=0, mIsAnimationCallback=false}
+10-18 15:01:36.676   522   554 I ActivityManager: Start proc 5669:de.zitatecke.app/u0a192 for next-top-activity {de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}
+10-18 15:01:36.734  5669  5669 I e.zitatecke.app: Using CollectorTypeCC GC.
+10-18 15:01:36.734  5669  5669 W e.zitatecke.app: Unexpected CPU variant for x86: x86_64.
+10-18 15:01:36.734  5669  5669 W e.zitatecke.app: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-18 15:01:36.736  5669  5669 E e.zitatecke.app: Not starting debugger since process cannot load the jdwp agent.
+10-18 15:01:36.750  5642  5642 I AndroidRuntime: VM exiting with result code 0.
+10-18 15:01:36.819  5332  5665 I BlockstoreStorage: Clearing Blockstore Data for package de.zitatecke.app [CONTEXT service_id=258 ]
+10-18 15:01:36.869   522   541 V WindowManager: Sent Transition #8 createdAt=10-18 15:01:36.495 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=1 lastActiveTime=88293 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{febd1df Task{f8338dc #8 type=standard I=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{2d47e2c de.zitatecke.guten_morgen_app.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:01:36.869   522   541 V WindowManager:     info={id=8 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{febd1df Task{f8338dc #8 type=standard I=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}}} m=OPEN f=NONE leash=Surface(name=Task=8)/@0xa514a39 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{4f350f5 Task{322bc98 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xe3eab53 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}]}
+10-18 15:01:36.984  5669  5669 D nativeloader: Configuring clns-6 for other apk /data/app/~~HGvqlGZpX4zQ410ZxBcBHg==/de.zitatecke.app-Oi8QqY_97WLWM-i4XXtNkg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~HGvqlGZpX4zQ410ZxBcBHg==/de.zitatecke.app-Oi8QqY_97WLWM-i4XXtNkg==/lib/x86_64:/data/app/~~HGvqlGZpX4zQ410ZxBcBHg==/de.zitatecke.app-Oi8QqY_97WLWM-i4XXtNkg==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/de.zitatecke.app
+10-18 15:01:37.025  5669  5669 V GraphicsEnvironment: ANGLE GameManagerService for de.zitatecke.app: false
+10-18 15:01:37.025  5669  5669 V GraphicsEnvironment: de.zitatecke.app is not listed in per-application setting
+10-18 15:01:37.083  5669  5669 W e.zitatecke.app: type=1400 audit(0.0:42): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=73139 scontext=u:r:untrusted_app:s0:c192,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=de.zitatecke.app
+10-18 15:01:37.409   522  2445 D CoreBackPreview: Window{c1345a8 u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@1e9f4f2, mPriority=0, mIsAnimationCallback=false}
+10-18 15:01:38.810   522   826 I ImeTracker: de.zitatecke.app:5bdc19a9: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-18 15:01:38.810   522   826 I ImeTracker: de.zitatecke.app:5bdc19a9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:01:38.951   522  1734 W InputManager-JNI: Input channel object '9291604 Splash Screen de.zitatecke.app (client)' was disposed without first being removed with the input manager!
+10-18 15:01:38.971   522   541 I ActivityTaskManager: Displayed de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity for user 0: +2s246ms
+10-18 15:01:38.971   522   541 I ActivityTaskManager: Fully drawn de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity: +2s246ms
+10-18 15:01:38.991   522  1764 D CoreBackPreview: Window{9291604 u0 Splash Screen de.zitatecke.app EXITING}: Setting back callback null
+10-18 15:01:39.080  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, false)
+10-18 15:01:42.696  5669  5782 D ProfileInstaller: Installing profile for de.zitatecke.app
+10-18 15:01:57.272  5977  5977 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:01:57.279  5977  5977 I AndroidRuntime: Using default boot image
+10-18 15:01:57.279  5977  5977 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:01:57.398  5977  5977 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:01:58.566  5977  5977 D AndroidRuntime: Shutting down VM
+10-18 15:01:59.469  6004  6004 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:01:59.473  6004  6004 I AndroidRuntime: Using default boot image
+10-18 15:01:59.473  6004  6004 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:01:59.558  6004  6004 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:00.581  6004  6004 D AndroidRuntime: Shutting down VM
+10-18 15:02:04.950  6038  6038 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:04.956  6038  6038 I AndroidRuntime: Using default boot image
+10-18 15:02:04.956  6038  6038 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:05.056  6038  6038 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:06.116  6038  6038 D AndroidRuntime: Shutting down VM
+10-18 15:02:07.167  6089  6089 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:07.173  6089  6089 I AndroidRuntime: Using default boot image
+10-18 15:02:07.173  6089  6089 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:07.332  6089  6089 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:08.373  6089  6089 D AndroidRuntime: Shutting down VM
+10-18 15:02:12.565  6121  6121 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:12.571  6121  6121 I AndroidRuntime: Using default boot image
+10-18 15:02:12.571  6121  6121 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:12.682  6121  6121 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:13.762  6121  6121 D AndroidRuntime: Shutting down VM
+10-18 15:02:14.671  6143  6143 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:14.674  6143  6143 I AndroidRuntime: Using default boot image
+10-18 15:02:14.674  6143  6143 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:14.758  6143  6143 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:15.779  6143  6143 D AndroidRuntime: Shutting down VM
+10-18 15:02:16.692   838   860 V WindowManagerShell: Transition requested: android.os.BinderProxy@2c6764e TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=128426 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@4e0536f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{3c9887c com.android.permissioncontroller.permission.ui.GrantPermissionsActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:02:17.001   522   541 V WindowManager: Sent Transition #9 createdAt=10-18 15:02:16.667 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=128426 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{febd1df Task{f8338dc #8 type=standard I=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{bf729ec com.android.permissioncontroller.permission.ui.GrantPermissionsActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:02:19.743  6170  6170 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:19.747  6170  6170 I AndroidRuntime: Using default boot image
+10-18 15:02:19.747  6170  6170 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:19.839  6170  6170 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:20.893  6170  6170 D AndroidRuntime: Shutting down VM
+10-18 15:02:21.798  6189  6189 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:21.801  6189  6189 I AndroidRuntime: Using default boot image
+10-18 15:02:21.801  6189  6189 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:21.888  6189  6189 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:22.960  6189  6189 D AndroidRuntime: Shutting down VM
+10-18 15:02:28.121  6221  6221 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:28.124  6221  6221 I AndroidRuntime: Using default boot image
+10-18 15:02:28.125  6221  6221 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:28.214  6221  6221 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:29.258  6221  6221 D AndroidRuntime: Shutting down VM
+10-18 15:02:37.186   853   853 V GrantPermissionsViewModel: Logged buttons presented and clicked permissionGroupName=android.permission-group.NOTIFICATIONS uid=10192 selectedPrecision=0 package=de.zitatecke.app presentedButtons=9 clickedButton=0 isPermissionRationaleShown=false sessionId=7986445978771821878 targetSdk=36
+10-18 15:02:37.186   853   853 V GrantPermissionsViewModel: Permission grant result requestId=7986445978771821878 callingUid=10192 callingPackage=de.zitatecke.app permission=android.permission.POST_NOTIFICATIONS isImplicit=false result=11 isPermissionRationaleShown=false
+10-18 15:02:37.415   522  1731 I ImeTracker: de.zitatecke.app:3335c314: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-18 15:02:37.416   522  1731 I ImeTracker: de.zitatecke.app:3335c314: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:02:37.420  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, false)
+10-18 15:02:37.633  5669  5677 I e.zitatecke.app: Background young concurrent copying GC freed 27401(1585KB) AllocSpace objects, 18(676KB) LOS objects, 32% free, 3389KB/5037KB, paused 33.030ms,9us total 112.434ms
+10-18 15:02:38.132  5669  5669 I flutter : feed refresh failed: SocketException: Failed host lookup: 'zitatecke.moezzadigital.com' (OS Error: No address associated with hostname, errno = 7)
+10-18 15:02:43.218  6348  6348 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:43.222  6348  6348 I AndroidRuntime: Using default boot image
+10-18 15:02:43.222  6348  6348 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:43.317  6348  6348 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:44.357  6348  6348 D AndroidRuntime: Shutting down VM
+10-18 15:02:45.263  6383  6383 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:45.266  6383  6383 I AndroidRuntime: Using default boot image
+10-18 15:02:45.266  6383  6383 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:45.359  6383  6383 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:02:46.419  6383  6383 D AndroidRuntime: Shutting down VM
+10-18 15:02:47.361  5669  5669 I ImeTracker: de.zitatecke.app:f68e1cbf: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+10-18 15:02:47.365  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, false)
+10-18 15:02:47.376  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():1995 onStartInputView(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}]}, false)
+10-18 15:02:47.390  5669  5669 I ImeTracker: de.zitatecke.app:9480ee08: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+10-18 15:02:47.399   522  2902 D ContentCapturePerUserService: Notified activity assist data for activity: Token{c5a6de5 ActivityRecord{f6b094f u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity t8}} without a session Id
+10-18 15:02:47.578  1547  1547 I AndroidIME: AbstractIme.onActivate():86 LatinIme.onActivate() : EditorInfo = inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], IncognitoMode = false, DeviceLocked = false
+10-18 15:02:47.605   522  1731 D CoreBackPreview: Window{c1345a8 u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a15f072, mPriority=0, mIsAnimationCallback=false}
+10-18 15:02:47.632   522  2911 I ImeTracker: de.zitatecke.app:f68e1cbf: onFailed at PHASE_WM_SHOW_IME_RUNNER
+10-18 15:02:48.439  5669  5669 I ImeTracker: de.zitatecke.app:9480ee08: onShown
+10-18 15:02:49.495  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=2 initialSelEnd=2 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, true)
+10-18 15:02:49.501  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():1995 onStartInputView(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=2 initialSelEnd=2 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}]}, true)
+10-18 15:02:49.507  1547  1547 I AndroidIME: AbstractIme.onActivate():86 LatinIme.onActivate() : EditorInfo = inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=2 initialSelEnd=2 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], IncognitoMode = false, DeviceLocked = false
+10-18 15:02:50.027  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=3 initialSelEnd=3 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, true)
+10-18 15:02:50.028  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():1995 onStartInputView(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=3 initialSelEnd=3 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}]}, true)
+10-18 15:02:50.032  1547  1547 I AndroidIME: AbstractIme.onActivate():86 LatinIme.onActivate() : EditorInfo = inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=3 initialSelEnd=3 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], IncognitoMode = false, DeviceLocked = false
+10-18 15:02:50.297  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=6 initialSelEnd=6 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, true)
+10-18 15:02:50.299  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():1995 onStartInputView(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=6 initialSelEnd=6 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}]}, true)
+10-18 15:02:50.316  1547  1547 I AndroidIME: AbstractIme.onActivate():86 LatinIme.onActivate() : EditorInfo = inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=6 initialSelEnd=6 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], IncognitoMode = false, DeviceLocked = false
+10-18 15:02:53.631   522   946 I ImeTracker: de.zitatecke.app:a8b5081c: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_SOFT_INPUT_BY_BACK_KEY
+10-18 15:02:53.654   522   946 D CoreBackPreview: Window{c1345a8 u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@960973e, mPriority=0, mIsAnimationCallback=false}
+10-18 15:02:53.717  5669  5669 I ImeTracker: de.zitatecke.app:131ba6b2: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT_BY_INSETS_API
+10-18 15:02:53.718   522   946 I ImeTracker: de.zitatecke.app:131ba6b2: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:02:53.731  5669  5669 I ImeTracker: de.zitatecke.app:a8b5081c: onHidden
+10-18 15:02:53.744  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=10 initialSelEnd=10 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, true)
+10-18 15:02:54.703  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, true)
+10-18 15:02:54.703  5669  5669 I ImeTracker: de.zitatecke.app:bb46394a: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+10-18 15:02:54.704   522  1764 I ImeTracker: de.zitatecke.app:bb46394a: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:02:58.689  5669  5669 E FrameTracker: force finish cuj, time out: J<IME_INSETS_ANIMATION::0@1@de.zitatecke.app>
+10-18 15:02:59.356  6490  6490 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:02:59.360  6490  6490 I AndroidRuntime: Using default boot image
+10-18 15:02:59.360  6490  6490 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:02:59.471  6490  6490 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:00.653  6490  6490 D AndroidRuntime: Shutting down VM
+10-18 15:03:01.597  6509  6509 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:01.603  6509  6509 I AndroidRuntime: Using default boot image
+10-18 15:03:01.603  6509  6509 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:01.704  6509  6509 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:02.754  6509  6509 D AndroidRuntime: Shutting down VM
+10-18 15:03:03.725  5669  5669 I ImeTracker: de.zitatecke.app:29f792c4: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+10-18 15:03:03.728  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[mParcelledData.dataSize=168]}, true)
+10-18 15:03:03.735  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():1995 onStartInputView(EditorInfo{inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}]}, false)
+10-18 15:03:03.740  5669  5669 I ImeTracker: de.zitatecke.app:1f2a4614: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+10-18 15:03:03.743   522  2633 D ContentCapturePerUserService: Notified activity assist data for activity: Token{c5a6de5 ActivityRecord{f6b094f u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity t8}} without a session Id
+10-18 15:03:03.744  1547  1547 I AndroidIME: AbstractIme.onActivate():86 LatinIme.onActivate() : EditorInfo = inputType=0x8001(Normal) imeOptions=0x2000003 privateImeOptions=null actionName=SEARCH actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=1 fieldName=null extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], IncognitoMode = false, DeviceLocked = false
+10-18 15:03:03.813   522  2633 D CoreBackPreview: Window{c1345a8 u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@1526e6b, mPriority=0, mIsAnimationCallback=false}
+10-18 15:03:04.047  5669  5669 I ImeTracker: de.zitatecke.app:1f2a4614: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-18 15:03:04.047  5669  5669 E FrameTracker: force finish cuj, time out: J<IME_INSETS_ANIMATION::1@1@de.zitatecke.app>
+10-18 15:03:04.053  5669  5669 I ImeTracker: de.zitatecke.app:29f792c4: onShown
+10-18 15:03:07.236  6561  6561 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:07.247  6561  6561 I AndroidRuntime: Using default boot image
+10-18 15:03:07.247  6561  6561 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:07.361  6561  6561 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:08.424  6561  6561 D AndroidRuntime: Shutting down VM
+10-18 15:03:09.351  6581  6581 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:09.355  6581  6581 I AndroidRuntime: Using default boot image
+10-18 15:03:09.355  6581  6581 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:09.455  6581  6581 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:10.535  6581  6581 D AndroidRuntime: Shutting down VM
+10-18 15:03:14.300  5669  5669 E FrameTracker: force finish cuj, time out: J<IME_INSETS_ANIMATION::0@1@de.zitatecke.app>
+10-18 15:03:15.731  6614  6614 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:15.735  6614  6614 I AndroidRuntime: Using default boot image
+10-18 15:03:15.735  6614  6614 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:15.818  6614  6614 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:16.874  6614  6614 D AndroidRuntime: Shutting down VM
+10-18 15:03:17.874  6633  6633 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:17.878  6633  6633 I AndroidRuntime: Using default boot image
+10-18 15:03:17.878  6633  6633 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:17.961  6633  6633 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:19.002  6633  6633 D AndroidRuntime: Shutting down VM
+10-18 15:03:19.927  5669  5669 I ImeTracker: de.zitatecke.app:6614495f: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+10-18 15:03:20.005  5669  5669 I ImeTracker: de.zitatecke.app:f81c6f10: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT_BY_INSETS_API
+10-18 15:03:20.006   522  2304 I ImeTracker: de.zitatecke.app:f81c6f10: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:03:20.006  5669  5669 I ImeTracker: de.zitatecke.app:6614495f: onHidden
+10-18 15:03:20.029  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, true)
+10-18 15:03:20.037   522  2304 D CoreBackPreview: Window{c1345a8 u0 de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d535fa1, mPriority=0, mIsAnimationCallback=false}
+10-18 15:03:30.245  5669  5669 E FrameTracker: force finish cuj, time out: J<IME_INSETS_ANIMATION::1@1@de.zitatecke.app>
+10-18 15:03:36.191  6709  6709 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:36.195  6709  6709 I AndroidRuntime: Using default boot image
+10-18 15:03:36.195  6709  6709 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:36.298  6709  6709 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:37.372  6709  6709 D AndroidRuntime: Shutting down VM
+10-18 15:03:41.399  6738  6738 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:41.403  6738  6738 I AndroidRuntime: Using default boot image
+10-18 15:03:41.403  6738  6738 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:41.488  6738  6738 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:42.545  6738  6738 D AndroidRuntime: Shutting down VM
+10-18 15:03:43.459  6761  6761 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:43.462  6761  6761 I AndroidRuntime: Using default boot image
+10-18 15:03:43.463  6761  6761 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:43.547  6761  6761 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:44.600  6761  6761 D AndroidRuntime: Shutting down VM
+10-18 15:03:46.943  6790  6790 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:46.947  6790  6790 I AndroidRuntime: Using default boot image
+10-18 15:03:46.947  6790  6790 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:47.036  6790  6790 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:48.079  6790  6790 D AndroidRuntime: Shutting down VM
+10-18 15:03:48.989  6809  6809 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:48.993  6809  6809 I AndroidRuntime: Using default boot image
+10-18 15:03:48.993  6809  6809 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:49.082  6809  6809 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:50.226  6809  6809 D AndroidRuntime: Shutting down VM
+10-18 15:03:53.138  6827  6827 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:53.142  6827  6827 I AndroidRuntime: Using default boot image
+10-18 15:03:53.142  6827  6827 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:53.223  6827  6827 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:54.292  6827  6827 D AndroidRuntime: Shutting down VM
+10-18 15:03:57.206  6846  6846 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:03:57.210  6846  6846 I AndroidRuntime: Using default boot image
+10-18 15:03:57.210  6846  6846 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:03:57.295  6846  6846 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:03:58.354  6846  6846 D AndroidRuntime: Shutting down VM
+10-18 15:04:01.270  6864  6864 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:01.274  6864  6864 I AndroidRuntime: Using default boot image
+10-18 15:04:01.274  6864  6864 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:01.359  6864  6864 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:02.402  6864  6864 D AndroidRuntime: Shutting down VM
+10-18 15:04:07.980  6889  6889 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:07.984  6889  6889 I AndroidRuntime: Using default boot image
+10-18 15:04:07.984  6889  6889 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:08.068  6889  6889 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:09.104  6889  6889 D AndroidRuntime: Shutting down VM
+10-18 15:04:10.011  6907  6907 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:10.015  6907  6907 I AndroidRuntime: Using default boot image
+10-18 15:04:10.015  6907  6907 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:10.105  6907  6907 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:11.140  6907  6907 D AndroidRuntime: Shutting down VM
+10-18 15:04:14.047  6925  6925 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:14.050  6925  6925 I AndroidRuntime: Using default boot image
+10-18 15:04:14.050  6925  6925 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:14.136  6925  6925 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:15.188  6925  6925 D AndroidRuntime: Shutting down VM
+10-18 15:04:18.111  6944  6944 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:18.115  6944  6944 I AndroidRuntime: Using default boot image
+10-18 15:04:18.115  6944  6944 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:18.201  6944  6944 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:19.242  6944  6944 D AndroidRuntime: Shutting down VM
+10-18 15:04:22.158  6963  6963 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:22.162  6963  6963 I AndroidRuntime: Using default boot image
+10-18 15:04:22.162  6963  6963 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:22.245  6963  6963 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:23.313  6963  6963 D AndroidRuntime: Shutting down VM
+10-18 15:04:30.566   838   860 V WindowManagerShell: Transition requested: android.os.BinderProxy@e6e2732 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.android.intentresolver/com.android.intentresolver.ChooserActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=262303 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@7841c83} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{4423e00 com.android.intentresolver.ChooserActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:04:31.260   522   541 V WindowManager: Sent Transition #11 createdAt=10-18 15:04:30.560 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.android.intentresolver/com.android.intentresolver.ChooserActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=262303 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{febd1df Task{f8338dc #8 type=standard I=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{7f5dbba com.android.intentresolver.ChooserActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:04:33.763   522  2633 I ImeTracker: de.zitatecke.app:c0dcc159: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-18 15:04:33.763   522  2633 I ImeTracker: de.zitatecke.app:c0dcc159: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:04:33.791  5669  5669 I flutter : feed refresh failed: SocketException: Failed host lookup: 'zitatecke.moezzadigital.com' (OS Error: No address associated with hostname, errno = 7)
+10-18 15:04:33.859  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, false)
+10-18 15:04:37.426  7063  7063 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:37.429  7063  7063 I AndroidRuntime: Using default boot image
+10-18 15:04:37.429  7063  7063 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:37.512  7063  7063 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:38.853  7063  7063 D AndroidRuntime: Shutting down VM
+10-18 15:04:39.745  7082  7082 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:39.748  7082  7082 I AndroidRuntime: Using default boot image
+10-18 15:04:39.748  7082  7082 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:39.830  7082  7082 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:40.888  7082  7082 D AndroidRuntime: Shutting down VM
+10-18 15:04:43.783  7099  7099 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:43.786  7099  7099 I AndroidRuntime: Using default boot image
+10-18 15:04:43.786  7099  7099 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:43.863  7099  7099 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:44.919  7099  7099 D AndroidRuntime: Shutting down VM
+10-18 15:04:47.814  7117  7117 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:47.817  7117  7117 I AndroidRuntime: Using default boot image
+10-18 15:04:47.817  7117  7117 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:47.893  7117  7117 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:48.964  7117  7117 D AndroidRuntime: Shutting down VM
+10-18 15:04:51.879  7135  7135 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:51.882  7135  7135 I AndroidRuntime: Using default boot image
+10-18 15:04:51.882  7135  7135 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:51.956  7135  7135 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:53.010  7135  7135 D AndroidRuntime: Shutting down VM
+10-18 15:04:56.945  7154  7154 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:56.948  7154  7154 I AndroidRuntime: Using default boot image
+10-18 15:04:56.948  7154  7154 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:57.028  7154  7154 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:04:58.065  7154  7154 D AndroidRuntime: Shutting down VM
+10-18 15:04:58.960  7171  7171 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:04:58.962  7171  7171 I AndroidRuntime: Using default boot image
+10-18 15:04:58.962  7171  7171 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:04:59.044  7171  7171 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:00.131  7171  7171 D AndroidRuntime: Shutting down VM
+10-18 15:05:03.063  7190  7190 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:03.066  7190  7190 I AndroidRuntime: Using default boot image
+10-18 15:05:03.066  7190  7190 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:03.144  7190  7190 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:04.185  7190  7190 D AndroidRuntime: Shutting down VM
+10-18 15:05:07.082  7208  7208 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:07.086  7208  7208 I AndroidRuntime: Using default boot image
+10-18 15:05:07.086  7208  7208 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:07.162  7208  7208 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:08.217  7208  7208 D AndroidRuntime: Shutting down VM
+10-18 15:05:11.162  7255  7255 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:11.165  7255  7255 I AndroidRuntime: Using default boot image
+10-18 15:05:11.165  7255  7255 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:11.245  7255  7255 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:12.322  7255  7255 D AndroidRuntime: Shutting down VM
+10-18 15:05:18.984  7277  7277 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:18.987  7277  7277 I AndroidRuntime: Using default boot image
+10-18 15:05:18.988  7277  7277 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:19.089  7277  7277 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:20.211  7277  7277 D AndroidRuntime: Shutting down VM
+10-18 15:05:21.126  7296  7296 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:21.129  7296  7296 I AndroidRuntime: Using default boot image
+10-18 15:05:21.129  7296  7296 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:21.211  7296  7296 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:22.262  7296  7296 D AndroidRuntime: Shutting down VM
+10-18 15:05:25.167  7315  7315 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:25.170  7315  7315 I AndroidRuntime: Using default boot image
+10-18 15:05:25.170  7315  7315 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:25.252  7315  7315 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:26.296  7315  7315 D AndroidRuntime: Shutting down VM
+10-18 15:05:29.200  7333  7333 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:29.203  7333  7333 I AndroidRuntime: Using default boot image
+10-18 15:05:29.203  7333  7333 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:29.283  7333  7333 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:30.331  7333  7333 D AndroidRuntime: Shutting down VM
+10-18 15:05:33.231  7355  7355 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:33.234  7355  7355 I AndroidRuntime: Using default boot image
+10-18 15:05:33.234  7355  7355 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:33.314  7355  7355 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:34.358  7355  7355 D AndroidRuntime: Shutting down VM
+10-18 15:05:40.913  7383  7383 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:40.917  7383  7383 I AndroidRuntime: Using default boot image
+10-18 15:05:40.917  7383  7383 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:41.006  7383  7383 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:42.092  7383  7383 D AndroidRuntime: Shutting down VM
+10-18 15:05:42.994  7404  7404 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:42.997  7404  7404 I AndroidRuntime: Using default boot image
+10-18 15:05:42.997  7404  7404 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:43.076  7404  7404 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:44.131  7404  7404 D AndroidRuntime: Shutting down VM
+10-18 15:05:47.044  7428  7428 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:47.048  7428  7428 I AndroidRuntime: Using default boot image
+10-18 15:05:47.048  7428  7428 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:47.127  7428  7428 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:48.202  7428  7428 D AndroidRuntime: Shutting down VM
+10-18 15:05:51.117  7447  7447 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:51.121  7447  7447 I AndroidRuntime: Using default boot image
+10-18 15:05:51.121  7447  7447 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:51.209  7447  7447 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:52.268  7447  7447 D AndroidRuntime: Shutting down VM
+10-18 15:05:55.196  7464  7464 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:05:55.199  7464  7464 I AndroidRuntime: Using default boot image
+10-18 15:05:55.199  7464  7464 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:05:55.280  7464  7464 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:05:56.354  7464  7464 D AndroidRuntime: Shutting down VM
+10-18 15:06:00.280  7484  7484 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:00.283  7484  7484 I AndroidRuntime: Using default boot image
+10-18 15:06:00.283  7484  7484 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:00.365  7484  7484 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:01.430  7484  7484 D AndroidRuntime: Shutting down VM
+10-18 15:06:02.329  7502  7502 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:02.332  7502  7502 I AndroidRuntime: Using default boot image
+10-18 15:06:02.332  7502  7502 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:02.415  7502  7502 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:03.456  7502  7502 D AndroidRuntime: Shutting down VM
+10-18 15:06:06.362  7520  7520 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:06.365  7520  7520 I AndroidRuntime: Using default boot image
+10-18 15:06:06.365  7520  7520 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:06.445  7520  7520 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:07.484  7520  7520 D AndroidRuntime: Shutting down VM
+10-18 15:06:10.385  7538  7538 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:10.388  7538  7538 I AndroidRuntime: Using default boot image
+10-18 15:06:10.388  7538  7538 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:10.472  7538  7538 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:11.506  7538  7538 D AndroidRuntime: Shutting down VM
+10-18 15:06:14.405  7556  7556 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:14.408  7556  7556 I AndroidRuntime: Using default boot image
+10-18 15:06:14.408  7556  7556 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:14.485  7556  7556 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:15.545  7556  7556 D AndroidRuntime: Shutting down VM
+10-18 15:06:19.496  7587  7587 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:19.499  7587  7587 I AndroidRuntime: Using default boot image
+10-18 15:06:19.499  7587  7587 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:19.578  7587  7587 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:20.641  7587  7587 D AndroidRuntime: Shutting down VM
+10-18 15:06:21.543  7614  7614 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-18 15:06:21.547  7614  7614 I AndroidRuntime: Using default boot image
+10-18 15:06:21.547  7614  7614 I AndroidRuntime: Leaving lock profiling enabled
+10-18 15:06:21.627  7614  7614 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-18 15:06:22.710  7614  7614 D AndroidRuntime: Shutting down VM
+10-18 15:06:24.301   838   860 V WindowManagerShell: Transition requested: android.os.BinderProxy@441b83b TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.android.intentresolver/com.android.intentresolver.ChooserActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=376026 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@ebf9b58} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{6fa24b1 com.android.intentresolver.ChooserActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:06:24.830   522   541 V WindowManager: Sent Transition #13 createdAt=10-18 15:06:24.284 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity } baseActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} topActivity=ComponentInfo{com.android.intentresolver/com.android.intentresolver.ChooserActivity} origActivity=null realActivity=ComponentInfo{de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity} numActivities=2 lastActiveTime=376026 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{febd1df Task{f8338dc #8 type=standard I=de.zitatecke.app/de.zitatecke.guten_morgen_app.MainActivity}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{7a785f1 com.android.intentresolver.ChooserActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-18 15:06:29.099   522  1731 I ImeTracker: de.zitatecke.app:5bc2c416: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-18 15:06:29.099   522  1731 I ImeTracker: de.zitatecke.app:5bc2c416: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-18 15:06:29.152  1547  1547 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=de.zitatecke.app fieldId=0 fieldName=null extras=null}, false)
+10-18 15:06:29.255  5669  5669 I flutter : feed refresh failed: SocketException: Failed host lookup: 'zitatecke.moezzadigital.com' (OS Error: No address associated with hostname, errno = 7)

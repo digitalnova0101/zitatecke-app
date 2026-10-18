@@ -1,0 +1,15 @@
+  bash arg: -p
+  bash arg: de.zitatecke.app
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, de.zitatecke.app, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "de.zitatecke.app"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="de.zitatecke.app"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=269ms (0ms mobile, 0ms wifi, 269ms not connected)
