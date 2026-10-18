@@ -137,6 +137,26 @@ class QuoteRepository {
     return list[days % list.length];
   }
 
+  /// Home ka swipe: Spruch des Tages + aur [count-1] Sprüche (aaj ke AI pehle).
+  List<Quote> quotesOfTheDay(String categoryId, {int count = 10, DateTime? date}) {
+    final d = date ?? DateTime.now();
+    final first = quoteOfTheDay(categoryId, d);
+    final out = <Quote>[first];
+    for (final q in aiForDay(categoryId, d)) {
+      if (out.length >= count) break;
+      if (!out.contains(q)) out.add(q);
+    }
+    final local = _local.where((q) => q.category == categoryId).toList();
+    if (local.isNotEmpty) {
+      final start = DateTime.utc(d.year, d.month, d.day).difference(DateTime.utc(2024, 1, 1)).inDays;
+      for (var i = 0; i < local.length && out.length < count; i++) {
+        final q = local[(start + i) % local.length];
+        if (!out.contains(q)) out.add(q);
+      }
+    }
+    return out;
+  }
+
   /// Aaj koi festival / khaas din?
   SpecialDay? specialFor(DateTime d) => _specials[dayKey(d)];
 

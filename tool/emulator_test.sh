@@ -20,6 +20,8 @@ $UI tap "Ja, gerne";         sleep 3
 $UI tap "Allow" || $UI tap "Zulassen"
 shot 04_home 4
 $UI dump > /tmp/emu/home_nodes.txt
+adb shell input swipe 950 1100 150 1100 300; shot 04b_home_swiped
+adb shell input swipe 950 1100 150 1100 300; shot 04c_home_swiped2
 adb shell input swipe 500 1800 500 600 600; shot 05_home_scrolled
 adb shell input swipe 500 600 500 1800 600; sleep 1
 $UI tap "Spruch suchen";     sleep 2
@@ -42,6 +44,11 @@ adb shell input swipe 500 1800 500 700 600; sleep 2
 $UI tap "Gute Nacht";        shot 07_category
 adb shell input tap 540 460; shot 08_detail
 adb shell input swipe 900 900 150 900 300; shot 09_detail_swiped
+$UI tap "Schrift";           sleep 1
+$UI tap "Handschrift";       shot 09b_font_hand
+$UI tap "Verspielt";         shot 09c_font_fancy
+$UI tap "Klassisch";         sleep 1
+$UI tap "Bild";              sleep 1
 $UI tap "Per WhatsApp senden"; shot 10_share 5
 adb shell input keyevent KEYCODE_BACK; sleep 2
 timeout 60 adb logcat -d > /tmp/emu/logcat_full.txt

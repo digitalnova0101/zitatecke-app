@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../app_state.dart';
 import '../models/quote.dart';
@@ -21,8 +22,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey _heroKey = GlobalKey();
+  final PageController _pc = PageController(viewportFraction: 0.92);
+  final Map<int, GlobalKey> _cardKeys = {};
+  int _page = 0;
+  String? _listFor;
   bool _sharing = false;
+
+  GlobalKey _keyFor(int i) => _cardKeys.putIfAbsent(i, () => GlobalKey());
+
+  @override
+  void dispose() {
+    _pc.dispose();
+    super.dispose();
+  }
 
   /// Subah: Guten Morgen, din mein: Motivation, shaam/raat: Gute Nacht.
   ({String greeting, String categoryId}) _timeContext(DateTime now) {
@@ -38,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() => _sharing = true);
     try {
       final r = whatsapp
-          ? await ShareService.shareToWhatsApp(_heroKey, quote)
-          : await ShareService.shareCardImage(_heroKey, quote);
+          ? await ShareService.shareToWhatsApp(_keyFor(_page), quote)
+          : await ShareService.shareCardImage(_keyFor(_page), quote);
       if (whatsapp && r == ShareResultKind.sheet && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('WhatsApp wurde nicht gefunden – wähle eine andere App.'),
@@ -61,10 +73,25 @@ class _HomeScreenState extends State<HomeScreen> {
     final repo = appState.repo;
     final now = DateTime.now();
     final ctx = _timeContext(now);
-    final quote = repo.quoteOfTheDay(ctx.categoryId, now);
-    final heroStyle = quote.isAi
-        ? styleById(repo.defaultStyleId(quote, 0))
-        : styleById(repo.category(ctx.categoryId).styles.first);
+    final list = repo.quotesOfTheDay(ctx.categoryId, date: now);
+    final listId = '${ctx.categoryId}-${list.first.id}';
+    if (_listFor != listId) {
+      // Naya din / naya waqt → pehla card.
+      _listFor = listId;
+      _page = 0;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_pc.hasClients && (_pc.page ?? 0) != 0) _pc.jumpToPage(0);
+      });
+    }
+    if (_page >= list.length) _page = 0;
+    final quote = list[_page];
+    final font = appState.cardFont;
+    CardStyle styleAt(int i) {
+      final q = list[i];
+      if (q.isAi) return styleById(repo.defaultStyleId(q, i));
+      final styles = repo.category(ctx.categoryId).styles;
+      return styleById(styles[i % styles.length]);
+    }
     final today = kWeekdays[now.weekday - 1];
     final special = repo.specialFor(now);
     final specialQuotes = repo.specialQuotes(now);
@@ -126,39 +153,64 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 10),
             FadeSlideIn(
               delay: 160,
-              child: GestureDetector(
-                onTap: () => _open(QuoteDetailScreen(quotes: [quote])),
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
-                          BoxShadow(color: kInk.withValues(alpha: 0.18), blurRadius: 24, offset: const Offset(0, 10)),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24),
-                        child: RepaintBoundary(
-                          key: _heroKey,
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 400),
-                            child: QuoteCard(
-                              key: ValueKey('${quote.id}-${heroStyle.id}'),
-                              quote: quote,
-                              style: heroStyle,
-                              heading: repo.headingFor(quote),
+              child: LayoutBuilder(
+                builder: (context, c) {
+                  final side = (c.maxWidth + 32) * 0.92 - 12;
+                  return SizedBox(
+                    height: side + 30,
+                    child: OverflowBox(
+                      maxWidth: c.maxWidth + 32,
+                      child: PageView.builder(
+                        controller: _pc,
+                        itemCount: list.length,
+                        onPageChanged: (i) {
+                          HapticFeedback.selectionClick();
+                          setState(() => _page = i);
+                        },
+                        itemBuilder: (context, i) {
+                          final q = list[i];
+                          final st = styleAt(i);
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(6, 4, 6, 26),
+                            child: GestureDetector(
+                              onTap: () => _open(QuoteDetailScreen(quotes: list, initialIndex: i, title: 'Spruch des Tages')),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24),
+                                      boxShadow: [
+                                        BoxShadow(color: kInk.withValues(alpha: 0.18), blurRadius: 20, offset: const Offset(0, 8)),
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(24),
+                                      child: RepaintBoundary(
+                                        key: _keyFor(i),
+                                        child: QuoteCard(
+                                          key: ValueKey('${q.id}-${st.id}-${font.id}'),
+                                          quote: q,
+                                          style: st,
+                                          heading: repo.headingFor(q),
+                                          font: font,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  if (repo.isNewToday(q))
+                                    const Positioned(top: 12, left: 12, child: _NewBadge()),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ),
-                    if (repo.isNewToday(quote))
-                      const Positioned(top: 12, left: 12, child: _NewBadge()),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
+            _Dots(count: list.length, index: _page),
             const SizedBox(height: 14),
             FadeSlideIn(
               delay: 200,
@@ -605,7 +657,7 @@ class _WeatherSectionState extends State<_WeatherSection> {
                   borderRadius: BorderRadius.circular(24),
                   child: RepaintBoundary(
                     key: _cardKey,
-                    child: QuoteCard(quote: q, style: style, heading: repo.headingFor(q)),
+                    child: QuoteCard(quote: q, style: style, heading: repo.headingFor(q), font: appState.cardFont),
                   ),
                 ),
               ),
@@ -636,6 +688,43 @@ class _WeatherSectionState extends State<_WeatherSection> {
           ],
         );
       },
+    );
+  }
+}
+
+
+/// ● ○ ○  +  "Wischen für mehr"
+class _Dots extends StatelessWidget {
+  const _Dots({required this.count, required this.index});
+  final int count;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (var i = 0; i < count; i++)
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 220),
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                width: i == index ? 20 : 7,
+                height: 7,
+                decoration: BoxDecoration(
+                  color: i == index ? kCoral : kInk.withValues(alpha: 0.18),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          index == 0 ? 'Wischen für mehr Sprüche  ›' : '${index + 1} von $count',
+          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.5)),
+        ),
+      ],
     );
   }
 }

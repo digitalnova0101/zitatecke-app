@@ -7,6 +7,7 @@ import '../app_state.dart';
 import '../models/quote.dart';
 import '../services/share_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/card_fonts.dart';
 import '../theme/card_styles.dart';
 import '../widgets/animations.dart';
 import '../widgets/quote_card.dart';
@@ -32,6 +33,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   late final PageController _pageController;
   late int _index;
   String? _styleOverride;
+  bool _fontTab = false; // false = Bild, true = Schrift
   bool _sharing = false;
   final Map<int, GlobalKey> _cardKeys = {};
 
@@ -131,7 +133,8 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                               child: AnimatedSwitcher(
                                 duration: const Duration(milliseconds: 280),
                                 child: QuoteCard(
-                                  key: ValueKey('${quote.id}-${style.id}'),
+                                  key: ValueKey('${quote.id}-${style.id}-${appState.cardFont.id}'),
+                                  font: appState.cardFont,
                                   quote: quote,
                                   style: style,
                                   heading: repo.headingFor(quote),
@@ -154,12 +157,33 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                   style: TextStyle(color: kInk.withValues(alpha: 0.55), fontWeight: FontWeight.w600),
                 ),
               ),
-            _StylePicker(
-              selectedId: _styleFor(_index).id,
-              onSelected: (id) {
+            _PickerTabs(
+              fontTab: _fontTab,
+              onChanged: (v) {
                 HapticFeedback.selectionClick();
-                setState(() => _styleOverride = id);
+                setState(() => _fontTab = v);
               },
+            ),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              child: _fontTab
+                  ? _FontPicker(
+                      key: const ValueKey('fonts'),
+                      selectedId: appState.cardFont.id,
+                      onSelected: (id) async {
+                        HapticFeedback.selectionClick();
+                        await appState.setCardFont(id);
+                        if (mounted) setState(() {});
+                      },
+                    )
+                  : _StylePicker(
+                      key: const ValueKey('styles'),
+                      selectedId: _styleFor(_index).id,
+                      onSelected: (id) {
+                        HapticFeedback.selectionClick();
+                        setState(() => _styleOverride = id);
+                      },
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
@@ -217,7 +241,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 }
 
 class _StylePicker extends StatefulWidget {
-  const _StylePicker({required this.selectedId, required this.onSelected});
+  const _StylePicker({super.key, required this.selectedId, required this.onSelected});
 
   final String selectedId;
   final ValueChanged<String> onSelected;
@@ -267,6 +291,112 @@ class _StylePickerState extends State<_StylePicker> {
                         decoration: BoxDecoration(gradient: style.gradient),
                         child: Center(child: Text(style.emoji, style: const TextStyle(fontSize: 18))),
                       ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+/// "🖼️ Bild | Aa Schrift"
+class _PickerTabs extends StatelessWidget {
+  const _PickerTabs({required this.fontTab, required this.onChanged});
+  final bool fontTab;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget tab(String label, IconData icon, bool selected, VoidCallback onTap) => Expanded(
+          child: GestureDetector(
+            onTap: onTap,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              padding: const EdgeInsets.symmetric(vertical: 9),
+              decoration: BoxDecoration(
+                color: selected ? Colors.white : Colors.transparent,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: selected
+                    ? [BoxShadow(color: kInk.withValues(alpha: 0.08), blurRadius: 6, offset: const Offset(0, 2))]
+                    : null,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon, size: 20, color: selected ? kCoral : kInk.withValues(alpha: 0.55)),
+                  const SizedBox(width: 6),
+                  Text(label,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: selected ? kInk : kInk.withValues(alpha: 0.55))),
+                ],
+              ),
+            ),
+          ),
+        );
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 6),
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        decoration: BoxDecoration(color: kInk.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(16)),
+        child: Row(
+          children: [
+            tab('Bild', Icons.image_outlined, !fontTab, () => onChanged(false)),
+            tab('Schrift', Icons.text_fields_rounded, fontTab, () => onChanged(true)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Font chunna: har button pe "Aa" usi font mein.
+class _FontPicker extends StatelessWidget {
+  const _FontPicker({super.key, required this.selectedId, required this.onSelected});
+  final String selectedId;
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 64,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+        itemCount: kCardFonts.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemBuilder: (context, i) {
+          final f = kCardFonts[i];
+          final selected = f.id == selectedId;
+          return GestureDetector(
+            onTap: () => onSelected(f.id),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              width: 74,
+              decoration: BoxDecoration(
+                color: selected ? kCoral.withValues(alpha: 0.12) : Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: selected ? kCoral : kInk.withValues(alpha: 0.12), width: selected ? 2.5 : 1),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Aa',
+                      style: TextStyle(
+                          fontFamily: f.family,
+                          fontWeight: f.weight,
+                          fontSize: 22 * f.scale.clamp(0.9, 1.25).toDouble(),
+                          height: 1.1,
+                          color: kInk)),
+                  const SizedBox(height: 2),
+                  Text(f.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.65))),
+                ],
               ),
             ),
           );

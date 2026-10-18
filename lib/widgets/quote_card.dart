@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../config.dart';
 import '../models/quote.dart';
 import '../theme/app_theme.dart';
+import '../theme/card_fonts.dart';
 import '../theme/card_styles.dart';
 
 /// Square quote image jo share hoti hai. Saare sizes card ki width
@@ -16,12 +17,16 @@ class QuoteCard extends StatelessWidget {
     required this.style,
     required this.heading,
     this.showWatermark = true,
+    this.font,
   });
 
   final Quote quote;
   final CardStyle style;
   final String heading;
   final bool showWatermark;
+
+  /// Spruch ka font (user chunta hai). Null = Lora.
+  final CardFont? font;
 
   double _baseFontSize(String text) {
     final n = text.length;
@@ -35,6 +40,7 @@ class QuoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isPhoto = style.hasPhoto;
+    final f = font ?? kCardFonts.first;
     // Phone ki font-size setting card ko na bigaade.
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
@@ -106,16 +112,25 @@ class QuoteCard extends StatelessWidget {
                         SizedBox(height: 8 * s),
                         _Ornament(color: color, scale: s),
                         SizedBox(height: 16 * s),
-                        Text(
-                          quote.text,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: kFontQuote,
-                            fontSize: _baseFontSize(quote.text) * s,
-                            height: 1.4,
-                            fontWeight: FontWeight.w500,
-                            color: color,
-                            shadows: shadows,
+                        // Lamba text + bada font → apne aap chhota ho jata hai (kabhi bahar nahi jata).
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: SizedBox(
+                              width: constraints.maxWidth - 56 * s,
+                              child: Text(
+                                quote.text,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: f.family,
+                                  fontSize: _baseFontSize(quote.text) * f.scale * s,
+                                  height: f.height,
+                                  fontWeight: f.weight,
+                                  color: color,
+                                  shadows: shadows,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         if (quote.author != null) ...[

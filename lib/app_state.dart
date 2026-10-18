@@ -6,6 +6,7 @@ import 'models/quote.dart';
 import 'services/content_service.dart';
 import 'services/notification_service.dart';
 import 'services/weather_service.dart';
+import 'theme/card_fonts.dart';
 
 /// Poori app ka state: favorites + notification settings.
 late final AppState appState;
@@ -39,6 +40,16 @@ class AppState extends ChangeNotifier {
     }
     if (changed) await rescheduleNotifications();
     return changed;
+  }
+
+  // ---------- Schrift (font) ----------
+
+  /// User ka chuna hua font – home aur share images mein bhi.
+  CardFont get cardFont => fontById(_prefs.getString('card_font'));
+
+  Future<void> setCardFont(String id) async {
+    await _prefs.setString('card_font', id);
+    notifyListeners();
   }
 
   Future<void> setCity(City? c) async {
