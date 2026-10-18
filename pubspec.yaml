@@ -1,7 +1,7 @@
 name: guten_morgen_app
 description: "Zitatecke: Sprüche & Grüße – Guten Morgen, Gute Nacht und Motivation."
 publish_to: 'none'
-version: 1.4.0+5
+version: 1.5.0+6
 
 environment:
   sdk: ^3.5.0
@@ -31,6 +31,7 @@ flutter:
     - assets/weather_quotes.json
     - assets/brand/
     - assets/backgrounds/
+    - assets/illustrations/
   fonts:
     - family: Nunito
       fonts:

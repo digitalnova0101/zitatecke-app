@@ -157,6 +157,18 @@ class QuoteRepository {
     return out;
   }
 
+  /// Aaj ke din (Montag … Sonntag) ka Spruch.
+  Quote? weekdayQuote(DateTime d) {
+    const tags = ['montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag', 'samstag', 'sonntag'];
+    final tag = tags[d.weekday - 1];
+    final ai = aiForDay('wochentage', d).where((q) => q.tag == tag).toList();
+    if (ai.isNotEmpty) return ai.first;
+    final local = _local.where((q) => q.category == 'wochentage' && q.tag == tag).toList();
+    if (local.isEmpty) return null;
+    final weeks = DateTime.utc(d.year, d.month, d.day).difference(DateTime.utc(2024, 1, 1)).inDays ~/ 7;
+    return local[weeks % local.length];
+  }
+
   /// Aaj koi festival / khaas din?
   SpecialDay? specialFor(DateTime d) => _specials[dayKey(d)];
 

@@ -40,6 +40,14 @@ void main() {
     expect(repo.search('Kaffee'), isA<List>());
   });
 
+  test('weekday + zitat des tages', () async {
+    final repo = await QuoteRepository.load();
+    final mo = repo.weekdayQuote(DateTime(2026, 10, 19)); // Montag
+    expect(mo?.tag, 'montag');
+    final z = repo.quoteOfTheDay('zitate', DateTime(2026, 10, 19));
+    expect(z.author, isNotNull);
+  });
+
   test('offline weather quotes exist', () async {
     final repo = await QuoteRepository.load();
     for (final t in ['sonne', 'regen', 'kaelte']) {

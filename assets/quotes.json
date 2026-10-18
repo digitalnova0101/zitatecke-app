@@ -46,6 +46,22 @@
       ]
     },
     {
+      "id": "zitate",
+      "title": "Berühmte Zitate",
+      "emoji": "📜",
+      "subtitle": "Goethe, Schiller, Sprichwörter …",
+      "heading": "Zitat des Tages",
+      "styles": [
+        "p_bergsee",
+        "p_horizont",
+        "p_ozean",
+        "p_kueste",
+        "p_sternenhimmel",
+        "p_morgenwiese",
+        "p_seegold"
+      ]
+    },
+    {
       "id": "wochentage",
       "title": "Wochentage",
       "emoji": "📅",
@@ -917,6 +933,570 @@
       "category": "feiertage",
       "text": "Ein lieber Ostergruß von mir zu dir. Genieß die Feiertage!",
       "tag": "ostern"
+    },
+    {
+      "id": "zitate_001",
+      "category": "zitate",
+      "text": "Es ist nicht genug zu wissen, man muss auch anwenden; es ist nicht genug zu wollen, man muss auch tun.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_002",
+      "category": "zitate",
+      "text": "Morgenstund hat Gold im Mund.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_003",
+      "category": "zitate",
+      "text": "Willst du immer weiter schweifen? Sieh, das Gute liegt so nah. Lerne nur das Glück ergreifen, denn das Glück ist immer da.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_004",
+      "category": "zitate",
+      "text": "Übung macht den Meister.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_005",
+      "category": "zitate",
+      "text": "Edel sei der Mensch, hilfreich und gut!",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_006",
+      "category": "zitate",
+      "text": "Aller Anfang ist schwer.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_007",
+      "category": "zitate",
+      "text": "Grau, teurer Freund, ist alle Theorie, und grün des Lebens goldner Baum.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_008",
+      "category": "zitate",
+      "text": "Wo ein Wille ist, ist auch ein Weg.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_009",
+      "category": "zitate",
+      "text": "Wer immer strebend sich bemüht, den können wir erlösen.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_010",
+      "category": "zitate",
+      "text": "Ende gut, alles gut.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_011",
+      "category": "zitate",
+      "text": "Hier bin ich Mensch, hier darf ich's sein!",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_012",
+      "category": "zitate",
+      "text": "Geteilte Freude ist doppelte Freude.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_013",
+      "category": "zitate",
+      "text": "Vom Eise befreit sind Strom und Bäche durch des Frühlings holden, belebenden Blick.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_014",
+      "category": "zitate",
+      "text": "Geteiltes Leid ist halbes Leid.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_015",
+      "category": "zitate",
+      "text": "Was du ererbt von deinen Vätern hast, erwirb es, um es zu besitzen.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_016",
+      "category": "zitate",
+      "text": "Lachen ist die beste Medizin.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_017",
+      "category": "zitate",
+      "text": "Gefühl ist alles; Name ist Schall und Rauch.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_018",
+      "category": "zitate",
+      "text": "Gut Ding will Weile haben.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_019",
+      "category": "zitate",
+      "text": "Über allen Gipfeln ist Ruh, in allen Wipfeln spürest du kaum einen Hauch.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_020",
+      "category": "zitate",
+      "text": "Was du heute kannst besorgen, das verschiebe nicht auf morgen.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_021",
+      "category": "zitate",
+      "text": "Wo viel Licht ist, ist starker Schatten.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_022",
+      "category": "zitate",
+      "text": "Rom wurde auch nicht an einem Tag erbaut.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_023",
+      "category": "zitate",
+      "text": "Ein guter Mensch in seinem dunklen Drange ist sich des rechten Weges wohl bewusst.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_024",
+      "category": "zitate",
+      "text": "Der frühe Vogel fängt den Wurm.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_025",
+      "category": "zitate",
+      "text": "Tages Arbeit! Abends Gäste! Saure Wochen! Frohe Feste!",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_026",
+      "category": "zitate",
+      "text": "Steter Tropfen höhlt den Stein.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_027",
+      "category": "zitate",
+      "text": "Alles in der Welt lässt sich ertragen, nur nicht eine Reihe von schönen Tagen.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_028",
+      "category": "zitate",
+      "text": "In der Ruhe liegt die Kraft.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_029",
+      "category": "zitate",
+      "text": "Wer vieles bringt, wird manchem etwas bringen.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_030",
+      "category": "zitate",
+      "text": "Kommt Zeit, kommt Rat.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_031",
+      "category": "zitate",
+      "text": "Es irrt der Mensch, solang er strebt.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_032",
+      "category": "zitate",
+      "text": "Wer rastet, der rostet.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_033",
+      "category": "zitate",
+      "text": "Getretner Quark wird breit, nicht stark.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_034",
+      "category": "zitate",
+      "text": "Die Hoffnung stirbt zuletzt.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_035",
+      "category": "zitate",
+      "text": "Zwei Seelen wohnen, ach! in meiner Brust.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "id": "zitate_036",
+      "category": "zitate",
+      "text": "Ohne Fleiß kein Preis.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_037",
+      "category": "zitate",
+      "text": "Früh übt sich, was ein Meister werden will.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_038",
+      "category": "zitate",
+      "text": "Nach Regen kommt Sonnenschein.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_039",
+      "category": "zitate",
+      "text": "Der kluge Mann baut vor.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_040",
+      "category": "zitate",
+      "text": "Freunde erkennt man in der Not.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_041",
+      "category": "zitate",
+      "text": "Die Axt im Haus erspart den Zimmermann.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_042",
+      "category": "zitate",
+      "text": "Alte Liebe rostet nicht.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_043",
+      "category": "zitate",
+      "text": "Raum ist in der kleinsten Hütte für ein glücklich liebend Paar.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_044",
+      "category": "zitate",
+      "text": "Liebe geht durch den Magen.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_045",
+      "category": "zitate",
+      "text": "Drum prüfe, wer sich ewig bindet, ob sich das Herz zum Herzen findet!",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_046",
+      "category": "zitate",
+      "text": "Wer zuletzt lacht, lacht am besten.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_047",
+      "category": "zitate",
+      "text": "Freude, schöner Götterfunken, Tochter aus Elysium!",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_048",
+      "category": "zitate",
+      "text": "Es ist noch kein Meister vom Himmel gefallen.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_049",
+      "category": "zitate",
+      "text": "Ernst ist das Leben, heiter ist die Kunst.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_050",
+      "category": "zitate",
+      "text": "Man lernt nie aus.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_051",
+      "category": "zitate",
+      "text": "Es kann der Frömmste nicht in Frieden leben, wenn es dem bösen Nachbar nicht gefällt.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_052",
+      "category": "zitate",
+      "text": "Wer nicht wagt, der nicht gewinnt.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_053",
+      "category": "zitate",
+      "text": "Spät kommt ihr – doch ihr kommt!",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_054",
+      "category": "zitate",
+      "text": "Frisch gewagt ist halb gewonnen.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_055",
+      "category": "zitate",
+      "text": "Die Uhr schlägt keinem Glücklichen.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_056",
+      "category": "zitate",
+      "text": "Kleine Geschenke erhalten die Freundschaft.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_057",
+      "category": "zitate",
+      "text": "Und neues Leben blüht aus den Ruinen.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_058",
+      "category": "zitate",
+      "text": "Reden ist Silber, Schweigen ist Gold.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_059",
+      "category": "zitate",
+      "text": "Der Starke ist am mächtigsten allein.",
+      "author": "Friedrich Schiller"
+    },
+    {
+      "id": "zitate_060",
+      "category": "zitate",
+      "text": "Zeit heilt alle Wunden.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_061",
+      "category": "zitate",
+      "text": "Der Langsamste, der sein Ziel nur nicht aus den Augen verliert, geht noch immer geschwinder als der, der ohne Ziel herumirrt.",
+      "author": "Gotthold Ephraim Lessing"
+    },
+    {
+      "id": "zitate_062",
+      "category": "zitate",
+      "text": "Es ist nicht alles Gold, was glänzt.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_063",
+      "category": "zitate",
+      "text": "Ich kann freilich nicht sagen, ob es besser werden wird, wenn es anders wird; aber so viel kann ich sagen: Es muss anders werden, wenn es gut werden soll.",
+      "author": "Georg Christoph Lichtenberg"
+    },
+    {
+      "id": "zitate_064",
+      "category": "zitate",
+      "text": "Jeder ist seines Glückes Schmied.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_065",
+      "category": "zitate",
+      "text": "Es ist fast unmöglich, die Fackel der Wahrheit durch ein Gedränge zu tragen, ohne jemandem den Bart zu sengen.",
+      "author": "Georg Christoph Lichtenberg"
+    },
+    {
+      "id": "zitate_066",
+      "category": "zitate",
+      "text": "Was lange währt, wird endlich gut.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_067",
+      "category": "zitate",
+      "text": "Man muss etwas Neues machen, um etwas Neues zu sehen.",
+      "author": "Georg Christoph Lichtenberg"
+    },
+    {
+      "id": "zitate_068",
+      "category": "zitate",
+      "text": "Gut gekaut ist halb verdaut.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_069",
+      "category": "zitate",
+      "text": "Was mich nicht umbringt, macht mich stärker.",
+      "author": "Friedrich Nietzsche"
+    },
+    {
+      "id": "zitate_070",
+      "category": "zitate",
+      "text": "Ordnung ist das halbe Leben.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_071",
+      "category": "zitate",
+      "text": "Ohne Musik wäre das Leben ein Irrtum.",
+      "author": "Friedrich Nietzsche"
+    },
+    {
+      "id": "zitate_072",
+      "category": "zitate",
+      "text": "Morgen, morgen, nur nicht heute, sagen alle faulen Leute.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_073",
+      "category": "zitate",
+      "text": "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können.",
+      "author": "Friedrich Nietzsche"
+    },
+    {
+      "id": "zitate_074",
+      "category": "zitate",
+      "text": "Der Apfel fällt nicht weit vom Stamm.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_075",
+      "category": "zitate",
+      "text": "Habe Mut, dich deines eigenen Verstandes zu bedienen!",
+      "author": "Immanuel Kant"
+    },
+    {
+      "id": "zitate_076",
+      "category": "zitate",
+      "text": "Viele Köche verderben den Brei.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_077",
+      "category": "zitate",
+      "text": "Der bestirnte Himmel über mir und das moralische Gesetz in mir.",
+      "author": "Immanuel Kant"
+    },
+    {
+      "id": "zitate_078",
+      "category": "zitate",
+      "text": "Wer A sagt, muss auch B sagen.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_079",
+      "category": "zitate",
+      "text": "Du bist wie eine Blume, so hold und schön und rein.",
+      "author": "Heinrich Heine"
+    },
+    {
+      "id": "zitate_080",
+      "category": "zitate",
+      "text": "Lügen haben kurze Beine.",
+      "author": "Sprichwort"
+    },
+    {
+      "id": "zitate_081",
+      "category": "zitate",
+      "text": "Im wunderschönen Monat Mai, als alle Knospen sprangen, da ist in meinem Herzen die Liebe aufgegangen.",
+      "author": "Heinrich Heine"
+    },
+    {
+      "id": "zitate_082",
+      "category": "zitate",
+      "text": "Stets findet Überraschung statt, da, wo man's nicht erwartet hat.",
+      "author": "Wilhelm Busch"
+    },
+    {
+      "id": "zitate_083",
+      "category": "zitate",
+      "text": "Vater werden ist nicht schwer, Vater sein dagegen sehr.",
+      "author": "Wilhelm Busch"
+    },
+    {
+      "id": "zitate_084",
+      "category": "zitate",
+      "text": "Dummheit, die man bei andern sieht, wirkt meist erhebend aufs Gemüt.",
+      "author": "Wilhelm Busch"
+    },
+    {
+      "id": "zitate_085",
+      "category": "zitate",
+      "text": "Musik wird oft nicht schön gefunden, weil sie stets mit Geräusch verbunden.",
+      "author": "Wilhelm Busch"
+    },
+    {
+      "id": "zitate_086",
+      "category": "zitate",
+      "text": "Wer nichts weiß, muss alles glauben.",
+      "author": "Marie von Ebner-Eschenbach"
+    },
+    {
+      "id": "zitate_087",
+      "category": "zitate",
+      "text": "In der Jugend lernt, im Alter versteht man.",
+      "author": "Marie von Ebner-Eschenbach"
+    },
+    {
+      "id": "zitate_088",
+      "category": "zitate",
+      "text": "Herr: es ist Zeit. Der Sommer war sehr groß.",
+      "author": "Rainer Maria Rilke"
+    },
+    {
+      "id": "zitate_089",
+      "category": "zitate",
+      "text": "Und nun wollen wir glauben an ein langes Jahr, das uns gegeben ist, neu, unberührt, voll nie gewesener Dinge.",
+      "author": "Rainer Maria Rilke"
+    },
+    {
+      "id": "zitate_090",
+      "category": "zitate",
+      "text": "Es war, als hätt' der Himmel die Erde still geküsst.",
+      "author": "Joseph von Eichendorff"
+    },
+    {
+      "id": "zitate_091",
+      "category": "zitate",
+      "text": "Wo aber Gefahr ist, wächst das Rettende auch.",
+      "author": "Friedrich Hölderlin"
+    },
+    {
+      "id": "zitate_092",
+      "category": "zitate",
+      "text": "Wohin gehen wir? Immer nach Hause.",
+      "author": "Novalis"
+    },
+    {
+      "id": "zitate_093",
+      "category": "zitate",
+      "text": "Der Mond ist aufgegangen, die goldnen Sternlein prangen am Himmel hell und klar.",
+      "author": "Matthias Claudius"
+    },
+    {
+      "id": "zitate_094",
+      "category": "zitate",
+      "text": "Wenn jemand eine Reise tut, so kann er was erzählen.",
+      "author": "Matthias Claudius"
     }
   ]
 }

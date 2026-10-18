@@ -178,7 +178,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   applicationLegalese:
                       'Sprüche zum Teilen für jeden Tag.\nMehr Sprüche auf $kWebsite\n\n'
-                      'Fotos: gemeinfrei (CC0 / Public Domain)\nSchriften: Lora, Nunito, Dancing Script (SIL OFL)',
+                      'Fotos: gemeinfrei (CC0 / Public Domain)\nSchriften: SIL Open Font License\nIllustrationen: Microsoft Fluent Emoji (MIT)',
                 ),
               ),
             ]),

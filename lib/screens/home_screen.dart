@@ -3,15 +3,14 @@ import 'package:flutter/services.dart';
 
 import '../app_state.dart';
 import '../models/quote.dart';
+import '../services/weather_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/card_styles.dart';
 import '../widgets/animations.dart';
 import '../widgets/quote_actions.dart';
 import '../widgets/quote_card.dart';
 import '../widgets/share_actions.dart';
-import '../services/weather_service.dart';
 import 'category_screen.dart';
-import 'city_screen.dart';
 import 'quote_detail_screen.dart';
 import 'search_screen.dart';
 
@@ -22,12 +21,24 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+/// Ein Karussell-Eintrag: Spruch + kleines Label oben links (z. B. "📅 Sonntag").
+class _Item {
+  const _Item(this.quote, [this.label]);
+  final Quote quote;
+  final String? label;
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   final PageController _pc = PageController(viewportFraction: 0.92);
   final Map<int, GlobalKey> _cardKeys = {};
   int _page = 0;
   String? _listFor;
-  final bool _sharing = false;
+
+  // Wetter (Stadt wird in den Einstellungen gewählt)
+  WeatherNow? _weather;
+  String? _weatherFor;
+  DateTime? _weatherAt;
+  bool _weatherLoading = false;
 
   GlobalKey _keyFor(int i) => _cardKeys.putIfAbsent(i, () => GlobalKey());
 
@@ -46,11 +57,59 @@ class _HomeScreenState extends State<HomeScreen> {
     return (greeting: 'Gute Nacht!', categoryId: 'gute_nacht');
   }
 
+  void _ensureWeather() {
+    final city = appState.weather.city;
+    if (city == null) {
+      _weather = null;
+      _weatherFor = null;
+      return;
+    }
+    final key = '${city.lat},${city.lon}';
+    final stale = _weatherAt == null || DateTime.now().difference(_weatherAt!) > const Duration(minutes: 30);
+    if (_weatherLoading || (_weatherFor == key && !stale)) return;
+    _weatherLoading = true;
+    _weatherAt = DateTime.now();
+    appState.weather.current().then((w) {
+      if (!mounted) return;
+      setState(() {
+        _weather = w;
+        _weatherFor = key;
+        _weatherLoading = false;
+      });
+    });
+  }
+
+  /// Spruch des Tages: Tageszeit, Wetter, Wochentag, Feiertag, Zitat – alles automatisch.
+  List<_Item> _buildItems(DateTime now, String categoryId) {
+    final repo = appState.repo;
+    final out = <_Item>[];
+    void add(Quote? q, [String? label]) {
+      if (q == null || out.any((e) => e.quote.id == q.id)) return;
+      out.add(_Item(q, label));
+    }
+
+    add(repo.quoteOfTheDay(categoryId, now));
+    final w = _weather;
+    final city = appState.weather.city;
+    if (w != null && city != null) {
+      add(repo.weatherQuote(w.type, now), '${w.emoji} ${w.tempText} ${city.name}');
+    }
+    add(repo.weekdayQuote(now), '📅 ${kWeekdays[now.weekday - 1]}');
+    final special = repo.specialFor(now);
+    final specialQuotes = repo.specialQuotes(now);
+    if (special != null && specialQuotes.isNotEmpty) add(specialQuotes.first, '🎉 ${special.name}');
+    add(repo.quoteOfTheDay('zitate', now), '📜 Zitat des Tages');
+    for (final q in repo.quotesOfTheDay(categoryId, count: 12, date: now)) {
+      if (out.length >= 12) break;
+      add(q);
+    }
+    return out;
+  }
+
   Future<void> _share(Quote quote, {required bool whatsapp}) =>
       Sharer.shareVisible(context, key: _keyFor(_page), quote: quote, whatsapp: whatsapp);
 
-  void _open(Widget screen) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+  void _open(Widget screen) => Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
 
   @override
   Widget build(BuildContext context) =>
@@ -60,7 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final repo = appState.repo;
     final now = DateTime.now();
     final ctx = _timeContext(now);
-    final list = repo.quotesOfTheDay(ctx.categoryId, date: now);
+    _ensureWeather();
+    final items = _buildItems(now, ctx.categoryId);
+    final list = [for (final e in items) e.quote];
+
     final listId = '${ctx.categoryId}-${list.first.id}';
     if (_listFor != listId) {
       // Naya din / naya waqt → pehla card.
@@ -73,189 +135,173 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_page >= list.length) _page = 0;
     final quote = list[_page];
     final font = appState.cardFont;
-    CardStyle styleAt(int i) {
-      final q = list[i];
-      if (q.isAi) return styleById(repo.defaultStyleId(q, i));
-      final styles = repo.category(ctx.categoryId).styles;
-      return styleById(styles[i % styles.length]);
-    }
-    final today = kWeekdays[now.weekday - 1];
-    final special = repo.specialFor(now);
-    final specialQuotes = repo.specialQuotes(now);
 
-    final bottomPad = MediaQuery.paddingOf(context).bottom + 24;
-    final headerDark = isDarkPalette;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: headerDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      value: isDarkPalette ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Scaffold(
         body: RefreshIndicator(
           color: kCoral,
           edgeOffset: MediaQuery.paddingOf(context).top,
-          onRefresh: () => appState.refreshContent(force: true),
+          onRefresh: () async {
+            _weatherAt = null;
+            await appState.refreshContent(force: true);
+          },
           child: ListView(
-            padding: EdgeInsets.only(bottom: bottomPad),
+            padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom + 24),
             physics: const AlwaysScrollableScrollPhysics(),
             children: [
-              _DynamicHeader(now: now, greeting: ctx.greeting),
+              _Header(now: now, greeting: ctx.greeting),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: Ui.gap),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-            if (special != null && specialQuotes.isNotEmpty) ...[
-              const SizedBox(height: 16),
-              FadeSlideIn(
-                delay: 90,
-                child: _SpecialBanner(
-                  name: special.name,
-                  count: specialQuotes.length,
-                  onTap: () => _open(QuoteDetailScreen(quotes: specialQuotes, title: special.name)),
-                ),
-              ),
-            ],
-            const SizedBox(height: 22),
-            FadeSlideIn(
-              delay: 120,
-              child: Row(
-                children: [
-                  const Expanded(child: _SectionTitle('Spruch des Tages')),
-                  Material(
-                    color: kCard,
-                    shape: const CircleBorder(),
-                    child: IconButton(
-                      tooltip: 'Spruch suchen',
-                      iconSize: 26,
-                      onPressed: () => _open(const SearchScreen()),
-                      icon: Icon(Icons.search_rounded, color: kInk),
+                    const SizedBox(height: 4),
+                    FadeSlideIn(
+                      delay: 80,
+                      child: Row(
+                        children: [
+                          const Expanded(child: _SectionTitle('Spruch des Tages')),
+                          Material(
+                            color: kCard,
+                            shape: const CircleBorder(),
+                            child: IconButton(
+                              tooltip: 'Spruch suchen',
+                              iconSize: 26,
+                              onPressed: () => _open(const SearchScreen()),
+                              icon: Icon(Icons.search_rounded, color: kInk),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            FadeSlideIn(
-              delay: 160,
-              child: LayoutBuilder(
-                builder: (context, c) {
-                  final side = (c.maxWidth + 32) * 0.92 - 12;
-                  return SizedBox(
-                    height: side + 30,
-                    child: OverflowBox(
-                      maxWidth: c.maxWidth + 32,
-                      child: PageView.builder(
-                        controller: _pc,
-                        itemCount: list.length,
-                        onPageChanged: (i) {
-                          HapticFeedback.selectionClick();
-                          setState(() => _page = i);
-                        },
-                        itemBuilder: (context, i) {
-                          final q = list[i];
-                          final st = styleAt(i);
-                          return Padding(
-                            padding: const EdgeInsets.fromLTRB(6, 4, 6, 26),
-                            child: GestureDetector(
-                              onTap: () => _open(QuoteDetailScreen(quotes: list, initialIndex: i, title: 'Spruch des Tages')),
-                              onLongPress: () => showQuoteActions(context, q, style: st, list: list, index: i),
-                              child: Stack(
-                                children: [
-                                  Hero(
-                                    tag: 'card-${q.id}',
-                                    child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                      boxShadow: Ui.shadow(),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(24),
-                                      child: RepaintBoundary(
-                                        key: _keyFor(i),
-                                        child: QuoteCard(
-                                          key: ValueKey('${q.id}-${st.id}-${font.id}'),
-                                          quote: q,
-                                          style: st,
-                                          heading: repo.headingFor(q),
-                                          font: font,
-                                        ),
+                    const SizedBox(height: 10),
+                    FadeSlideIn(
+                      delay: 140,
+                      child: LayoutBuilder(
+                        builder: (context, c) {
+                          final side = (c.maxWidth + 32) * 0.92 - 12;
+                          return SizedBox(
+                            height: side + 30,
+                            child: OverflowBox(
+                              maxWidth: c.maxWidth + 32,
+                              child: PageView.builder(
+                                controller: _pc,
+                                itemCount: items.length,
+                                onPageChanged: (i) {
+                                  HapticFeedback.selectionClick();
+                                  setState(() => _page = i);
+                                },
+                                itemBuilder: (context, i) {
+                                  final q = items[i].quote;
+                                  final label = items[i].label;
+                                  final st = styleById(repo.defaultStyleId(q, i));
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(6, 4, 6, 26),
+                                    child: GestureDetector(
+                                      onTap: () => _open(QuoteDetailScreen(
+                                          quotes: list, initialIndex: i, title: 'Spruch des Tages')),
+                                      onLongPress: () =>
+                                          showQuoteActions(context, q, style: st, list: list, index: i),
+                                      child: Stack(
+                                        children: [
+                                          Hero(
+                                            tag: 'card-${q.id}',
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(Ui.rCard),
+                                                boxShadow: Ui.shadow(),
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(Ui.rCard),
+                                                child: RepaintBoundary(
+                                                  key: _keyFor(i),
+                                                  child: QuoteCard(
+                                                    key: ValueKey('${q.id}-${st.id}-${font.id}'),
+                                                    quote: q,
+                                                    style: st,
+                                                    heading: repo.headingFor(q),
+                                                    font: font,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 12,
+                                            left: 12,
+                                            right: 12,
+                                            child: Row(
+                                              children: [
+                                                if (label != null) _CardLabel(label),
+                                                if (label != null && repo.isNewToday(q)) const SizedBox(width: 6),
+                                                if (repo.isNewToday(q)) const _NewBadge(),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                  ),
-                                  if (repo.isNewToday(q))
-                                    const Positioned(top: 12, left: 12, child: _NewBadge()),
-                                ],
+                                  );
+                                },
                               ),
                             ),
                           );
                         },
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-            _Dots(count: list.length, index: _page),
-            const SizedBox(height: 14),
-            FadeSlideIn(
-              delay: 200,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: FilledButton.icon(
-                      style: FilledButton.styleFrom(backgroundColor: kWhatsApp, foregroundColor: Colors.white),
-                      onPressed: _sharing ? null : () => _share(quote, whatsapp: true),
-                      icon: const Icon(Icons.chat_rounded),
-                      label: const Text('Per WhatsApp senden'),
+                    _Dots(count: items.length, index: _page),
+                    const SizedBox(height: 14),
+                    FadeSlideIn(
+                      delay: 200,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton.icon(
+                              style: FilledButton.styleFrom(backgroundColor: kWhatsApp, foregroundColor: Colors.white),
+                              onPressed: () => _share(quote, whatsapp: true),
+                              icon: const Icon(Icons.chat_rounded),
+                              label: const Text('Per WhatsApp senden'),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 56,
+                            height: 56,
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
+                              onPressed: () => _share(quote, whatsapp: false),
+                              child: const Icon(Icons.ios_share_rounded),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
-                      onPressed: _sharing ? null : () => _share(quote, whatsapp: false),
-                      child: const Icon(Icons.ios_share_rounded),
+                    const SizedBox(height: 28),
+                    const FadeSlideIn(delay: 240, child: _SectionTitle('Kategorien')),
+                    const SizedBox(height: 12),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      childAspectRatio: 1.08,
+                      children: [
+                        for (final (i, c) in repo.categories.indexed)
+                          FadeSlideIn(
+                            delay: 260 + i * 45,
+                            child: _CategoryTile(
+                              id: c.id,
+                              emoji: c.emoji,
+                              title: c.title,
+                              count: repo.byCategory(c.id).length,
+                              newCount: repo.newTodayCount(c.id),
+                              onTap: () => _open(CategoryScreen(categoryId: c.id)),
+                            ),
+                          ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 26),
-            FadeSlideIn(delay: 220, child: _WeatherSection(key: ValueKey(appState.weather.city?.name))),
-            const SizedBox(height: 16),
-            FadeSlideIn(
-              delay: 240,
-              child: _TodayBanner(
-                weekday: today,
-                onTap: () => _open(CategoryScreen(categoryId: 'wochentage', initialTag: weekdayTag(now))),
-              ),
-            ),
-            const SizedBox(height: 26),
-            const FadeSlideIn(delay: 280, child: _SectionTitle('Kategorien')),
-            const SizedBox(height: 10),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: 1.0,
-              children: [
-                for (final (i, c) in repo.categories.indexed)
-                  FadeSlideIn(
-                    delay: 300 + i * 50,
-                    child: _CategoryTile(
-                      emoji: c.emoji,
-                      title: c.title,
-                      count: repo.byCategory(c.id).length,
-                      newCount: repo.newTodayCount(c.id),
-                      style: styleById(c.styles.first),
-                      onTap: () => _open(CategoryScreen(categoryId: c.id)),
-                    ),
-                  ),
-              ],
-            ),
                   ],
                 ),
               ),
@@ -278,138 +324,28 @@ class _SectionTitle extends StatelessWidget {
       );
 }
 
-class _TodayBanner extends StatelessWidget {
-  const _TodayBanner({required this.weekday, required this.onTap});
-  final String weekday;
-  final VoidCallback onTap;
+/// Kleines Label auf der Karte (nicht im geteilten Bild).
+class _CardLabel extends StatelessWidget {
+  const _CardLabel(this.text);
+  final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return PressScale(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: kCard,
-          borderRadius: BorderRadius.circular(Ui.rTile),
+  Widget build(BuildContext context) => Flexible(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.45),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w800),
+          ),
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(gradient: kBrandGradient, borderRadius: BorderRadius.circular(14)),
-              alignment: Alignment.center,
-              child: Text(
-                weekday.substring(0, 2),
-                style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Heute ist $weekday',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk),
-                  ),
-                  Text(
-                    'Passende Sprüche für heute',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.6)),
-                  ),
-                ],
-              ),
-            ),
-            Icon(Icons.chevron_right_rounded, color: kInk),
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }
-
-class _CategoryTile extends StatelessWidget {
-  const _CategoryTile({
-    required this.emoji,
-    required this.title,
-    required this.count,
-    required this.style,
-    required this.onTap,
-    this.newCount = 0,
-  });
-
-  final String emoji;
-  final String title;
-  final int count;
-  final int newCount;
-  final CardStyle style;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final isPhoto = style.hasPhoto;
-    final textColor = isPhoto ? Colors.white : style.textColor;
-    return PressScale(
-      onTap: onTap,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(22),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (isPhoto)
-              Image(image: style.thumbProvider(500)!, fit: BoxFit.cover)
-            else
-              DecoratedBox(decoration: BoxDecoration(gradient: style.gradient)),
-            if (isPhoto)
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black.withValues(alpha: 0.05), Colors.black.withValues(alpha: 0.62)],
-                  ),
-                ),
-              ),
-            Padding(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(emoji, style: const TextStyle(fontSize: 30)),
-                      const Spacer(),
-                      if (newCount > 0)
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                          decoration: BoxDecoration(color: kCoral, borderRadius: BorderRadius.circular(10)),
-                          child: Text('+$newCount neu',
-                              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800)),
-                        ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontFamily: kFontQuote, fontSize: 19, fontWeight: FontWeight.w700, color: textColor),
-                  ),
-                  Text(
-                    '$count Sprüche',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: textColor.withValues(alpha: 0.85)),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 
 class _NewBadge extends StatelessWidget {
   const _NewBadge();
@@ -426,212 +362,108 @@ class _NewBadge extends StatelessWidget {
       );
 }
 
-class _SpecialBanner extends StatelessWidget {
-  const _SpecialBanner({required this.name, required this.count, required this.onTap});
-  final String name;
+/// Kategorie-Kachel: Pastell-Verlauf + 3D-Illustration.
+class _CategoryTile extends StatelessWidget {
+  const _CategoryTile({
+    required this.id,
+    required this.emoji,
+    required this.title,
+    required this.count,
+    required this.onTap,
+    this.newCount = 0,
+  });
+
+  final String id;
+  final String emoji;
+  final String title;
   final int count;
+  final int newCount;
   final VoidCallback onTap;
+
+  static const Map<String, List<Color>> _pastel = {
+    'guten_morgen': [Color(0xFFFFEBCF), Color(0xFFFFC8A6)],
+    'gute_nacht': [Color(0xFFE0DEFF), Color(0xFFAFB9F2)],
+    'motivation': [Color(0xFFD9F6E8), Color(0xFFA6E2C4)],
+    'zitate': [Color(0xFFF6EAD8), Color(0xFFE4CBA6)],
+    'wochentage': [Color(0xFFDFEDFF), Color(0xFFB8D3FA)],
+    'wochenende': [Color(0xFFD6F5F2), Color(0xFF9FDFD8)],
+    'freundschaft': [Color(0xFFFFE4EE), Color(0xFFFFBDD2)],
+    'geburtstag': [Color(0xFFF5E4FF), Color(0xFFDBB6F4)],
+    'feiertage': [Color(0xFFE0F4E2), Color(0xFFB3DDB8)],
+  };
 
   @override
   Widget build(BuildContext context) {
+    final dark = isDarkPalette;
+    var colors = _pastel[id] ?? const [Color(0xFFFFE8DC), Color(0xFFFFC2B0)];
+    if (dark) colors = colors.map((c) => Color.lerp(c, const Color(0xFF1A161C), 0.62)!).toList();
+    final fg = dark ? Colors.white : const Color(0xFF3B2A35);
+
     return PressScale(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(gradient: kBrandGradient, borderRadius: BorderRadius.circular(20)),
-        child: Row(
-          children: [
-            const Text('🎉', style: TextStyle(fontSize: 34)),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Heute ist $name',
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
-                  Text('$count neue Sprüche zum Anlass',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.9))),
-                ],
-              ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(Ui.rTile + 2), boxShadow: Ui.shadow(0.5)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(Ui.rTile + 2),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: colors),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Colors.white),
-          ],
+            child: Stack(
+              children: [
+                Positioned(
+                  right: -8,
+                  bottom: -8,
+                  child: Image.asset(
+                    'assets/illustrations/$id.png',
+                    width: 100,
+                    height: 100,
+                    errorBuilder: (_, __, ___) => Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Text(emoji, style: const TextStyle(fontSize: 54)),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontFamily: kFontQuote,
+                          fontSize: 18,
+                          height: 1.15,
+                          fontWeight: FontWeight.w700,
+                          color: fg,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '$count Sprüche',
+                        style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: fg.withValues(alpha: 0.65)),
+                      ),
+                      const Spacer(),
+                      if (newCount > 0)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(color: kCoral, borderRadius: BorderRadius.circular(10)),
+                          child: Text('+$newCount neu',
+                              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800)),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
-
-/// Mausam: "Heute in Köln · 🌧️ 12°" + passender Spruch.
-class _WeatherSection extends StatefulWidget {
-  const _WeatherSection({super.key});
-
-  @override
-  State<_WeatherSection> createState() => _WeatherSectionState();
-}
-
-class _WeatherSectionState extends State<_WeatherSection> {
-  final GlobalKey _cardKey = GlobalKey();
-  Future<WeatherNow?>? _future;
-  String? _forCity;
-  DateTime? _at;
-  final bool _sharing = false;
-
-  void _ensureFuture(City city) {
-    final key = '${city.lat},${city.lon}';
-    final stale = _at == null || DateTime.now().difference(_at!) > const Duration(minutes: 30);
-    if (_future == null || _forCity != key || stale) {
-      _forCity = key;
-      _at = DateTime.now();
-      _future = appState.weather.current();
-    }
-  }
-
-  Future<void> _share(Quote q, {required bool whatsapp}) =>
-      Sharer.shareVisible(context, key: _cardKey, quote: q, whatsapp: whatsapp);
-
-  void _pickCity() => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CityScreen()));
-
-  @override
-  Widget build(BuildContext context) {
-    final city = appState.weather.city;
-    if (city == null) {
-      return PressScale(
-        onTap: _pickCity,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: kCard,
-            borderRadius: BorderRadius.circular(Ui.rTile),
-            border: Border.all(color: kCoral.withValues(alpha: 0.35), width: 1.5),
-          ),
-          child: Row(
-            children: [
-              const Text('🌦️', style: TextStyle(fontSize: 34)),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Wetter-Sprüche', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: kInk)),
-                    Text('Wähle deine Stadt für Sprüche passend zum Wetter',
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.6))),
-                  ],
-                ),
-              ),
-              Icon(Icons.chevron_right_rounded, color: kInk),
-            ],
-          ),
-        ),
-      );
-    }
-    _ensureFuture(city);
-    return FutureBuilder<WeatherNow?>(
-      future: _future,
-      builder: (context, snap) {
-        final w = snap.data;
-        final header = Row(
-          children: [
-            Expanded(
-              child: Text(
-                w == null
-                    ? (snap.connectionState == ConnectionState.waiting ? 'Wetter in ${city.name} …' : 'Wetter in ${city.name}')
-                    : 'Heute in ${city.name}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontFamily: kFontQuote, fontSize: 22, fontWeight: FontWeight.w700, color: kInk),
-              ),
-            ),
-            if (w != null)
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(color: kCard, borderRadius: BorderRadius.circular(14)),
-                child: Text('${w.emoji} ${w.tempText} · ${w.label}',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: kInk)),
-              )
-            else
-              IconButton(
-                tooltip: 'Stadt ändern',
-                onPressed: _pickCity,
-                icon: const Icon(Icons.edit_location_alt_outlined),
-              ),
-          ],
-        );
-        if (w == null) {
-          if (snap.connectionState == ConnectionState.waiting) {
-            return Column(children: [header, const SizedBox(height: 12), const LinearProgressIndicator()]);
-          }
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header,
-              const SizedBox(height: 6),
-              Text('Wetter gerade nicht verfügbar (keine Internetverbindung?).',
-                  style: TextStyle(fontSize: 15, color: kInk.withValues(alpha: 0.6))),
-              TextButton(
-                onPressed: () => setState(() => _future = appState.weather.current(force: true)),
-                child: const Text('Erneut versuchen'),
-              ),
-            ],
-          );
-        }
-        final repo = appState.repo;
-        final q = repo.weatherQuote(w.type);
-        if (q == null) return header;
-        final style = styleById(repo.defaultStyleId(q, 0));
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            header,
-            const SizedBox(height: 10),
-            GestureDetector(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => QuoteDetailScreen(quotes: [q], title: 'Wetter-Spruch'),
-              )),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [BoxShadow(color: kInk.withValues(alpha: 0.15), blurRadius: 20, offset: const Offset(0, 8))],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
-                  child: RepaintBoundary(
-                    key: _cardKey,
-                    child: QuoteCard(quote: q, style: style, heading: repo.headingFor(q), font: appState.cardFont),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: FilledButton.icon(
-                    style: FilledButton.styleFrom(backgroundColor: kWhatsApp, foregroundColor: Colors.white),
-                    onPressed: _sharing ? null : () => _share(q, whatsapp: true),
-                    icon: const Icon(Icons.chat_rounded),
-                    label: const Text('Per WhatsApp senden'),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                SizedBox(
-                  width: 56,
-                  height: 56,
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
-                    onPressed: _sharing ? null : () => _share(q, whatsapp: false),
-                    child: const Icon(Icons.ios_share_rounded),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
 
 /// ● ○ ○  +  "Wischen für mehr"
 class _Dots extends StatelessWidget {
@@ -669,10 +501,9 @@ class _Dots extends StatelessWidget {
   }
 }
 
-
-/// Kopfbereich: Datum, Begrüßung und Logo (einfach, wie vorher).
-class _DynamicHeader extends StatelessWidget {
-  const _DynamicHeader({required this.now, required this.greeting});
+/// Kopfbereich: Datum, Begrüßung und Logo.
+class _Header extends StatelessWidget {
+  const _Header({required this.now, required this.greeting});
   final DateTime now;
   final String greeting;
 
