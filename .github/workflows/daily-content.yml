@@ -1,0 +1,68 @@
+name: Daily content (AI)
+
+on:
+  schedule:
+    - cron: '7 1 * * *'   # roz ~02:07 / 03:07 Uhr deutsche Zeit
+  workflow_dispatch:
+    inputs:
+      ahead:
+        description: 'Kitne din aage tak quotes (1 = kal)'
+        default: '1'
+      seed_photos:
+        description: 'Saari photo themes ek saath (pehli baar)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency: daily-content
+
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    env:
+      HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Content branch (archive) laao
+        run: |
+          REPO="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git ls-remote --exit-code --heads "$REPO" content >/dev/null; then
+            git clone -q --depth 1 --branch content "$REPO" content
+          else
+            mkdir content && cd content && git init -q -b content && git remote add origin "$REPO"
+          fi
+
+      - run: pip install pillow
+
+      - name: AI se quotes, mausam quotes aur photos
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+        run: |
+          python3 content_pipeline/generate.py --root content \
+            --ahead "${{ github.event.inputs.ahead || '1' }}" \
+            ${{ github.event.inputs.seed_photos == 'true' && '--seed-photos' || '' }}
+
+      - name: Archive save karo (content branch)
+        run: |
+          cd content
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -qm "Content $(date -u +%F)" || echo "no changes"
+          git push -q origin content
+
+      - name: app.zitatecke.de pe upload (FTP)
+        if: env.HAS_FTP == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./content/site/
+          server-dir: ${{ secrets.FTP_DIR || './' }}

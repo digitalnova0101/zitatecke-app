@@ -3,7 +3,7 @@ name: Build APK
 on:
   push:
     branches: [main]
-    paths-ignore: ['tool/fetch_photos.py', '.github/workflows/fetch-photos.yml']
+    paths-ignore: ['tool/fetch_photos.py', '.github/workflows/fetch-photos.yml', 'content_pipeline/**', '.github/workflows/daily-content.yml']
   workflow_dispatch:
 
 permissions:
