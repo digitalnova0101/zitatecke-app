@@ -43,9 +43,31 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
         run: |
-          python3 content_pipeline/generate.py --root content \
+          set -o pipefail
+          mkdir -p content/logs
+          python3 -u content_pipeline/generate.py --root content \
             --ahead "${{ github.event.inputs.ahead || '1' }}" \
-            ${{ github.event.inputs.seed_photos == 'true' && '--seed-photos' || '' }}
+            ${{ github.event.inputs.seed_photos == 'true' && '--seed-photos' || '' }} 2>&1 | tee content/logs/last_run.txt
+
+      - name: FTP host check
+        if: env.HAS_FTP == 'true'
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          H="$(printf '%s' "$FTP_SERVER" | tr -d '[:space:]' | sed -E 's#^[a-zA-Z]+://##; s#[:/].*$##')"
+          {
+            echo "secret_len=${#FTP_SERVER} cleaned_len=${#H} cleaned_resolves=$(getent hosts "$H" >/dev/null && echo yes || echo no)"
+            for c in ftp.cameraclickz.com cameraclickz.com ftp.moezzadigital.com moezzadigital.com zitatecke.moezzadigital.com; do
+              echo "$c: $(getent hosts $c | awk '{print $1}' | head -1)"
+            done
+          } | tee content/logs/ftp_check.txt
+          if ! getent hosts "$H" >/dev/null; then
+            for c in ftp.cameraclickz.com cameraclickz.com ftp.moezzadigital.com zitatecke.moezzadigital.com; do
+              if getent hosts "$c" >/dev/null; then H="$c"; break; fi
+            done
+          fi
+          echo "using=$H" | tee -a content/logs/ftp_check.txt
+          echo "FTP_HOST=$H" >> "$GITHUB_ENV"
 
       - name: Archive save karo (content branch)
         run: |
@@ -60,9 +82,13 @@ jobs:
         if: env.HAS_FTP == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ env.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
           local-dir: ./content/site/
           server-dir: ${{ secrets.FTP_DIR || './' }}
+          security: loose
+          exclude: |
+            **/.git*
+            **/.git*/**
