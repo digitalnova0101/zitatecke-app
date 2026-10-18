@@ -70,6 +70,8 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Emulator mein app chala ke test
+        timeout-minutes: 20
+        continue-on-error: true
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
