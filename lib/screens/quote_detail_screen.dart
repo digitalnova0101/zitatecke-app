@@ -148,7 +148,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Text(
-                  '${_index + 1} / ${widget.quotes.length}  ·  Wischen für mehr  ›',
+                  'Wischen für mehr  ›',
                   style: TextStyle(color: kInk.withValues(alpha: 0.5), fontWeight: FontWeight.w700),
                 ),
               ),

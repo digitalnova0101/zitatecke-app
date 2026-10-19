@@ -68,8 +68,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
             padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
             child: Row(
               children: [
-                Text('${quotes.length} Sprüche',
-                    style: TextStyle(fontWeight: FontWeight.w800, color: kInk.withValues(alpha: 0.55))),
                 const Spacer(),
                 Text('Gedrückt halten für mehr',
                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: kInk.withValues(alpha: 0.45))),

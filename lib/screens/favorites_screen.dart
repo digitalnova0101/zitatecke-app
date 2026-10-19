@@ -57,7 +57,7 @@ class FavoritesScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
                 child: Row(
                   children: [
-                    Text('${quotes.length} gespeichert',
+                    Text('Deine Lieblingssprüche',
                         style: TextStyle(fontWeight: FontWeight.w800, color: kInk.withValues(alpha: 0.55))),
                   ],
                 ),

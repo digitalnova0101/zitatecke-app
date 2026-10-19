@@ -100,10 +100,6 @@ class _ReelsScreenState extends State<ReelsScreen> {
                       ),
                     ),
                   ),
-                  Text(
-                    '${_index + 1}/${widget.quotes.length}',
-                    style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w800, fontSize: 14),
-                  ),
                   const SizedBox(width: 8),
                 ],
               ),

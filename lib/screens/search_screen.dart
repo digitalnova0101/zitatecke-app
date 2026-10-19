@@ -118,7 +118,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemBuilder: (context, i) {
                     if (i == 0) {
                       return Text(
-                        '${_results.length} Sprüche gefunden',
+                        'Gefundene Sprüche',
                         style: TextStyle(fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.6)),
                       );
                     }

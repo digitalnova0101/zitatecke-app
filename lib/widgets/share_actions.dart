@@ -54,7 +54,9 @@ class Sharer {
         child: IgnorePointer(
           child: RepaintBoundary(
             key: key,
-            child: SizedBox(
+            child: Material(
+              type: MaterialType.transparency,
+              child: SizedBox(
               width: 360,
               height: 360,
               child: QuoteCard(
@@ -63,6 +65,7 @@ class Sharer {
                 heading: repo.headingFor(quote),
                 font: appState.cardFont,
               ),
+            ),
             ),
           ),
         ),

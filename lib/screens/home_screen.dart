@@ -440,18 +440,13 @@ class _CategoryTile extends StatelessWidget {
                           color: fg,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '$count Sprüche',
-                        style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: fg.withValues(alpha: 0.65)),
-                      ),
                       const Spacer(),
                       if (newCount > 0)
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(color: kCoral, borderRadius: BorderRadius.circular(10)),
-                          child: Text('+$newCount neu',
-                              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800)),
+                          child: const Text('Neu heute ✨',
+                              style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800)),
                         ),
                     ],
                   ),
@@ -473,30 +468,10 @@ class _Dots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (var i = 0; i < count; i++)
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 220),
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                width: i == index ? 20 : 7,
-                height: 7,
-                decoration: BoxDecoration(
-                  color: i == index ? kCoral : kInk.withValues(alpha: 0.18),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Text(
-          index == 0 ? 'Wischen für mehr Sprüche  ›' : '${index + 1} von $count',
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.5)),
-        ),
-      ],
+    // Keine Anzahl anzeigen – nur ein Hinweis.
+    return Text(
+      'Wischen für mehr Sprüche  ›',
+      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: kInk.withValues(alpha: 0.5)),
     );
   }
 }
