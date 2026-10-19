@@ -15,14 +15,17 @@ adb shell am broadcast -a com.android.systemui.demo -e command network -e wifi s
 adb shell am broadcast -a com.android.systemui.demo -e command network -e mobile show -e datatype none -e level 4
 adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
 adb install -r app.apk > /tmp/shots/install.txt 2>&1
+adb logcat -c
 adb shell pm grant de.zitatecke.app android.permission.POST_NOTIFICATIONS 2>/dev/null
 adb shell monkey -p de.zitatecke.app -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
 sleep 20
 shot 00_welcome 1
-$UI tap "Weiter"; sleep 2
-$UI tap "Weiter"; sleep 2
-$UI tap "Ja, gerne"; sleep 3
-$UI tap "Allow" || $UI tap "Zulassen"; sleep 3
+focus() { echo "[$1] $(adb shell dumpsys window | grep -m1 mCurrentFocus)" | tee -a /tmp/shots/focus.txt; }
+$UI tap "Weiter"; shot dbg_a 2; focus a
+$UI tap "Weiter"; shot dbg_b 2; focus b
+$UI dump > /tmp/shots/onb_nodes.txt
+$UI tap "Ja, gerne"; shot dbg_c 3; focus c
+$UI tap "Allow" || $UI tap "Zulassen"; shot dbg_d 3; focus d
 # Stadt setzen
 $UI tap "Einstellungen"; sleep 2
 $UI tap "Meine Stadt"; sleep 2
@@ -54,4 +57,6 @@ shot 08_settings 1
 $UI tap "Dunkel"; sleep 3
 $UI tap "Start"; shot 09_dark_home 6
 adb shell input swipe 540 1900 540 700 700; shot 10_dark_categories 3
+timeout 60 adb logcat -d > /tmp/shots/logcat.txt
+grep -E " E flutter|FATAL|AndroidRuntime|zitatecke" /tmp/shots/logcat.txt > /tmp/shots/logcat_app.txt || true
 exit 0
