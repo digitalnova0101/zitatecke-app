@@ -26,37 +26,31 @@ $UI tap "Weiter"; shot dbg_b 2; focus b
 $UI dump > /tmp/shots/onb_nodes.txt
 $UI tap "Ja, gerne"; shot dbg_c 3; focus c
 $UI tap "Allow" || $UI tap "Zulassen"; shot dbg_d 3; focus d
-# Stadt setzen
-$UI tap "Einstellungen"; sleep 2
-$UI tap "Meine Stadt"; sleep 2
-$UI tap "Hamburg"; sleep 5
-$UI tap "Deutschland"; sleep 6
-adb shell input keyevent KEYCODE_BACK; sleep 1
-$UI tap "Start"; sleep 10
-shot 01_home
-$UI dump > /tmp/shots/home_nodes.txt
-adb shell input swipe 950 1000 150 1000 300; shot 02_home_swipe
-adb shell input swipe 950 1000 150 1000 300; shot 02b_home_swipe
-adb shell input swipe 150 1000 950 1000 300; adb shell input swipe 150 1000 950 1000 300; sleep 1
-adb shell input swipe 540 1900 540 700 700; shot 03_categories
+front() { adb shell dumpsys window | grep -m1 mCurrentFocus | grep -q zitatecke || { adb shell monkey -p de.zitatecke.app -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1; sleep 6; }; }
+sleep 8
+shot 01_home 2
+adb shell input swipe 950 1000 150 1000 300; shot 02_home_swipe 3
+adb shell input swipe 150 1000 950 1000 300; sleep 2
+adb shell input swipe 540 1900 540 900 800; shot 03_categories 3
 $UI dump > /tmp/shots/cat_nodes.txt
 $UI tap "Gute Nacht"; shot 04_category 4
 adb shell input tap 280 900; shot 05_reels 4
-adb shell input swipe 540 1700 540 500 300; shot 05b_reels 3
-adb shell input keyevent KEYCODE_BACK; sleep 1
 adb shell input keyevent KEYCODE_BACK; sleep 2
-adb shell input swipe 540 700 540 2000 400; adb shell input swipe 540 700 540 2000 400; sleep 2
-adb shell input tap 540 1000; sleep 3
-$UI tap "Gestalten"; shot 06_gestalten_bild 3
+adb shell input keyevent KEYCODE_BACK; sleep 2
+front
+adb shell input swipe 540 900 540 2000 400; sleep 1; adb shell input swipe 540 900 540 2000 400; sleep 2
+adb shell input tap 540 1000; sleep 4
+$UI dump > /tmp/shots/detail_nodes.txt
+shot 06_detail 1
+$UI tap "Gestalten"; shot 07_gestalten_bild 3
 $UI tap "Schrift"; sleep 2
-$UI tap "Handschrift"; shot 07_schrift 3
-$UI tap "Fertig"; shot 07b_detail 2
+$UI tap "Handschrift"; shot 08_schrift 3
 adb shell input keyevent KEYCODE_BACK; sleep 2
-$UI tap "Einstellungen"; sleep 2
-shot 08_settings 1
-$UI tap "Dunkel"; sleep 3
-$UI tap "Start"; shot 09_dark_home 6
-adb shell input swipe 540 1900 540 700 700; shot 10_dark_categories 3
+front
+$UI tap "Einstellungen"; shot 09_settings 3
+$UI tap "Dunkel"; sleep 4
+$UI tap "Start"; shot 10_dark_home 6
+adb shell input swipe 540 1900 540 900 800; shot 11_dark_categories 3
 timeout 60 adb logcat -d > /tmp/shots/logcat.txt
 grep -E " E flutter|FATAL|AndroidRuntime|zitatecke" /tmp/shots/logcat.txt > /tmp/shots/logcat_app.txt || true
 exit 0
