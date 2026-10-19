@@ -19,7 +19,7 @@ const String kWatermark = 'zitatecke.de';
 const String kPlayStoreLink = 'https://play.google.com/store/apps/details?id=de.zitatecke.app';
 
 /// App-Version (pubspec.yaml ke saath badalna).
-const String kAppVersion = '1.6.0';
+const String kAppVersion = '1.6.1';
 
 /// Feedback / Support E-Mail.
 const String kSupportEmail = 'kontakt@zitatecke.de';

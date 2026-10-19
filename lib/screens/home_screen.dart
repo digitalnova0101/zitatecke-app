@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../app_state.dart';
+import '../data/quote_repository.dart';
 import '../models/quote.dart';
 import '../services/weather_service.dart';
 import '../theme/app_theme.dart';
@@ -32,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final PageController _pc = PageController(viewportFraction: 0.92);
   final Map<int, GlobalKey> _cardKeys = {};
   int _page = 0;
+
+  /// Pull-to-refresh → neue Auswahl (0 = normale Tagesauswahl).
+  int _shuffle = 0;
   String? _listFor;
 
   // Wetter (Stadt wird in den Einstellungen gewählt)
@@ -88,18 +94,30 @@ class _HomeScreenState extends State<HomeScreen> {
       out.add(_Item(q, label));
     }
 
-    add(repo.quoteOfTheDay(categoryId, now));
+    final rnd = _shuffle == 0 ? null : Random(_shuffle * 7919 + now.day);
+    final todayKey = QuoteRepository.dayKey(now);
+    // Aage ke din wale AI quotes abhi nahi dikhane.
+    List<Quote> mixed(List<Quote> l) => rnd == null
+        ? l
+        : (l.where((q) => q.date == null || q.date!.compareTo(todayKey) <= 0).toList()..shuffle(rnd));
+    final pool = mixed(repo.byCategory(categoryId));
+
+    add(rnd == null || pool.isEmpty ? repo.quoteOfTheDay(categoryId, now) : pool.first);
     final w = _weather;
     final city = appState.weather.city;
     if (w != null && city != null) {
       add(repo.weatherQuote(w.type, now), '${w.emoji} ${w.tempText} ${city.name}');
     }
-    add(repo.weekdayQuote(now), '📅 ${kWeekdays[now.weekday - 1]}');
+    final dayTag = weekdayTag(now);
+    final dayPool = mixed(repo.byCategory('wochentage', tag: dayTag));
+    add(rnd == null || dayPool.isEmpty ? repo.weekdayQuote(now) : dayPool.first, '📅 ${kWeekdays[now.weekday - 1]}');
     final special = repo.specialFor(now);
     final specialQuotes = repo.specialQuotes(now);
     if (special != null && specialQuotes.isNotEmpty) add(specialQuotes.first, '🎉 ${special.name}');
-    add(repo.quoteOfTheDay('zitate', now), '📜 Zitat des Tages');
-    for (final q in repo.quotesOfTheDay(categoryId, count: 12, date: now)) {
+    final zitate = mixed(repo.byCategory('zitate'));
+    add(rnd == null || zitate.isEmpty ? repo.quoteOfTheDay('zitate', now) : zitate.first, '📜 Zitat des Tages');
+    final rest = rnd == null ? repo.quotesOfTheDay(categoryId, count: 12, date: now) : pool;
+    for (final q in rest) {
       if (out.length >= 12) break;
       add(q);
     }
@@ -145,6 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onRefresh: () async {
             _weatherAt = null;
             await appState.refreshContent(force: true);
+            if (mounted) setState(() => _shuffle++);
           },
           child: ListView(
             padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom + 24),
