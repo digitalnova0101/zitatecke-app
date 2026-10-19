@@ -1,72 +1,13 @@
-skip (already have): 2026-10-18
 skip (already have): 2026-10-19
 skip (already have): 2026-10-20
-skip (already have): 2026-10-21
-photos: coffee cup morning
-   openverse failed: The read operation timed out
-photos: rain window drops
-   skip download: HTTP Error 403: Forbidden
-Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
-Using Gemini model: gemini-3.8-flash
-[gemini gemini-3.8-flash] in=3612 out=160
-photos: umbrella rain street
-   openverse failed: The read operation timed out
-photos: foggy forest morning
-   skip download: HTTP Error 403: Forbidden
-photos: autumn leaves
-photos: candles cozy
-[gemini gemini-3.8-flash] in=10227 out=453
-   + ph_acce89d112 ['kerzen', 'feier'] score=9
-   + ph_35a718f86e ['herbst', 'natur'] score=8
-   + ph_264a2d1c3c ['herbst', 'natur'] score=8
-photos: snow landscape
-   skip download: HTTP Error 403: Forbidden
-   skip download: HTTP Error 403: Forbidden
-photos: sunrise landscape
-[gemini gemini-3.8-flash] in=10245 out=481
-   + ph_2c74bb2139 ['sonnenaufgang', 'himmel', 'berge'] score=9
-   + ph_fa3ddab96d ['sonnenaufgang', 'himmel', 'berge'] score=9
-   + ph_97ab48500f ['meer', 'himmel', 'sonnenaufgang'] score=8
-   + ph_af1fe25458 ['winter', 'schnee', 'wald'] score=7
-photos: red roses
-   skip download: HTTP Error 403: Forbidden
-photos: wildflowers meadow
-   skip download: HTTP Error 403: Forbidden
-[gemini gemini-3.8-flash] in=13560 out=644
-   + ph_698756893f ['rosen', 'blumen', 'natur', 'herz'] score=8
-   + ph_5747681e76 ['rosen', 'blumen', 'natur', 'herz'] score=8
-   + ph_e09029da74 ['blumen', 'natur', 'sonnenaufgang'] score=8
-   + ph_bb30b26173 ['rosen', 'blumen', 'herz'] score=7
-photos: full moon
-photos: starry night sky
-[gemini gemini-3.8-flash] in=8030 out=367
-   + ph_6527287192 ['sterne', 'nacht', 'himmel'] score=9
-   + ph_d3581723ba ['mond', 'nacht', 'berge'] score=8
-   + ph_2d0092af4f ['mond', 'nacht', 'himmel'] score=8
-photos: sea waves beach
-   skip download: HTTP Error 403: Forbidden
-photos: mountain landscape
-   openverse failed: The read operation timed out
-[gemini gemini-3.8-flash] in=3618 out=167
-photos: spring blossom tree
-   openverse failed: The read operation timed out
-photos: summer field sun
-[gemini gemini-3.8-flash] in=5829 out=265
-   + ph_c321107e61 ['blumen', 'sommer', 'natur'] score=9
 photos: forest light
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
 photos: blue sky clouds
-[gemini gemini-3.8-flash] in=10230 out=468
-   + ph_f561eb3f14 ['himmel', 'sommer'] score=9
-   + ph_55f70a92b8 ['herbst', 'wald', 'natur'] score=8
-   + ph_a6a309da0f ['himmel'] score=8
-   + ph_6303b25cab ['himmel', 'wald'] score=8
-photos: christmas candles
-photos: sunset lake
-   openverse failed: The read operation timed out
-[gemini gemini-3.8-flash] in=3621 out=161
-   + ph_5b94cceaeb ['kerzen', 'winter', 'feier'] score=8
-   + ph_8e27becbc0 ['kerzen', 'nacht', 'winter'] score=7
-feed: 4 days, 88 quotes, 64 weather, 21 photos
+Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
+Using Gemini model: gemini-3.8-flash
+[gemini gemini-3.8-flash] in=9127 out=412
+   + ph_757091fd08 ['himmel', 'natur'] score=8
+   + ph_1bd417721a ['natur', 'wald'] score=7
+feed: 4 days, 88 quotes, 64 weather, 23 photos

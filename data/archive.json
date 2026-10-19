@@ -1209,6 +1209,34 @@
  },
  "photos": [
   {
+   "id": "ph_1bd417721a",
+   "file": "photos/ph_1bd417721a.jpg",
+   "tags": [
+    "natur",
+    "wald"
+   ],
+   "dim": 0.15,
+   "source": "https://pd.w.org/2025/12/584692f46906bd491.84652708-1536x2048.jpg",
+   "page": "https://wordpress.org/photos/photo/584692f469/",
+   "credit": "Bigul Malayi",
+   "license": "CC0",
+   "added": "2026-10-19"
+  },
+  {
+   "id": "ph_757091fd08",
+   "file": "photos/ph_757091fd08.jpg",
+   "tags": [
+    "himmel",
+    "natur"
+   ],
+   "dim": 0.2,
+   "source": "https://pd.w.org/2023/10/537653ddea1c8d200.97821090-1117x2048.jpg",
+   "page": "https://wordpress.org/photos/photo/537653ddea/",
+   "credit": "Sradha S",
+   "license": "CC0",
+   "added": "2026-10-19"
+  },
+  {
    "id": "ph_8e27becbc0",
    "file": "photos/ph_8e27becbc0.jpg",
    "tags": [
