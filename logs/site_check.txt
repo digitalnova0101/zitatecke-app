@@ -4,33 +4,33 @@
 == https://zitatecke.moezzadigital.com/feed.json
 HTTP/2 200 
 content-type: application/json
-last-modified: Sun, 18 Oct 2026 17:49:58 GMT
+last-modified: Mon, 19 Oct 2026 06:44:09 GMT
 accept-ranges: bytes
-content-length: 38536
-date: Mon, 19 Oct 2026 05:47:04 GMT
+content-length: 38824
+date: Mon, 19 Oct 2026 06:44:24 GMT
 server: LiteSpeed
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
 
-{"version":1,"generated":"2026-10-18T17:49:54Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
+{"version":1,"generated":"2026-10-19T06:44:06Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
 == http://zitatecke.moezzadigital.com/feed.json
 HTTP/1.1 200 OK
 Connection: Keep-Alive
 Keep-Alive: timeout=5, max=100
 Content-Type: application/json
-Last-Modified: Sun, 18 Oct 2026 17:49:58 GMT
+Last-Modified: Mon, 19 Oct 2026 06:44:09 GMT
 Accept-Ranges: bytes
-Content-Length: 38536
-Date: Mon, 19 Oct 2026 05:47:04 GMT
+Content-Length: 38824
+Date: Mon, 19 Oct 2026 06:44:25 GMT
 Server: LiteSpeed
 
-{"version":1,"generated":"2026-10-18T17:49:54Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
+{"version":1,"generated":"2026-10-19T06:44:06Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
 == https://zitatecke.moezzadigital.com/
 HTTP/2 200 
 content-type: text/html
 last-modified: Sun, 18 Oct 2026 17:49:58 GMT
 accept-ranges: bytes
 content-length: 212
-date: Mon, 19 Oct 2026 05:47:05 GMT
+date: Mon, 19 Oct 2026 06:44:25 GMT
 server: LiteSpeed
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
 
@@ -43,7 +43,7 @@ Content-Type: text/html
 Last-Modified: Sun, 18 Oct 2026 17:49:58 GMT
 Accept-Ranges: bytes
 Content-Length: 212
-Date: Mon, 19 Oct 2026 05:47:05 GMT
+Date: Mon, 19 Oct 2026 06:44:25 GMT
 Server: LiteSpeed
 
 <!doctype html><meta charset="utf-8"><title>Zitatecke App</title><p style="font-family:sans-serif">Inhalte für die App „Zitatecke: Sprüche &amp; Grüße“. <a href="https://zitatecke.de">zitatecke.de</a></p>
@@ -62,6 +62,8 @@ photos
 feed.json
 index.html
 .ftp-deploy-sync-state.json
+datenschutz.html
+impressum.html
 == FTP parent list
 .
 ..
@@ -70,3 +72,5 @@ photos
 feed.json
 index.html
 .ftp-deploy-sync-state.json
+datenschutz.html
+impressum.html
