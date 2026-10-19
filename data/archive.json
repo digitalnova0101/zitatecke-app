@@ -1209,6 +1209,21 @@
  },
  "photos": [
   {
+   "id": "ph_203b6c7f90",
+   "file": "photos/ph_203b6c7f90.jpg",
+   "tags": [
+    "himmel",
+    "natur",
+    "sommer"
+   ],
+   "dim": 0.15,
+   "source": "https://pd.w.org/2023/05/5536464f834951d78.20727168-2048x1536.jpeg",
+   "page": "https://wordpress.org/photos/photo/5536464f83/",
+   "credit": "Jamie",
+   "license": "CC0",
+   "added": "2026-10-19"
+  },
+  {
    "id": "ph_1bd417721a",
    "file": "photos/ph_1bd417721a.jpg",
    "tags": [
