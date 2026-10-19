@@ -2,60 +2,53 @@
 162.249.172.230 zitatecke.moezzadigital.com
 162.249.172.230 moezzadigital.com
 == https://zitatecke.moezzadigital.com/feed.json
-HTTP/2 404 
-cache-control: private, no-cache, no-store, must-revalidate, max-age=0
-pragma: no-cache
-content-type: text/html
-content-length: 1251
-date: Mon, 19 Oct 2026 05:45:32 GMT
+HTTP/2 200 
+content-type: application/json
+last-modified: Sun, 18 Oct 2026 17:49:58 GMT
+accept-ranges: bytes
+content-length: 38536
+date: Mon, 19 Oct 2026 05:47:04 GMT
 server: LiteSpeed
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
 
-<!DOCTYPE html>
-<html style="height:100%">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title> 404 Not Found
-</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>
-<body style="color: #444; margin:0
+{"version":1,"generated":"2026-10-18T17:49:54Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
 == http://zitatecke.moezzadigital.com/feed.json
-HTTP/1.1 404 Not Found
+HTTP/1.1 200 OK
 Connection: Keep-Alive
 Keep-Alive: timeout=5, max=100
-Cache-Control: private, no-cache, no-store, must-revalidate, max-age=0
-Pragma: no-cache
-Content-Type: text/html
-Content-Length: 1251
-Date: Mon, 19 Oct 2026 05:45:33 GMT
+Content-Type: application/json
+Last-Modified: Sun, 18 Oct 2026 17:49:58 GMT
+Accept-Ranges: bytes
+Content-Length: 38536
+Date: Mon, 19 Oct 2026 05:47:04 GMT
 Server: LiteSpeed
 
-<!DOCTYPE html>
-<html style="height:100%">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title> 404 Not Found
-</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>
-<body style="color: #444; margin:0
+{"version":1,"generated":"2026-10-18T17:49:54Z","days":{"2026-10-18":{"date":"2026-10-18","special":null,"quotes":[{"id":"ai20261018_guten_morgen_1","category":"guten_morgen","text":"Die frische Herbstluft weckt die Lebensgeister. Schnapp dir eine warme Decke, eine Tasse Kaffee und starte ganz gemü
 == https://zitatecke.moezzadigital.com/
 HTTP/2 200 
-content-type: text/html; charset=UTF-8
-date: Mon, 19 Oct 2026 05:45:33 GMT
+content-type: text/html
+last-modified: Sun, 18 Oct 2026 17:49:58 GMT
+accept-ranges: bytes
+content-length: 212
+date: Mon, 19 Oct 2026 05:47:05 GMT
 server: LiteSpeed
 alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
 
-<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/_autoindex/assets/css/autoindex.css" /><script src="/_autoindex/assets/js/tablesort.js"></script><scri
+<!doctype html><meta charset="utf-8"><title>Zitatecke App</title><p style="font-family:sans-serif">Inhalte für die App „Zitatecke: Sprüche &amp; Grüße“. <a href="https://zitatecke.de">zitatecke.de</a></p>
 == http://zitatecke.moezzadigital.com/
 HTTP/1.1 200 OK
 Connection: Keep-Alive
 Keep-Alive: timeout=5, max=100
-Content-Type: text/html; charset=UTF-8
-Content-Length: 1597
-Date: Mon, 19 Oct 2026 05:45:33 GMT
+Content-Type: text/html
+Last-Modified: Sun, 18 Oct 2026 17:49:58 GMT
+Accept-Ranges: bytes
+Content-Length: 212
+Date: Mon, 19 Oct 2026 05:47:05 GMT
 Server: LiteSpeed
 
-<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/_autoindex/assets/css/autoindex.css" /><script src="/_autoindex/assets/js/tablesort.js"></script><scri
+<!doctype html><meta charset="utf-8"><title>Zitatecke App</title><p style="font-family:sans-serif">Inhalte für die App „Zitatecke: Sprüche &amp; Grüße“. <a href="https://zitatecke.de">zitatecke.de</a></p>
 == https insecure
-404
+200
 == cert
 subject=CN = zitatecke.moezzadigital.com
 issuer=C = US, O = Let's Encrypt, CN = YR1
