@@ -105,6 +105,14 @@ class _SpruecheAppState extends State<SpruecheApp> with WidgetsBindingObserver {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
+          // Große Schrift (Handy-Einstellung) erlauben, aber Layout nicht sprengen.
+          builder: (context, child) {
+            final mq = MediaQuery.of(context);
+            return MediaQuery(
+              data: mq.copyWith(textScaler: mq.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.3)),
+              child: child!,
+            );
+          },
           home: const _Root(),
         );
       },

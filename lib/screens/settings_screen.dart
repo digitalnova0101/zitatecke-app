@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../app_state.dart';
 import '../config.dart';
+import 'package:share_plus/share_plus.dart';
+
 import '../services/content_service.dart';
+import '../services/native_service.dart';
 import 'city_screen.dart';
 import '../theme/app_theme.dart';
 
@@ -140,38 +143,71 @@ class SettingsScreen extends StatelessWidget {
               ),
             ]),
             const SizedBox(height: 24),
+            const _Header('Feedback & Hilfe'),
+            _Box(children: [
+              ListTile(
+                leading: const Text('⭐', style: TextStyle(fontSize: 24)),
+                title: const Text('App bewerten', style: TextStyle(fontSize: 17)),
+                subtitle: const Text('Gefällt dir Zitatecke? Das hilft uns sehr.'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => NativeService.rateApp(),
+              ),
+              ListTile(
+                leading: const Text('💡', style: TextStyle(fontSize: 24)),
+                title: const Text('Spruch vorschlagen', style: TextStyle(fontSize: 17)),
+                subtitle: const Text('Du kennst einen schönen Spruch? Schick ihn uns.'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => _mail(context,
+                    subject: 'Spruch-Vorschlag für Zitatecke',
+                    body: 'Mein Spruch:\n\n\nVon (Autor, falls bekannt):\n'),
+              ),
+              ListTile(
+                leading: const Text('🐞', style: TextStyle(fontSize: 24)),
+                title: const Text('Fehler melden', style: TextStyle(fontSize: 17)),
+                subtitle: const Text('Etwas funktioniert nicht? Sag uns Bescheid.'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () async {
+                  final device = await NativeService.deviceInfo();
+                  if (!context.mounted) return;
+                  await _mail(context,
+                      subject: 'Fehler in Zitatecke $kAppVersion',
+                      body: 'Was ist passiert?\n\n\n'
+                          '—\nApp: $kAppVersion\nGerät: $device\n');
+                },
+              ),
+              ListTile(
+                leading: const Text('💌', style: TextStyle(fontSize: 24)),
+                title: const Text('App weiterempfehlen', style: TextStyle(fontSize: 17)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => SharePlus.instance.share(ShareParams(
+                  text: 'Schöne Sprüche für jeden Tag – Guten Morgen, Gute Nacht und mehr:\n$kPlayStoreLink',
+                )),
+              ),
+            ]),
+            const SizedBox(height: 24),
             const _Header('Info'),
             _Box(children: [
               ListTile(
                 leading: const Icon(Icons.privacy_tip_outlined),
-                title: const Text('Datenschutz'),
-                onTap: () => showDialog<void>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Datenschutz'),
-                    content: const Text(
-                      'Diese App sammelt keine persönlichen Daten und nutzt kein Tracking.\n\n'
-                      '• Favoriten und Einstellungen werden nur auf deinem Gerät gespeichert.\n'
-                      '• Neue Sprüche und Bilder werden von $kWebsite geladen.\n'
-                      '• Für Wetter-Sprüche wird nur die von dir gewählte Stadt (Koordinaten) an Open-Meteo '
-                      '(open-meteo.com) gesendet. Dein Standort wird nicht abgefragt.',
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                ),
+                title: const Text('Datenschutzerklärung'),
+                subtitle: const Text('Keine Anmeldung, kein Tracking'),
+                trailing: const Icon(Icons.open_in_new_rounded, size: 20),
+                onTap: () => _openOr(context, kPrivacyUrl),
+              ),
+              ListTile(
+                leading: const Icon(Icons.gavel_rounded),
+                title: const Text('Impressum'),
+                trailing: const Icon(Icons.open_in_new_rounded, size: 20),
+                onTap: () => _openOr(context, kImprintUrl),
               ),
               ListTile(
                 leading: const Icon(Icons.info_outline),
                 title: const Text('Über die App'),
+                subtitle: const Text('Version $kAppVersion'),
                 onTap: () => showAboutDialog(
                   context: context,
                   applicationName: kStoreTitle,
-                  applicationVersion: '1.0.0',
+                  applicationVersion: kAppVersion,
                   applicationIcon: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.asset('assets/brand/splash_logo.png', width: 48, height: 48),
@@ -186,6 +222,22 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> _mail(BuildContext context, {required String subject, required String body}) async {
+  final ok = await NativeService.email(subject: subject, body: body);
+  if (!ok && context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Keine E-Mail-App gefunden. Schreib uns an $kSupportEmail')),
+    );
+  }
+}
+
+Future<void> _openOr(BuildContext context, String url) async {
+  final ok = await NativeService.open(url);
+  if (!ok && context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(url)));
   }
 }
 

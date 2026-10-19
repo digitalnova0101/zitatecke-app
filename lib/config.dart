@@ -16,7 +16,17 @@ const String kWatermark = 'zitatecke.de';
 /// Play Store link. App publish hone ke baad yahan daalo,
 /// phir har share ke saath link bhi jayega. Khali rakho to link nahi jayega.
 /// Example: 'https://play.google.com/store/apps/details?id=de.zitatecke.app'
-const String kPlayStoreLink = '';
+const String kPlayStoreLink = 'https://play.google.com/store/apps/details?id=de.zitatecke.app';
+
+/// App-Version (pubspec.yaml ke saath badalna).
+const String kAppVersion = '1.6.0';
+
+/// Feedback / Support E-Mail.
+const String kSupportEmail = 'kontakt@zitatecke.de';
+
+/// Rechtliches (Play Store braucht die Datenschutz-URL).
+const String kPrivacyUrl = 'https://zitatecke.moezzadigital.com/datenschutz.html';
+const String kImprintUrl = 'https://zitatecke.moezzadigital.com/impressum.html';
 
 /// Kitne din aage tak notifications schedule karni hain.
 const int kNotificationDays = 21;

@@ -48,6 +48,7 @@ void main() {
   }
   _setApplicationId(kts.existsSync() ? kts : groovy);
   _disableShrinking(kts.existsSync() ? kts : groovy, isKts: kts.existsSync());
+  _releaseSigning(kts.existsSync() ? kts : groovy, isKts: kts.existsSync());
   stdout.writeln('\nSab ready! Ab chalao:  flutter run');
 }
 
@@ -135,4 +136,49 @@ void _writeMainActivity() {
   final template = File('android_files/MainActivity.kt').readAsStringSync();
   target.writeAsStringSync(template.replaceAll('__PACKAGE__', pkg));
   stdout.writeln('✓ MainActivity.kt (WhatsApp share) – package $pkg');
+}
+
+/// Play Store: release build ko upload key se sign karo.
+/// Env ZT_KEYSTORE (jks path) + ZT_KEYSTORE_PASSWORD (GitHub Secrets se).
+/// Na ho to debug key (sirf testing ke liye).
+void _releaseSigning(File f, {required bool isKts}) {
+  final path = Platform.environment['ZT_KEYSTORE'] ?? '';
+  if (path.isEmpty || !File(path).existsSync()) {
+    stdout.writeln('! Upload key nahi mili – release debug key se sign hoga (Play Store ke liye nahi).');
+    return;
+  }
+  var s = f.readAsStringSync();
+  if (s.contains('signingConfigs {') && s.contains('ZT_KEYSTORE')) return;
+  final bt = s.indexOf('    buildTypes {');
+  if (bt == -1) {
+    stderr.writeln('buildTypes nahi mila – signing manually.');
+    return;
+  }
+  final block = isKts
+      ? '''    signingConfigs {
+        create("release") {
+            storeFile = file(System.getenv("ZT_KEYSTORE"))
+            storePassword = System.getenv("ZT_KEYSTORE_PASSWORD")
+            keyAlias = "upload"
+            keyPassword = System.getenv("ZT_KEYSTORE_PASSWORD")
+        }
+    }
+
+'''
+      : '''    signingConfigs {
+        release {
+            storeFile file(System.getenv("ZT_KEYSTORE"))
+            storePassword System.getenv("ZT_KEYSTORE_PASSWORD")
+            keyAlias "upload"
+            keyPassword System.getenv("ZT_KEYSTORE_PASSWORD")
+        }
+    }
+
+''';
+  s = s.substring(0, bt) + block + s.substring(bt);
+  s = s
+      .replaceAll('signingConfig = signingConfigs.getByName("debug")', 'signingConfig = signingConfigs.getByName("release")')
+      .replaceAll('signingConfig signingConfigs.debug', 'signingConfig signingConfigs.release');
+  f.writeAsStringSync(s);
+  stdout.writeln('✓ release signing (upload key)');
 }

@@ -31,7 +31,21 @@ jobs:
       - name: Packages
         run: flutter pub get && grep -A4 -E 'shared_preferences_android|path_provider_android|^  jni:' pubspec.lock
 
-      - name: Notifications + package ID setup
+      - name: Upload key (Play Store signing)
+        env:
+          KS_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KS_B64" ]; then
+            echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+            echo "ZT_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+            echo "upload key ✓"
+          else
+            echo "::warning::ANDROID_KEYSTORE_BASE64 secret nahi hai – debug signing"
+          fi
+
+      - name: Notifications + package ID + signing setup
+        env:
+          ZT_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: dart run tool/setup_android.dart
 
       - name: Tests (code check)
@@ -42,8 +56,13 @@ jobs:
           dart run flutter_launcher_icons
           dart run flutter_native_splash:create
 
-      - name: APK build
-        run: flutter build apk --release && grep -nE "Minify|Shrink|release" android/app/build.gradle* || true
+      - name: APK + AAB build
+        env:
+          ZT_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          flutter build apk --release
+          flutter build appbundle --release
+          ls -la build/app/outputs/bundle/release/
 
       - name: APK download ke liye upload
         uses: actions/upload-artifact@v4
@@ -55,10 +74,11 @@ jobs:
         run: |
           mkdir -p /tmp/out
           cp build/app/outputs/flutter-apk/app-release.apk /tmp/out/zitatecke.apk
+          cp build/app/outputs/bundle/release/app-release.aab /tmp/out/zitatecke.aab
           cd /tmp/out
           git init -q -b apk
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add zitatecke.apk
+          git add zitatecke.apk zitatecke.aab
           git commit -qm "APK build ${GITHUB_SHA::7}"
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" apk

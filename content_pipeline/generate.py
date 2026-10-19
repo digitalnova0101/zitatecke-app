@@ -255,6 +255,7 @@ def build_feed(root, a, today: date):
         f.write('<!doctype html><meta charset="utf-8"><title>Zitatecke App</title>'
                 '<p style="font-family:sans-serif">Inhalte für die App „Zitatecke: Sprüche &amp; Grüße“. '
                 '<a href="https://zitatecke.de">zitatecke.de</a></p>')
+    write_legal(site)
     # alte Fotos vom Server entfernen (nur die neuesten 200 bleiben)
     keep = {p["file"] for p in a["photos"][:200]}
     pdir = os.path.join(site, "photos")
@@ -264,6 +265,32 @@ def build_feed(root, a, today: date):
                 os.remove(os.path.join(pdir, fn))
     print(f"feed: {len(days)} days, {sum(len(v['quotes']) for v in days.values())} quotes, "
           f"{sum(len(v) for v in feed['weather'].values())} weather, {len(feed['photos'])} photos")
+
+
+def write_legal(site):
+    """Datenschutz + Impressum (Play Store braucht die URL). Nur wenn legal.json ausgefüllt ist."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    try:
+        cfg = json.load(open(os.path.join(here, "legal.json"), encoding="utf-8"))
+    except Exception as e:
+        print("legal: skip", e)
+        return
+    if not (cfg.get("NAME") and cfg.get("ADDRESS") and cfg.get("EMAIL")):
+        print("legal: legal.json noch leer – Seiten nicht geschrieben")
+        return
+    import html
+    css = open(os.path.join(here, "legal", "_style.css"), encoding="utf-8").read()
+    vals = {k: html.escape(str(v)) for k, v in cfg.items()}
+    vals["ADDRESS"] = "<br>".join(html.escape(x.strip()) for x in str(cfg["ADDRESS"]).split(","))
+    vals["PHONE_LINE"] = f"<br>Telefon: {html.escape(cfg['PHONE'])}" if cfg.get("PHONE") else ""
+    vals["CSS"] = css
+    for name in ("datenschutz.html", "impressum.html"):
+        t = open(os.path.join(here, "legal", name), encoding="utf-8").read()
+        for k, v in vals.items():
+            t = t.replace("{{" + k + "}}", v)
+        with open(os.path.join(site, name), "w", encoding="utf-8") as f:
+            f.write(t)
+    print("legal: datenschutz.html + impressum.html")
 
 
 def berlin_today():
