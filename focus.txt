@@ -1,0 +1,4 @@
+[a]   mCurrentFocus=Window{1ae115e u0 ImmersiveModeConfirmation}
+[b]   mCurrentFocus=Window{1ae115e u0 ImmersiveModeConfirmation}
+[c]   mCurrentFocus=Window{1ae115e u0 ImmersiveModeConfirmation}
+[d]   mCurrentFocus=Window{1ae115e u0 ImmersiveModeConfirmation}

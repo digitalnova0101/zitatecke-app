@@ -1,0 +1,9 @@
+(11, 147, 137, 273) Zurück
+(189, 169, 711, 250) Spruch des Tages
+(817, 147, 943, 273) Text kopieren
+(943, 147, 1070, 273) Merken
+(0, 283, 1080, 2064) Frischer Start&#10;✦&#10;Ein neuer Tag steht bereit. Mach langsam, trink deinen 
+(365, 2080, 715, 2132) Wischen für mehr  ›
+(42, 2159, 373, 2306) Gestalten
+(394, 2159, 541, 2306) Andere Apps
+(562, 2159, 1038, 2306) WhatsApp

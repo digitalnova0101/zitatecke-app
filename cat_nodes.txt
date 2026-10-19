@@ -1,0 +1,13 @@
+(0, 0, 1080, 2127) Spruch des Tages&#10;Wischen für mehr Sprüche  ›&#10;Kategorien
+(43, 0, 1037, 594) Frischer Start&#10;✦&#10;Ein neuer Tag steht bereit. Mach langsam, trink deinen 
+(1037, 0, 1080, 594) Schönen Montag&#10;✦&#10;Neuer Montag, neues Glück! Nimm den Wochenstart gelasse
+(42, 681, 865, 828) Per WhatsApp senden
+(42, 1150, 524, 1597) Guten Morgen&#10;Neu heute ✨
+(556, 1150, 1038, 1597) Gute Nacht&#10;Neu heute ✨
+(42, 1628, 524, 2075) Motivation&#10;Neu heute ✨
+(556, 1628, 1038, 2075) Berühmte Zitate
+(42, 2106, 524, 2127) Wochentage&#10;Neu heute ✨
+(556, 2106, 1038, 2127) Wochenende
+(0, 2127, 360, 2337) Start&#10;Tab 1 von 3
+(360, 2127, 720, 2337) Favoriten&#10;Tab 2 von 3
+(720, 2127, 1080, 2337) Einstellungen&#10;Tab 3 von 3
