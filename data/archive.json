@@ -1209,6 +1209,22 @@
  },
  "photos": [
   {
+   "id": "ph_27343bea74",
+   "file": "photos/ph_27343bea74.jpg",
+   "tags": [
+    "sonnenaufgang",
+    "himmel",
+    "natur",
+    "meer"
+   ],
+   "dim": 0.15,
+   "source": "https://cdn.stocksnap.io/img-thumbs/960w/8UOSAA3FRO.jpg",
+   "page": "https://stocksnap.io/photo/sunset-lake-8UOSAA3FRO",
+   "credit": "Sergei Gussev",
+   "license": "CC0",
+   "added": "2026-10-20"
+  },
+  {
    "id": "ph_203b6c7f90",
    "file": "photos/ph_203b6c7f90.jpg",
    "tags": [
