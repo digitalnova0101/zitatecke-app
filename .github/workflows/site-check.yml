@@ -16,8 +16,8 @@ jobs:
           mkdir -p c/logs
           {
             echo "== DNS"; getent hosts zitatecke.moezzadigital.com moezzadigital.com
-            for url in https://zitatecke.moezzadigital.com/feed.json http://zitatecke.moezzadigital.com/feed.json https://zitatecke.moezzadigital.com/ http://zitatecke.moezzadigital.com/; do
-              echo "== $url"; curl -sS -m 20 -o /tmp/b -D - "$url" 2>&1 | head -12; head -c 300 /tmp/b 2>/dev/null; echo
+            for url in https://zitatecke.moezzadigital.com/download/zitatecke.apk https://zitatecke.moezzadigital.com/img/logo.png https://zitatecke.moezzadigital.com/feed.json http://zitatecke.moezzadigital.com/feed.json https://zitatecke.moezzadigital.com/ http://zitatecke.moezzadigital.com/; do
+              echo "== $url"; curl -sS -m 60 -r 0-2000 -o /tmp/b -D - "$url" 2>&1 | head -12; head -c 300 /tmp/b 2>/dev/null; echo
             done
             echo "== https insecure"; curl -sSk -m 20 -o /dev/null -w "%{http_code}\n" https://zitatecke.moezzadigital.com/feed.json 2>&1
             echo "== cert"; echo | openssl s_client -connect zitatecke.moezzadigital.com:443 -servername zitatecke.moezzadigital.com 2>/dev/null | openssl x509 -noout -subject -issuer -ext subjectAltName 2>&1 | head -8
