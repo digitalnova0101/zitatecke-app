@@ -73,26 +73,11 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .store span{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--coral)}
 .note{font-size:15px;color:var(--muted);margin-top:14px}
 
-/* Phone with chat */
-.phone{justify-self:center;width:min(340px,100%);aspect-ratio:9/18.5;border-radius:44px;padding:12px;background:#1F1A21;box-shadow:var(--shadow);
-  transform:rotate(2deg)}
-.screen{height:100%;border-radius:34px;overflow:hidden;background:var(--chat);display:flex;flex-direction:column}
-.chat-head{display:flex;align-items:center;gap:10px;padding:16px 14px 12px;background:var(--surface);border-bottom:1px solid var(--line)}
-.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--coral));display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
-.chat-head b{display:block;font-size:15px;line-height:1.2}
-.chat-head span{font-size:12px;color:var(--muted)}
-.chat{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
-.day{align-self:center;font-size:11px;font-weight:700;color:var(--muted);background:var(--surface);padding:3px 10px;border-radius:8px}
-.msg{max-width:82%;border-radius:12px;padding:6px;font-size:14px;line-height:1.35;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08)}
-.msg.out{align-self:flex-end;background:var(--bubble-out)}
-.msg.in{align-self:flex-start;background:var(--bubble-in);padding:7px 10px}
-.msg img{border-radius:8px;width:100%}
-.meta{display:flex;justify-content:flex-end;gap:4px;align-items:center;font-size:11px;color:var(--muted);margin-top:3px;padding-right:4px}
-.meta svg{width:16px;height:16px;fill:#53BDEB}
-.msg.in .meta{justify-content:flex-start;padding:0}
-@keyframes pop{from{transform:translateY(10px) scale(.97);opacity:.35}to{transform:none;opacity:1}}
-.msg{animation:pop .5s ease-out both}
-.msg:nth-of-type(2){animation-delay:.35s}.msg:nth-of-type(3){animation-delay:.7s}
+/* Phone mit echtem Screenshot */
+.phone{justify-self:center;width:min(330px,100%);border-radius:44px;padding:10px;background:#1F1A21;box-shadow:var(--shadow);transform:rotate(2deg)}
+.phone img{width:100%;height:auto;aspect-ratio:600/1300;object-fit:cover;border-radius:35px}
+@keyframes rise{from{transform:translateY(16px) rotate(2deg);opacity:.4}to{transform:rotate(2deg);opacity:1}}
+.phone{animation:rise .7s ease-out both}
 
 /* Sections */
 section{padding-block:72px}
@@ -142,7 +127,7 @@ footer a:hover{color:var(--coral)}
 
 @media (max-width:900px){
   .hero .wrap{grid-template-columns:1fr;gap:40px}
-  .phone{transform:none;width:min(300px,100%)}
+  .phone{transform:none;animation:none;width:min(290px,100%)}
   .features{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:620px){
@@ -191,23 +176,8 @@ footer a:hover{color:var(--coral)}
         <p class="note">Ohne Anmeldung. Ohne Tracking. Keine Werbung.</p>
       </div>
 
-      <div class="phone" aria-label="Beispiel: Ein Gruß aus Zitatecke im Chat">
-        <div class="screen">
-          <div class="chat-head">
-            <div class="avatar">M</div>
-            <div><b>Mama</b><span>online</span></div>
-          </div>
-          <div class="chat">
-            <span class="day">Heute</span>
-            <div class="msg out">
-              <img src="img/karte-morgen.jpg" alt="Guten-Morgen-Karte: Ein Lächeln am Morgen macht den ganzen Tag ein bisschen heller." width="640" height="640">
-              <div class="meta">07:30 <svg viewBox="0 0 16 11" aria-hidden="true"><path d="M11.1.6 4.6 7.1 2 4.5.9 5.6l3.7 3.7L12.2 1.7 11.1.6Zm3.9 0L8.5 7.1l-.6-.6-1.1 1.1 1.7 1.7 7.6-7.6L15 .6Z"/></svg></div>
-            </div>
-            <div class="msg in">Wie schön, danke mein Schatz! 💛 Dir auch einen guten Morgen!
-              <div class="meta">07:34</div>
-            </div>
-          </div>
-        </div>
+      <div class="phone">
+        <img src="img/app-home.jpg" alt="Startseite der Zitatecke-App mit dem Spruch des Tages" width="600" height="1300">
       </div>
     </div>
   </div>
