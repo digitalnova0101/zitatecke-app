@@ -251,10 +251,7 @@ def build_feed(root, a, today: date):
     }
     with open(os.path.join(site, "feed.json"), "w", encoding="utf-8") as f:
         json.dump(feed, f, ensure_ascii=False, separators=(",", ":"))
-    with open(os.path.join(site, "index.html"), "w", encoding="utf-8") as f:
-        f.write('<!doctype html><meta charset="utf-8"><title>Zitatecke App</title>'
-                '<p style="font-family:sans-serif">Inhalte für die App „Zitatecke: Sprüche &amp; Grüße“. '
-                '<a href="https://zitatecke.de">zitatecke.de</a></p>')
+    write_landing(site)
     write_legal(site)
     # alte Fotos vom Server entfernen (nur die neuesten 200 bleiben)
     keep = {p["file"] for p in a["photos"][:200]}
@@ -265,6 +262,25 @@ def build_feed(root, a, today: date):
                 os.remove(os.path.join(pdir, fn))
     print(f"feed: {len(days)} days, {sum(len(v['quotes']) for v in days.values())} quotes, "
           f"{sum(len(v) for v in feed['weather'].values())} weather, {len(feed['photos'])} photos")
+
+
+def write_landing(site):
+    """Landing page (index.html + img/) für zitatecke.moezzadigital.com."""
+    import shutil
+    here = os.path.dirname(os.path.abspath(__file__))
+    src = os.path.join(here, "landing")
+    page = open(os.path.join(src, "index.html"), encoding="utf-8").read()
+    head, _, body = page.partition("<!--BODY-->")
+    html_doc = ('<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n'
+                '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+                + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n')
+    with open(os.path.join(site, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html_doc)
+    dst = os.path.join(site, "img")
+    if os.path.isdir(dst):
+        shutil.rmtree(dst)
+    shutil.copytree(os.path.join(src, "img"), dst)
+    print("landing: index.html")
 
 
 def write_legal(site):

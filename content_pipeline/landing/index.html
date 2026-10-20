@@ -1,0 +1,328 @@
+<title>Zitatecke App</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Zitatecke: Sprüche & Grüße – jeden Tag neue Guten-Morgen- und Gute-Nacht-Sprüche als schönes Bild, mit einem Tipp per WhatsApp geteilt. Kostenlos für Android.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap">
+<style>
+/* Layout: warmer Morgen-Verlauf oben, Hero = Text links + Handy mit WhatsApp-Chat rechts;
+   darunter ruhige Abschnitte auf Creme, große Schrift für ältere Leser. */
+:root{
+  --bg:#FFF8F1; --surface:#FFFFFF; --ink:#3B2A35; --muted:#7A6670; --line:#EFE2D8;
+  --coral:#EB5A5F; --amber:#FFB24C; --sun:#FFE3C2; --chat:#EAE3DA; --bubble-in:#FFFFFF; --bubble-out:#D9FDD3;
+  --shadow:0 18px 40px -18px rgba(90,40,50,.35);
+  --display:"Lora",Georgia,"Times New Roman",serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --script:"Dancing Script","Brush Script MT",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171318; --surface:#231D25; --ink:#F3EBEF; --muted:#B7A9B1; --line:#352C38;
+  --sun:#3A2620; --chat:#1E1A20; --bubble-in:#2C252F; --bubble-out:#24402F;
+  --shadow:0 18px 40px -18px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171318; --surface:#231D25; --ink:#F3EBEF; --muted:#B7A9B1; --line:#352C38;
+  --sun:#3A2620; --chat:#1E1A20; --bubble-in:#2C252F; --bubble-out:#24402F;
+  --shadow:0 18px 40px -18px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+
+/* Header */
+header{padding-block:18px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:22px}
+.brand img{width:42px;height:42px;border-radius:12px}
+.site-link{font-weight:700;font-size:16px;color:var(--muted);text-decoration:none}
+.site-link:hover{color:var(--coral)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding-block:24px 72px}
+.hero::before{content:"";position:absolute;inset:-40% -10% auto auto;width:780px;height:780px;border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,var(--sun),transparent 65%);z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero-text{min-width:0}
+.eyebrow{display:inline-block;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:700}
+.hero h1 em{font-family:var(--script);font-style:normal;color:var(--coral);font-weight:700;font-size:1.12em}
+.lead{font-size:20px;color:var(--muted);max-width:34ch;margin:20px 0 28px}
+
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-apk{display:inline-flex;align-items:center;gap:12px;background:var(--coral);color:#fff;text-decoration:none;
+  padding:16px 26px;border-radius:18px;font-weight:800;font-size:19px;box-shadow:0 10px 24px -10px rgba(235,90,95,.8);transition:transform .15s}
+.btn-apk:hover{transform:translateY(-2px)}
+.btn-apk svg{width:26px;height:26px;flex:none}
+.btn-apk small{display:block;font-weight:600;font-size:13px;opacity:.9}
+.stores{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.store{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;border:1.5px dashed var(--line);
+  background:var(--surface);color:var(--muted);min-width:0}
+.store svg{width:22px;height:22px;flex:none;fill:currentColor}
+.store b{display:block;color:var(--ink);font-size:16px;line-height:1.2}
+.store span{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--coral)}
+.note{font-size:15px;color:var(--muted);margin-top:14px}
+
+/* Phone with chat */
+.phone{justify-self:center;width:min(340px,100%);aspect-ratio:9/18.5;border-radius:44px;padding:12px;background:#1F1A21;box-shadow:var(--shadow);
+  transform:rotate(2deg)}
+.screen{height:100%;border-radius:34px;overflow:hidden;background:var(--chat);display:flex;flex-direction:column}
+.chat-head{display:flex;align-items:center;gap:10px;padding:16px 14px 12px;background:var(--surface);border-bottom:1px solid var(--line)}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--coral));display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
+.chat-head b{display:block;font-size:15px;line-height:1.2}
+.chat-head span{font-size:12px;color:var(--muted)}
+.chat{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.day{align-self:center;font-size:11px;font-weight:700;color:var(--muted);background:var(--surface);padding:3px 10px;border-radius:8px}
+.msg{max-width:82%;border-radius:12px;padding:6px;font-size:14px;line-height:1.35;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.msg.out{align-self:flex-end;background:var(--bubble-out)}
+.msg.in{align-self:flex-start;background:var(--bubble-in);padding:7px 10px}
+.msg img{border-radius:8px;width:100%}
+.meta{display:flex;justify-content:flex-end;gap:4px;align-items:center;font-size:11px;color:var(--muted);margin-top:3px;padding-right:4px}
+.meta svg{width:16px;height:16px;fill:#53BDEB}
+.msg.in .meta{justify-content:flex-start;padding:0}
+@keyframes pop{from{transform:translateY(10px) scale(.97);opacity:.35}to{transform:none;opacity:1}}
+.msg{animation:pop .5s ease-out both}
+.msg:nth-of-type(2){animation-delay:.35s}.msg:nth-of-type(3){animation-delay:.7s}
+
+/* Sections */
+section{padding-block:72px}
+.sec-head{max-width:640px;margin-bottom:36px}
+.sec-head h2{font-size:clamp(30px,3.6vw,42px)}
+.sec-head p{color:var(--muted);margin:12px 0 0}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+
+/* Steps: echte Reihenfolge */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:var(--coral);color:#fff;font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:14px}
+.steps h3{font-size:23px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted)}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 32px}
+.feat{min-width:0}
+.feat .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--sun);font-size:24px;margin-bottom:12px}
+.feat h3{font-family:var(--body);font-weight:800;font-size:18px;margin-bottom:4px}
+.feat p{margin:0;color:var(--muted);font-size:16px}
+
+/* Screens */
+.screens{display:flex;gap:20px;overflow-x:auto;padding:6px 4px 18px;scroll-snap-type:x mandatory}
+.screens figure{margin:0;flex:0 0 220px;scroll-snap-align:start}
+.screens img{border-radius:26px;border:7px solid #1F1A21;box-shadow:var(--shadow);aspect-ratio:540/1170;object-fit:cover;width:100%}
+.screens figcaption{text-align:center;font-weight:700;font-size:15px;margin-top:12px;color:var(--muted)}
+
+/* Kategorien */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{padding:10px 18px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-weight:700;font-size:16px}
+
+/* FAQ */
+.faq{max-width:760px;display:grid;gap:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px 20px}
+summary{cursor:pointer;font-weight:800;font-size:18px;padding-block:14px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--coral);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 16px;color:var(--muted)}
+details ol{margin:0 0 16px;padding-left:22px;color:var(--muted)}
+
+/* Final CTA */
+.final{text-align:center}
+.final h2{font-size:clamp(30px,4vw,46px);margin-bottom:22px}
+.final .cta{justify-content:center}
+
+footer{padding-block:36px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer a{text-decoration:none;font-weight:700}
+footer a:hover{color:var(--coral)}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .phone{transform:none;width:min(300px,100%)}
+  .features{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  body{font-size:17px}
+  .steps{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr}
+  section{padding-block:56px}
+  .btn-apk{width:100%;justify-content:center}
+  .store{flex:1 1 150px}
+}
+</style>
+<!--BODY-->
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Zitatecke Startseite"><img src="img/logo.png" alt="" width="42" height="42">Zitatecke</a>
+    <a class="site-link" href="https://zitatecke.de">zitatecke.de →</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="eyebrow">Die App für Sprüche &amp; Grüße</span>
+        <h1>Jeden Morgen ein <em>lieber Gruß</em> – mit einem Tipp verschickt.</h1>
+        <p class="lead">Neue Guten-Morgen- und Gute-Nacht-Sprüche für jeden Tag, als schönes Bild. Direkt per WhatsApp an Familie und Freunde.</p>
+        <div class="cta">
+          <a class="btn-apk" href="https://zitatecke.moezzadigital.com/download/zitatecke.apk" download>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.59l3.3-3.3a1 1 0 1 1 1.4 1.42l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.42L11 13.6V4a1 1 0 0 1 1-1Zm-7 16h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg>
+            <span>Android-App herunterladen<small>Kostenlos · ab Android 7</small></span>
+          </a>
+        </div>
+        <div class="stores" aria-label="App-Stores">
+          <div class="store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8v18.4c0 .5.5.8 1 .6l15.6-9.2c.4-.3.4-.9 0-1.2L5 2.2c-.5-.3-1 .1-1 .6Z"/></svg>
+            <div><b>Google Play</b><span>Demnächst</span></div>
+          </div>
+          <div class="store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.7ZM14.2 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3Z"/></svg>
+            <div><b>App Store</b><span>Demnächst</span></div>
+          </div>
+        </div>
+        <p class="note">Ohne Anmeldung. Ohne Tracking. Keine Werbung.</p>
+      </div>
+
+      <div class="phone" aria-label="Beispiel: Ein Gruß aus Zitatecke im Chat">
+        <div class="screen">
+          <div class="chat-head">
+            <div class="avatar">M</div>
+            <div><b>Mama</b><span>online</span></div>
+          </div>
+          <div class="chat">
+            <span class="day">Heute</span>
+            <div class="msg out">
+              <img src="img/karte-morgen.jpg" alt="Guten-Morgen-Karte: Ein Lächeln am Morgen macht den ganzen Tag ein bisschen heller." width="640" height="640">
+              <div class="meta">07:30 <svg viewBox="0 0 16 11" aria-hidden="true"><path d="M11.1.6 4.6 7.1 2 4.5.9 5.6l3.7 3.7L12.2 1.7 11.1.6Zm3.9 0L8.5 7.1l-.6-.6-1.1 1.1 1.7 1.7 7.6-7.6L15 .6Z"/></svg></div>
+            </div>
+            <div class="msg in">Wie schön, danke mein Schatz! 💛 Dir auch einen guten Morgen!
+              <div class="meta">07:34</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="alt" id="so-gehts">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>So einfach geht's</h2>
+        <p>Vom Aufwachen bis zum Gruß an die Familie in weniger als einer Minute.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Spruch aussuchen</h3><p>Morgens zeigt dir die App Guten-Morgen-Sprüche, abends Gute-Nacht-Grüße. Wischen für mehr.</p></li>
+        <li><h3>Bild und Schrift wählen</h3><p>Such dir ein Foto und eine von 8 Schriften aus – oder nimm einfach den Vorschlag.</p></li>
+        <li><h3>Per WhatsApp senden</h3><p>Ein Tipp auf „Per WhatsApp senden“, Kontakt wählen, fertig.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Jeden Tag etwas Neues</h2>
+        <p>Zitatecke passt sich deinem Tag an – ganz von allein.</p>
+      </div>
+      <div class="features">
+        <div class="feat"><div class="ic" aria-hidden="true">✨</div><h3>Täglich neue Sprüche</h3><p>Jeden Morgen frische Grüße, nicht immer dieselben.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">📅</div><h3>Passend zum Wochentag</h3><p>Schönen Montag, Hallo Freitag, schönes Wochenende.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🌦️</div><h3>Passend zum Wetter</h3><p>Sonne, Regen oder Schnee in deiner Stadt.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🎄</div><h3>Feiertage</h3><p>Advent, Weihnachten, Ostern, Muttertag und mehr.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🌅</div><h3>Schöne Fotos</h3><p>Sonnenaufgänge, Blumen, Sternenhimmel, Natur.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">📜</div><h3>Zitat des Tages</h3><p>Worte von Goethe, Schiller, Rilke und anderen.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">⏰</div><h3>Tägliche Erinnerung</h3><p>Morgens um 7:30 und abends um 21:30 – frei einstellbar.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🔤</div><h3>Große, klare Schrift</h3><p>Gut lesbar, mit Dunkelmodus für den Abend.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="einblicke">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Ein Blick in die App</h2>
+      </div>
+      <div class="screens">
+        <figure><img src="img/shot-home.jpg" alt="Startseite mit Spruch des Tages" width="540" height="1170" loading="lazy"><figcaption>Spruch des Tages</figcaption></figure>
+        <figure><img src="img/shot-kategorie.jpg" alt="Kategorie Gute Nacht mit vielen Karten" width="540" height="1170" loading="lazy"><figcaption>Kategorien</figcaption></figure>
+        <figure><img src="img/shot-reels.jpg" alt="Vollbild-Ansicht eines Gute-Nacht-Spruchs" width="540" height="1170" loading="lazy"><figcaption>Vollbild</figcaption></figure>
+        <figure><img src="img/shot-gestalten.jpg" alt="Bild für den Spruch auswählen" width="540" height="1170" loading="lazy"><figcaption>Bild wählen</figcaption></figure>
+        <figure><img src="img/shot-schrift.jpg" alt="Schrift für den Spruch auswählen" width="540" height="1170" loading="lazy"><figcaption>Schrift wählen</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="kategorien">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Für jeden Anlass</h2>
+      </div>
+      <div class="chips">
+        <span>Guten Morgen</span><span>Gute Nacht</span><span>Motivation</span><span>Wochentage</span><span>Wochenende</span>
+        <span>Freundschaft</span><span>Geburtstag</span><span>Feiertage</span><span>Berühmte Zitate</span><span>Sprichwörter</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="fragen">
+    <div class="wrap">
+      <div class="sec-head"><h2>Häufige Fragen</h2></div>
+      <div class="faq">
+        <details>
+          <summary>Ist die App kostenlos?</summary>
+          <p>Ja. Zitatecke ist kostenlos, ohne Anmeldung und ohne Abo.</p>
+        </details>
+        <details>
+          <summary>Wann kommt die App in den Google Play Store?</summary>
+          <p>Die App ist gerade in der Testphase bei Google Play und erscheint dort in Kürze. Eine Version für iPhone (App Store) ist geplant. Bis dahin kannst du die Android-App hier direkt herunterladen.</p>
+        </details>
+        <details>
+          <summary>Wie installiere ich die heruntergeladene App?</summary>
+          <ol>
+            <li>Tippe oben auf „Android-App herunterladen“.</li>
+            <li>Öffne die Datei <b>zitatecke.apk</b> in deinen Downloads.</li>
+            <li>Android fragt beim ersten Mal, ob du Apps aus dieser Quelle erlaubst. Tippe auf „Einstellungen“ und erlaube es.</li>
+            <li>Tippe auf „Installieren“. Fertig!</li>
+          </ol>
+        </details>
+        <details>
+          <summary>Welche Daten sammelt die App?</summary>
+          <p>Keine persönlichen Daten. Favoriten und Einstellungen bleiben auf deinem Handy. Mehr dazu in der <a href="https://zitatecke.moezzadigital.com/datenschutz.html">Datenschutzerklärung</a>.</p>
+        </details>
+        <details>
+          <summary>Funktioniert die App auch auf dem iPhone?</summary>
+          <p>Noch nicht. Die iPhone-Version für den App Store ist in Planung.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Mach jemandem heute eine Freude.</h2>
+      <div class="cta">
+        <a class="btn-apk" href="https://zitatecke.moezzadigital.com/download/zitatecke.apk" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.59l3.3-3.3a1 1 0 1 1 1.4 1.42l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.42L11 13.6V4a1 1 0 0 1 1-1Zm-7 16h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg>
+          <span>Android-App herunterladen<small>Kostenlos · ab Android 7</small></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Zitatecke · <a href="https://zitatecke.de">zitatecke.de</a></span>
+    <nav aria-label="Rechtliches">
+      <a href="https://zitatecke.moezzadigital.com/impressum.html">Impressum</a>
+      <a href="https://zitatecke.moezzadigital.com/datenschutz.html">Datenschutz</a>
+      <a href="mailto:zitatecke.de@gmail.com">Kontakt</a>
+    </nav>
+  </div>
+</footer>

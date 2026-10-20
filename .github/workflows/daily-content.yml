@@ -78,6 +78,12 @@ jobs:
           git commit -qm "Content $(date -u +%F)" || echo "no changes"
           git push -q origin content
 
+      - name: APK download ke liye (landing page)
+        run: |
+          mkdir -p content/site/download
+          git clone -q --depth 1 -b apk "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/apk \
+            && cp /tmp/apk/zitatecke.apk content/site/download/zitatecke.apk || echo "apk branch nahi mila"
+
       - name: zitatecke.moezzadigital.com pe upload (FTP)
         if: env.HAS_FTP == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
