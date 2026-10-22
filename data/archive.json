@@ -739,10 +739,209 @@
      "date": "2026-10-21"
     }
    ]
+  },
+  "2026-10-23": {
+   "date": "2026-10-23",
+   "special": null,
+   "quotes": [
+    {
+     "id": "ai20261023_guten_morgen_1",
+     "category": "guten_morgen",
+     "text": "Guten Morgen! Ein frischer Windstoß am Fenster weckt die Lebenslust. Lass dich heute von schönen Kleinigkeiten überraschen.",
+     "heading": "Schönen Morgen",
+     "mood": "himmel",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_guten_morgen_2",
+     "category": "guten_morgen",
+     "text": "Der Tag streckt sich langsam aus dem Morgengrau. Trink in aller Ruhe deinen ersten Schluck und geh entspannt los.",
+     "heading": "Guten Morgen",
+     "mood": "kaffee",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_guten_morgen_3",
+     "category": "guten_morgen",
+     "text": "Ein Lächeln im Spiegel und schon sieht die Welt viel freundlicher aus. Ich wünsche dir einen heiteren Start in den Tag! ☕",
+     "heading": "Morgenruß für dich",
+     "mood": "kaffee",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_guten_morgen_4",
+     "category": "guten_morgen",
+     "text": "Kühles Oktoberlicht begrüßt den Tag. Nimm dir ein paar stille Momente, bevor das Getriebe der Welt wieder laut wird.",
+     "heading": "Guten Morgen",
+     "mood": "herbst",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_guten_morgen_5",
+     "category": "guten_morgen",
+     "text": "Guten Morgen! Mach dir keinen Druck für die anstehenden Stunden. Manches erledigt sich fast wie von selbst mit etwas Ruhe.",
+     "heading": "Ruhiger Morgen",
+     "mood": "natur",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_guten_morgen_6",
+     "category": "guten_morgen",
+     "text": "Die Straßen füllen sich langsam mit Leben. Geh mit offenem Herzen hinaus und genieße die kleinen Augenblicke des Tages.",
+     "heading": "Herzlicher Morgengruß",
+     "mood": "sonnenaufgang",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_1",
+     "category": "gute_nacht",
+     "text": "Leg die Last des Tages einfach an der Schlafzimmertür ab. Dein Kissen wartet schon auf dich mit wohliger Behaglichkeit.",
+     "heading": "Gute Nacht",
+     "mood": "nacht",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_2",
+     "category": "gute_nacht",
+     "text": "Die Dunkelheit hüllt alles sanft ein. Schließ die Augen, lass die Gedanken ziehen und ruh dich von Herzen aus.",
+     "heading": "Schlaf gut",
+     "mood": "sterne",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_3",
+     "category": "gute_nacht",
+     "text": "Ein ruhiger Abend senkt sich herab. Mögen deine Träume federleicht sein und dir neue Lebensfreude für morgen schenken. 🌙",
+     "heading": "Sanfte Nacht",
+     "mood": "mond",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_4",
+     "category": "gute_nacht",
+     "text": "Zeit, das Gedankenkarussell anzuhalten. Deck dich gemütlich zu und genieße das herrliche Gefühl, nichts mehr tun zu müssen.",
+     "heading": "Träum schön",
+     "mood": "kerzen",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_5",
+     "category": "gute_nacht",
+     "text": "Gute Nacht! Schau noch kurz in den Nachthimmel und nimm die Stille mit in den Schlaf. Morgen beginnt ein neues Kapitel.",
+     "heading": "Gute Nacht",
+     "mood": "himmel",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_gute_nacht_6",
+     "category": "gute_nacht",
+     "text": "Wenn die Lichter im Viertel erlöschen, kehrt Friede ein. Schlaf tief und fest und schöpfe frische Kraft bis zum Morgenrot.",
+     "heading": "Friedliche Nacht",
+     "mood": "nacht",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_motivation_1",
+     "category": "motivation",
+     "text": "Manchmal muss man einfach den ersten Schritt wagen, ohne das Ziel schon genau zu sehen. Der Weg zeigt sich beim Gehen.",
+     "heading": "Einfach anfangen",
+     "mood": "berge",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_motivation_2",
+     "category": "motivation",
+     "text": "Vergleiche dich nicht mit anderen Gärten. Deine Blumen blühen in ihrem ganz persönlichen Tempo und in voller Pracht.",
+     "heading": "Dein eigener Weg",
+     "mood": "blumen",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_motivation_3",
+     "category": "motivation",
+     "text": "Vertraue deiner stillen inneren Stärke. Du hast schon so viele Hürden genommen, die einst unüberwindbar schienen.",
+     "heading": "Glaube an dich",
+     "mood": "natur",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_motivation_4",
+     "category": "motivation",
+     "text": "Es ist keine Schwäche, langsamer zu gehen, wenn der Weg steinig wird. Hauptsache, du verlierst dein eigenes Lächeln nicht. 🌿",
+     "heading": "Mut zum Innehalten",
+     "mood": "wald",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_motivation_5",
+     "category": "motivation",
+     "text": "Erlaube dir, heute nicht alles perfekt machen zu müssen. Gut genug reicht oft völlig aus, um glücklich zu sein.",
+     "heading": "Sei gut zu dir",
+     "mood": "herz",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_wochentage_1",
+     "category": "wochentage",
+     "text": "Endlich Freitag! Das Durchhalten hat sich gelohnt. Schließe die Woche zufrieden ab und starte mit Freude ins Wochenende.",
+     "heading": "Schönen Freitag",
+     "mood": "feier",
+     "date": "2026-10-23",
+     "tag": "freitag"
+    },
+    {
+     "id": "ai20261023_wochentage_2",
+     "category": "wochentage",
+     "text": "Der Freitag fühlt sich an wie ein tiefes Aufatmen. Lass die Arbeit bald hinter dir und freu dich auf erholsame Tage! ☕",
+     "heading": "Freitagsgruß für dich",
+     "mood": "kaffee",
+     "date": "2026-10-23",
+     "tag": "freitag"
+    },
+    {
+     "id": "ai20261023_wochentage_3",
+     "category": "wochentage",
+     "text": "Freitagsgrüße für dich! Möge der Feierabend heute pünktlich kommen und dir zwei herrlich entspannte Ruhetage ankündigen.",
+     "heading": "Herrlichen Freitag",
+     "mood": "feier",
+     "date": "2026-10-23",
+     "tag": "freitag"
+    },
+    {
+     "id": "ai20261023_freundschaft_1",
+     "category": "freundschaft",
+     "text": "Mit dir kann man lachen, schweigen und einfach das Leben teilen. Ich bin dankbar für jeden gemeinsamen Moment.",
+     "heading": "Von Herzen für dich",
+     "mood": "herz",
+     "date": "2026-10-23"
+    },
+    {
+     "id": "ai20261023_freundschaft_2",
+     "category": "freundschaft",
+     "text": "Echte Freundschaft ist wie ein gemütlicher Unterschlupf bei jedem Wetter. Schön, dass wir diesen Pfad gemeinsam gehen. 🌸",
+     "heading": "Schön, dass es dich gibt",
+     "mood": "rosen",
+     "date": "2026-10-23"
+    }
+   ]
   }
  },
  "weather": {
   "sonne": [
+   {
+    "id": "aiw20261023_sonne_1",
+    "text": "Was für ein prachtvoller Sonnentag! Lass dir das Gesicht erwärmen und nimm diesen goldenen Glanz mit in dein Herz.",
+    "heading": "Sonnige Stunden",
+    "mood": "himmel",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_sonne_0",
+    "text": "Die Sonne lacht vom Himmel und vertreibt jeden trüben Gedanken. Geh raus und tanke so viel Licht wie möglich! ☀️",
+    "heading": "Herrlicher Sonnenschein",
+    "mood": "sonnenaufgang",
+    "date": "2026-10-23"
+   },
    {
     "id": "aiw20261021_sonne_1",
     "text": "Die Welt strahlt im puren Licht! Lass dir heute von den Sonnenstrahlen das Gemüt erhellen und nimm die Freude mit.",
@@ -802,6 +1001,20 @@
   ],
   "wolken": [
    {
+    "id": "aiw20261023_wolken_3",
+    "text": "Die Wolken ziehen dicht und schwer vorüber. Lass dir die Laune davon nicht trüben, denn die Herzenswärme machst du dir heute selbst.",
+    "heading": "Grau, aber behaglich",
+    "mood": "himmel",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_wolken_2",
+    "text": "Ein graues Wolkenmeer am Himmel lädt zum Einkuscheln ein. Die beste Gelegenheit, es sich daheim gemütlich zu machen.",
+    "heading": "Gemütlicher Wolkentag",
+    "mood": "kerzen",
+    "date": "2026-10-23"
+   },
+   {
     "id": "aiw20261021_wolken_3",
     "text": "Auch wenn der Himmel sich in Grautöne hüllt: Mach es dir drinnen kuschlig und bring dein eigenes Licht zum Leuchten.",
     "heading": "Behagliche Stunden",
@@ -859,6 +1072,20 @@
    }
   ],
   "regen": [
+   {
+    "id": "aiw20261023_regen_5",
+    "text": "Draußen perlt der Regen von den Dächern. Zeit für dicke Socken, warme Decken und ein gutes Gefühl der Geborgenheit. 🌧️",
+    "heading": "Gemütlicher Regentag",
+    "mood": "regen",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_regen_4",
+    "text": "Wenn die Tropfen gegen das Glas trommeln, wird das Wohnzimmer zur behaglichen Oase. Mach dir eine feine Tasse Tee.",
+    "heading": "Regengruß für dich",
+    "mood": "regen",
+    "date": "2026-10-23"
+   },
    {
     "id": "aiw20261021_regen_5",
     "text": "Draußen tanzt das Nass auf den Blättern. Schnapp dir deinen Regenschirm oder genieß einfach die wohlige Wärme im Haus. 🌧️",
@@ -918,6 +1145,20 @@
   ],
   "schnee": [
    {
+    "id": "aiw20261023_schnee_7",
+    "text": "Draußen rieseln Flocken und verzaubern die Dächer. Ein herrlicher Wintertag, um von drinnen das weiße Treiben zu beobachten.",
+    "heading": "Weißer Zauber",
+    "mood": "schnee",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_schnee_6",
+    "text": "Eine weiße Schneedecke dämpft jeden Laut auf den Wegen. Genieß diese zauberhafte Stille und spaziere gut eingepackt los.",
+    "heading": "Verschneite Grüße",
+    "mood": "schnee",
+    "date": "2026-10-23"
+   },
+   {
     "id": "aiw20261021_schnee_7",
     "text": "Schnee bedeckt die Dächer und Wege. Geh achtsam durch die weiße Pracht und freu dich auf das Aufwärmen daheim.",
     "heading": "Flockengruß",
@@ -975,6 +1216,20 @@
    }
   ],
   "nebel": [
+   {
+    "id": "aiw20261023_nebel_9",
+    "text": "Im Nebel verschwimmt die Ferne, und das Hier und Jetzt wird spürbar. Mach es dir drinnen warm und hab einen friedlichen Tag.",
+    "heading": "Ruhiger Nebelmorgen",
+    "mood": "nebel",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_nebel_8",
+    "text": "Dichter Nebel legt sich geheimnisvoll über die Wiesen. Die Welt wird ganz leise – ein wunderbarer Moment zum Durchatmen.",
+    "heading": "Sanfte Nebelstimmung",
+    "mood": "nebel",
+    "date": "2026-10-23"
+   },
    {
     "id": "aiw20261021_nebel_9",
     "text": "Wenn die Konturen verschwimmen, rückt das Wesentliche näher. Geh behutsam durch diesen nebligen Tag und pass auf dich auf.",
@@ -1034,6 +1289,20 @@
   ],
   "wind": [
    {
+    "id": "aiw20261023_wind_11",
+    "text": "Draußen pfeift und tobt der Sturm um die Hausecken. Umso schöner ist es, im Warmen zu sitzen und dem Brausen zu lauschen.",
+    "heading": "Stürmische Grüße",
+    "mood": "wald",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_wind_10",
+    "text": "Der Wind rüttelt kräftig an den Ästen und pustet den Kopf frei. Gut eingepackt tut so ein Herbststurm richtig gut! 🍂",
+    "heading": "Frischer Wind",
+    "mood": "herbst",
+    "date": "2026-10-23"
+   },
+   {
     "id": "aiw20261021_wind_11",
     "text": "Ein ungestümer Wind fegt über das Land! Wie schön, wenn man danach die Haustür schließt und die wohlige Wärme spürt. 🍂",
     "heading": "Stürmische Grüße",
@@ -1092,6 +1361,20 @@
   ],
   "hitze": [
    {
+    "id": "aiw20261023_hitze_13",
+    "text": "Hochsommerliche Hitze flirrt über dem Asphalt. Gönn dir ein erfrischendes Getränk und schalte heute einen Gang runter. ☀️",
+    "heading": "Kühle Oase suchen",
+    "mood": "meer",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_hitze_12",
+    "text": "Das Thermometer klettert unermüdlich nach oben! Such dir ein kühles Schattenplätzchen, trink genug und mach schön langsam.",
+    "heading": "Heiße Grüße",
+    "mood": "sommer",
+    "date": "2026-10-23"
+   },
+   {
     "id": "aiw20261021_hitze_13",
     "text": "Hochsommerliche Hitze lässt alles ruhen. Gönn dir genügend Erfrischung, such dir ein schattiges Plätzchen und mach langsam.",
     "heading": "Heißer Sommertag",
@@ -1149,6 +1432,20 @@
    }
   ],
   "kaelte": [
+   {
+    "id": "aiw20261023_kaelte_15",
+    "text": "Der Frost hat die Natur fest im Griff. Nach einem kurzen Ausflug in die klare Winterluft schmeckt die heiße Suppe doppelt gut.",
+    "heading": "Eisig und klar",
+    "mood": "winter",
+    "date": "2026-10-23"
+   },
+   {
+    "id": "aiw20261023_kaelte_14",
+    "text": "Klirrende Kälte und glitzernder Frost an den Scheiben! Dicke Mütze auf, Schal umbinden und die frische Frostluft genießen.",
+    "heading": "Frostige Grüße",
+    "mood": "winter",
+    "date": "2026-10-23"
+   },
    {
     "id": "aiw20261021_kaelte_15",
     "text": "Draußen herrscht eisige Kälte, aber drinnen strahlt die Behaglichkeit. Pass gut auf rutschige Stellen auf und halte dich warm. ❄️",
