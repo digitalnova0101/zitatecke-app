@@ -1506,6 +1506,48 @@
  },
  "photos": [
   {
+   "id": "ph_fd803115fb",
+   "file": "photos/ph_fd803115fb.jpg",
+   "tags": [
+    "kerzen",
+    "nacht"
+   ],
+   "dim": 0.1,
+   "source": "https://pd.w.org/2025/12/630693accafc90e52.93159758-1536x2048.jpeg",
+   "page": "https://wordpress.org/photos/photo/630693acca/",
+   "credit": "Bigul Malayi",
+   "license": "CC0",
+   "added": "2026-10-23"
+  },
+  {
+   "id": "ph_1661357393",
+   "file": "photos/ph_1661357393.jpg",
+   "tags": [
+    "kerzen",
+    "nacht"
+   ],
+   "dim": 0.2,
+   "source": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJjYW5kbGVzX2NhbmRsZWxpZ2h0X2ZsYW1lX2J1cm4taW1hZ2Uta3ljaHU5ZjAuanBn.jpg",
+   "page": "https://www.rawpixel.com/image/6068299/free-public-domain-cc0-photo",
+   "credit": "",
+   "license": "CC0",
+   "added": "2026-10-23"
+  },
+  {
+   "id": "ph_a5871fd677",
+   "file": "photos/ph_a5871fd677.jpg",
+   "tags": [
+    "kerzen",
+    "blumen"
+   ],
+   "dim": 0.15,
+   "source": "https://pd.w.org/2026/08/396a86ef8f6cba32.16552399-1536x2048.jpg",
+   "page": "https://wordpress.org/photos/photo/396a86ef8f/",
+   "credit": "Indira Biswas",
+   "license": "CC0",
+   "added": "2026-10-23"
+  },
+  {
    "id": "ph_27343bea74",
    "file": "photos/ph_27343bea74.jpg",
    "tags": [
