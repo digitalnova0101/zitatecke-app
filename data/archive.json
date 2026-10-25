@@ -1109,10 +1109,209 @@
      "date": "2026-10-24"
     }
    ]
+  },
+  "2026-10-26": {
+   "date": "2026-10-26",
+   "special": null,
+   "quotes": [
+    {
+     "id": "ai20261026_guten_morgen_1",
+     "category": "guten_morgen",
+     "text": "Lass die Müdigkeit ziehen und atme die kühle Morgenluft ein. Ich wünsche dir einen heiteren Start in den Tag.",
+     "heading": "Guten Morgen",
+     "mood": "natur",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_guten_morgen_2",
+     "category": "guten_morgen",
+     "text": "Der Tag schenkt dir heute viele neue Augenblicke. Nimm dir Zeit für ein gutes Frühstück und geh entspannt voran.",
+     "heading": "Guten Morgen",
+     "mood": "kaffee",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_guten_morgen_3",
+     "category": "guten_morgen",
+     "text": "Ein warmer Gruß zum Aufwachen: Möge dir heute jede Kleinigkeit gelingen und dein Herz leicht bleiben.",
+     "heading": "Schönen guten Morgen",
+     "mood": "sonnenaufgang",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_guten_morgen_4",
+     "category": "guten_morgen",
+     "text": "Der Himmel färbt sich langsam hell. Mach es dir noch kurz gemütlich, bevor der Trubel der Welt erwacht. ☕",
+     "heading": "Wundervollen Morgen",
+     "mood": "himmel",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_guten_morgen_5",
+     "category": "guten_morgen",
+     "text": "Mit ein paar freundlichen Gedanken im Gepäck läuft der Vormittag fast wie von allein. Hab einen herrlichen Tag!",
+     "heading": "Guten Morgen",
+     "mood": "herbst",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_guten_morgen_6",
+     "category": "guten_morgen",
+     "text": "Zieh dir etwas Warmes an und starte mit Zuversicht. Ich schicke dir liebe Grüße für einen rundum gelungenen Morgen.",
+     "heading": "Herzlicher Gruß",
+     "mood": "wald",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_1",
+     "category": "gute_nacht",
+     "text": "Der Tag war lang, nun darf der Kopf zur Ruhe kommen. Kuschel dich warm ein und schlaf tief und fest.",
+     "heading": "Gute Nacht",
+     "mood": "nacht",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_2",
+     "category": "gute_nacht",
+     "text": "Lass alle offenen Fragen für heute ruhen. Die Nacht schenkt dir Geborgenheit und neue Kraft für morgen. 🌙",
+     "heading": "Schlaf schön",
+     "mood": "mond",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_3",
+     "category": "gute_nacht",
+     "text": "Stille legt sich sanft über die Dächer. Schließe die Augen und gleite friedlich hinüber ins Land der Träume.",
+     "heading": "Träum süß",
+     "mood": "sterne",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_4",
+     "category": "gute_nacht",
+     "text": "Ein Hauch von Ruhe füllt den Raum. Ich wünsche dir eine erholsame Nacht ohne trübe Gedanken.",
+     "heading": "Liebe Nachtgrüße",
+     "mood": "kerzen",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_5",
+     "category": "gute_nacht",
+     "text": "Die Lichter sind gelöscht, die Welt hält den Atem an. Genieß die Stille und schlaf dich so richtig aus.",
+     "heading": "Gute Nacht",
+     "mood": "nacht",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_gute_nacht_6",
+     "category": "gute_nacht",
+     "text": "Lass den Tag friedlich ausklingen und nimm die schönen Momente mit in deine Träume. Bis morgen früh!",
+     "heading": "Friedliche Nacht",
+     "mood": "mond",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_motivation_1",
+     "category": "motivation",
+     "text": "Du musst nicht den ganzen Berg auf einmal bezwingen. Ein einziger bedachter Schritt genügt fürs Erste.",
+     "heading": "Glaube an dich",
+     "mood": "berge",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_motivation_2",
+     "category": "motivation",
+     "text": "Oft sind es die stillen Erfolge im Alltag, die das Leben reich machen. Sei stolz auf alles, was du tust. 🌿",
+     "heading": "Wort zum Tag",
+     "mood": "natur",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_motivation_3",
+     "category": "motivation",
+     "text": "Lass dich von kleinen Umwegen nicht beirren. Manchmal schenkt uns erst die Kurve die schönste Aussicht.",
+     "heading": "Kopf hoch",
+     "mood": "himmel",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_motivation_4",
+     "category": "motivation",
+     "text": "Deine eigene Kraft ist oft viel größer als die Sorgen, die dich begleiten. Vertraue deinem Weg.",
+     "heading": "Mutmacher",
+     "mood": "sonnenaufgang",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_motivation_5",
+     "category": "motivation",
+     "text": "Nimm das Tempo heraus, wo immer es geht. Gutes braucht Weile und ein Herz, das im eigenen Takt schlägt.",
+     "heading": "Gelassenheit",
+     "mood": "meer",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_wochentage_1",
+     "category": "wochentage",
+     "text": "Ein neuer Montag hält viele weiße Seiten für dich bereit. Geh es ruhig an und mach das Beste daraus.",
+     "heading": "Guten Wochenstart",
+     "mood": "kaffee",
+     "date": "2026-10-26",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261026_wochentage_2",
+     "category": "wochentage",
+     "text": "Montagsgruß für dich: Lass dich heute von Terminen nicht stressen und gönn dir kleine Wohlfühlpausen. ☕",
+     "heading": "Schönen Montag",
+     "mood": "herbst",
+     "date": "2026-10-26",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261026_wochentage_3",
+     "category": "wochentage",
+     "text": "Gemeinsam packen wir die neue Woche an. Ich wünsche dir einen schwungvollen und freundlichen Montag!",
+     "heading": "Frohen Montag",
+     "mood": "natur",
+     "date": "2026-10-26",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261026_freundschaft_1",
+     "category": "freundschaft",
+     "text": "Danke für deine Wärme und dein offenes Herz. Es tut so gut zu wissen, dass du da bist.",
+     "heading": "Von Herzen",
+     "mood": "herz",
+     "date": "2026-10-26"
+    },
+    {
+     "id": "ai20261026_freundschaft_2",
+     "category": "freundschaft",
+     "text": "Wahre Freunde sind wie Sonnenstrahlen an grauen Tagen. Ich schicke dir eine herzliche Umarmung aus der Ferne. 🌸",
+     "heading": "Lieber Gruß",
+     "mood": "blumen",
+     "date": "2026-10-26"
+    }
+   ]
   }
  },
  "weather": {
   "sonne": [
+   {
+    "id": "aiw20261026_sonne_1",
+    "text": "Was für ein strahlender Tag! Lass dir die Sonnenstrahlen auf die Nase scheinen und genieß das schöne Wetter. ☀️",
+    "heading": "Herrlicher Sonnenschein",
+    "mood": "himmel",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_sonne_0",
+    "text": "Die Sonne lacht vom Himmel und schenkt uns goldene Stunden. Geh hinaus und tanke ein wenig Wärme!",
+    "heading": "Sonnige Grüße",
+    "mood": "sonnenaufgang",
+    "date": "2026-10-26"
+   },
    {
     "id": "aiw20261024_sonne_1",
     "text": "Was für eine herrliche Helligkeit draußen. Lass die wärmenden Sonnenstrahlen tief in dein Herz scheinen. ☀️",
@@ -1200,6 +1399,20 @@
   ],
   "wolken": [
    {
+    "id": "aiw20261026_wolken_3",
+    "text": "Draußen hängen graue Wolken, aber drinnen duftet es nach Tee. Ein wunderbarer Tag, um einfach mal daheimzubleiben.",
+    "heading": "Wolkengrüße",
+    "mood": "kaffee",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_wolken_2",
+    "text": "Auch wenn dichte Wolken die Sonne verdecken: Mach es dir drinnen umso gemütlicher und lass die Seele leuchten.",
+    "heading": "Grauer Himmel",
+    "mood": "herbst",
+    "date": "2026-10-26"
+   },
+   {
     "id": "aiw20261024_wolken_3",
     "text": "Wenn die Wolken tief hängen, zünden wir einfach unser eigenes Licht an. Hab einen herrlich gemütlichen Tag.",
     "heading": "Wolkenzauber",
@@ -1285,6 +1498,20 @@
    }
   ],
   "regen": [
+   {
+    "id": "aiw20261026_regen_5",
+    "text": "Der Regen wäscht die Natur rein und schenkt uns eine Pause. Genieß das beruhigende Plätschern von drinnen. 🌧️",
+    "heading": "Gemütlicher Regentag",
+    "mood": "regen",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_regen_4",
+    "text": "Wenn die Tropfen leise an die Scheiben klopfen, ist es Zeit für eine Decke und ein gutes Buch. Schönen Regentag!",
+    "heading": "Regengruß",
+    "mood": "regen",
+    "date": "2026-10-26"
+   },
    {
     "id": "aiw20261024_regen_5",
     "text": "Draußen wäscht der Regen die Natur rein und frisch. Bleib im Trockenen und genieß die beruhigende Stimmung.",
@@ -1372,6 +1599,20 @@
   ],
   "schnee": [
    {
+    "id": "aiw20261026_schnee_7",
+    "text": "Schneeflocken tanzen vor dem Fenster. Zieh feste Stiefel an für einen herrlichen Spaziergang durch die weiße Pracht.",
+    "heading": "Schneegrüße",
+    "mood": "winter",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_schnee_6",
+    "text": "Eine weiße Decke legt sich leise über das Land. Die Welt hält inne und strahlt pure Ruhe aus.",
+    "heading": "Winterzauber",
+    "mood": "schnee",
+    "date": "2026-10-26"
+   },
+   {
     "id": "aiw20261024_schnee_7",
     "text": "Knirschender Schnee unter den Sohlen und frische, klare Luft: Zieh dich warm an und staune über die Pracht. ❄️",
     "heading": "Erster Schnee",
@@ -1457,6 +1698,20 @@
    }
   ],
   "nebel": [
+   {
+    "id": "aiw20261026_nebel_9",
+    "text": "Wenn der Nebel die Umrisse weichzeichnet, besinnt man sich aufs Wesentliche. Hab einen behaglichen Tag!",
+    "heading": "Sanfter Morgennebel",
+    "mood": "wald",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_nebel_8",
+    "text": "Dichte Nebelschwaden hüllen die Landschaft ein. Alles wirkt so herrlich still und verzaubert heute.",
+    "heading": "Geheimnisvoller Nebel",
+    "mood": "nebel",
+    "date": "2026-10-26"
+   },
    {
     "id": "aiw20261024_nebel_9",
     "text": "Wenn die Konturen verschwimmen, wird die Welt ganz still. Nimm dir Zeit für deine Gedanken und pass auf den Wegen gut auf.",
@@ -1544,6 +1799,20 @@
   ],
   "wind": [
    {
+    "id": "aiw20261026_wind_11",
+    "text": "Lass dir heute vom frischen Herbstwind die Gedanken freipusten. Es tut gut, einmal kräftig durchzuatmen. 🍃",
+    "heading": "Windiger Tag",
+    "mood": "natur",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_wind_10",
+    "text": "Draußen pfeift der Wind um die Ecken und wirbelt bunte Blätter auf. Gut festhalten und später schön aufwärmen!",
+    "heading": "Stürmische Grüße",
+    "mood": "herbst",
+    "date": "2026-10-26"
+   },
+   {
     "id": "aiw20261024_wind_11",
     "text": "Draußen pfeift der Wind um die Ecken – umso schöner ist es, behaglich im Warmen zu sitzen. Pass gut auf dich auf. 🍂",
     "heading": "Stürmische Grüße",
@@ -1629,6 +1898,20 @@
    }
   ],
   "hitze": [
+   {
+    "id": "aiw20261026_hitze_13",
+    "text": "Bei dieser großen Hitze gilt nur eines: Tempo drosseln, Beine hochlegen und den Tag ganz ruhig verbringen.",
+    "heading": "Heiße Grüße",
+    "mood": "meer",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_hitze_12",
+    "text": "Das Thermometer klettert immer höher! Such dir ein kühles Plätzchen im Schatten und trink genug Wasser.",
+    "heading": "Sommerliche Hitze",
+    "mood": "sommer",
+    "date": "2026-10-26"
+   },
    {
     "id": "aiw20261024_hitze_13",
     "text": "Das Thermometer klettert munter weiter. Gönn dir heute viele Pausen und lass die Hektik einfach schmelzen. ☀️",
@@ -1716,6 +1999,20 @@
   ],
   "kaelte": [
    {
+    "id": "aiw20261026_kaelte_15",
+    "text": "Kalt ist es geworden draußen! Umso schöner ist die wohlige Wärme im Haus. Hab einen warmen, gemütlichen Tag. ❄️",
+    "heading": "Frostige Grüße",
+    "mood": "kerzen",
+    "date": "2026-10-26"
+   },
+   {
+    "id": "aiw20261026_kaelte_14",
+    "text": "Väterchen Frost hat die Gräser verzaubert. Pack dich dick ein mit Schal und Mütze, wenn du vor die Tür gehst!",
+    "heading": "Klirrende Kälte",
+    "mood": "winter",
+    "date": "2026-10-26"
+   },
+   {
     "id": "aiw20261024_kaelte_15",
     "text": "Kühler Atem in der Winterluft: Wärm dich nach dem Spaziergang mit einer heißen Tasse wieder richtig auf.",
     "heading": "Frostige Grüße",
@@ -1802,6 +2099,21 @@
   ]
  },
  "photos": [
+  {
+   "id": "ph_bfc2810867",
+   "file": "photos/ph_bfc2810867.jpg",
+   "tags": [
+    "blumen",
+    "natur",
+    "sommer"
+   ],
+   "dim": 0.2,
+   "source": "https://live.staticflickr.com/3824/10678109245_d03509477d_b.jpg",
+   "page": "https://www.flickr.com/photos/107640324@N05/10678109245",
+   "credit": "Intermountain Region US Forest Service",
+   "license": "PDM",
+   "added": "2026-10-25"
+  },
   {
    "id": "ph_fd803115fb",
    "file": "photos/ph_fd803115fb.jpg",

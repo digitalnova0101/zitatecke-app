@@ -1,31 +1,7 @@
-== Samstag, 24. Oktober 2026  special=None
+== Sonntag, 25. Oktober 2026  special=None
 Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
 Using Gemini model: gemini-3.8-flash
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-[gemini gemini-3.8-flash] in=4355 out=2644
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-[gemini gemini-3.8-flash] in=1373 out=262
-  fix 15: Gelassenheit ist der beste Kompass für stürmische Tage. Nimm tiefen Atem und vertrau auf das Gute.  ->  Gelassenheit ist der beste Kompass für stürmische Tage. Atme tief durch und vertrau auf das Gute.
-  fix 22: Goldenes Licht flutet die Straßen! Schnapp dir eine Jacke und genieße die strahlenden Strahlen im Gesicht.  ->  Goldenes Licht flutet die Straßen! Schnapp dir eine Jacke und genieße die wärmenden Strahlen im Gesicht.
-  fix 24: Ein Himmel voller sanfter Wolkendecken lädt zum Innehalten ein. Mach es dir drinnen heute besonders heimelig.  ->  Ein Himmel voller sanfter Wolken lädt zum Innehalten ein. Mach es dir drinnen heute besonders heimelig.
-  fix 29: Knirschender Schnee unter den Sohlen und frische klare Luft: Zieh dich warm an und staune über die Pracht. ❄️  ->  Knirschender Schnee unter den Sohlen und frische, klare Luft: Zieh dich warm an und staune über die Pracht. ❄️
-  fix 31: Wenn die Konturen verschwimmen, wird die Welt ganz still. Nimm dir Zeit für deine Gedanken und hab Acht auf den Wegen.  ->  Wenn die Konturen verschwimmen, wird die Welt ganz still. Nimm dir Zeit für deine Gedanken und pass auf den Wegen gut auf.
-   saved 22 quotes, 16 weather
-== Sonntag, 25. Oktober 2026  special=None
+[gemini gemini-3.8-flash] in=4308 out=2793
 HTTP 503: {
   "error": {
     "code": 503,
@@ -35,11 +11,25 @@ HTTP 503: {
 }
 
 !! generation failed for 2026-10-25: The read operation timed out
-photos: snow landscape
+== Montag, 26. Oktober 2026  special=None
+[gemini gemini-3.8-flash] in=4308 out=2637
+[gemini gemini-3.8-flash] in=1365 out=310
+  fix 5: Zieh dir etwas Warmes an und starte mitZuversicht. Ich schicke dir liebe Grüße für einen rundum gelungenen Morgen.  ->  Zieh dir etwas Warmes an und starte mit Zuversicht. Ich schicke dir liebe Grüße für einen rundum gelungenen Morgen.
+  fix 6: Der Tag war lang, nun darf der Kopf zur Ruhe kommen. Kuschel dich fest ein und schlaf tief und fest.  ->  Der Tag war lang, nun darf der Kopf zur Ruhe kommen. Kuschel dich warm ein und schlaf tief und fest.
+  fix 24: Auch wenn dichte Wolken die Sonne verdecken: Mach es dir drinnen umso gemütlicher und lass das Gemüt leuchten.  ->  Auch wenn dichte Wolken die Sonne verdecken: Mach es dir drinnen umso gemütlicher und lass die Seele leuchten.
+  fix 26: Wenn die Tropfen leise an die Scheiben klopfen, ist Zeit für eine Decke und ein gutes Buch. Schönen Regentag!  ->  Wenn die Tropfen leise an die Scheiben klopfen, ist es Zeit für eine Decke und ein gutes Buch. Schönen Regentag!
+  fix 33: Lass dir heute vom frischen Herbstwind die Gedanken frei pusten. Es tut gut, einmal kräftig durchzuatmen. 🍃  ->  Lass dir heute vom frischen Herbstwind die Gedanken freipusten. Es tut gut, einmal kräftig durchzuatmen. 🍃
+  fix 34: Das Thermometer klettert hoch hinaus! Such dir ein kühles Plätzchen im Schatten und trink genug Wasser.  ->  Das Thermometer klettert immer höher! Such dir ein kühles Plätzchen im Schatten und trink genug Wasser.
+   saved 22 quotes, 16 weather
+photos: red roses
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
-photos: sunrise landscape
-[gemini gemini-3.8-flash] in=6933 out=330
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+photos: wildflowers meadow
+[gemini gemini-3.8-flash] in=6933 out=315
+   + ph_bfc2810867 ['blumen', 'natur', 'sommer'] score=8
 landing: index.html
 legal: datenschutz.html + impressum.html
-feed: 6 days, 132 quotes, 96 weather, 28 photos
+feed: 7 days, 154 quotes, 112 weather, 29 photos
