@@ -2034,10 +2034,209 @@
      "date": "2026-11-03"
     }
    ]
+  },
+  "2026-11-09": {
+   "date": "2026-11-09",
+   "special": null,
+   "quotes": [
+    {
+     "id": "ai20261109_guten_morgen_1",
+     "category": "guten_morgen",
+     "text": "Der Novembermorgen dämmert herauf. Nimm dir einen Augenblick Zeit für dich, bevor der Tag Fahrt aufnimmt.",
+     "heading": "Guten Morgen",
+     "mood": "sonnenaufgang",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_guten_morgen_2",
+     "category": "guten_morgen",
+     "text": "Wenn die Kaffeemaschine leise gluckert, zieht Gemütlichkeit ein. Starte gut gelaunt in die neue Woche! ☕",
+     "heading": "Morgengruß",
+     "mood": "kaffee",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_guten_morgen_3",
+     "category": "guten_morgen",
+     "text": "Goldenes Herbstlaub liegt vor der Tür. Atme einmal tief durch und geh frohen Mutes in diesen Tag.",
+     "heading": "Schönen Morgen",
+     "mood": "herbst",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_guten_morgen_4",
+     "category": "guten_morgen",
+     "text": "Wach auf, streck dich und lass dich von nichts hetzen. Heute warten lauter kleine Freuden auf dich.",
+     "heading": "Aufwachen",
+     "mood": "natur",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_guten_morgen_5",
+     "category": "guten_morgen",
+     "text": "Ich sende dir einen herzlichen Gruß zum Wachwerden. Möge dir heute jede Begegnung ein Lächeln schenken.",
+     "heading": "Liebe Grüße",
+     "mood": "blumen",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_guten_morgen_6",
+     "category": "guten_morgen",
+     "text": "Frischer Wind am Morgen vertreibt die Träume der Nacht. Hab einen wunderbaren, lebendigen Tag!",
+     "heading": "Guten Start",
+     "mood": "himmel",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_1",
+     "category": "gute_nacht",
+     "text": "Zieh die Bettdecke bis ans Kinn und spüre die wohlige Wärme. Der Tag ist geschafft, schlaf tief und fest.",
+     "heading": "Gute Nacht",
+     "mood": "nacht",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_2",
+     "category": "gute_nacht",
+     "text": "Eine friedliche Nacht senkt sich herab. Lass alle Gedanken los und gleite sanft in schöne Träume. 🌙",
+     "heading": "Träum süß",
+     "mood": "mond",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_3",
+     "category": "gute_nacht",
+     "text": "Das Kerzenlicht ist gelöscht, die Dunkelheit schützt deinen Schlummer. Erhol dich gut bis zum Morgen.",
+     "heading": "Schlaf schön",
+     "mood": "kerzen",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_4",
+     "category": "gute_nacht",
+     "text": "Draußen funkeln die Sterne still und klar. Schließe die Augen im Vertrauen, dass morgen alles gut wird.",
+     "heading": "Stille Nacht",
+     "mood": "sterne",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_5",
+     "category": "gute_nacht",
+     "text": "Lege das Buch beiseite und lausche der Nacht. Ich wünsche dir einen tiefen, heilsamen Schlaf.",
+     "heading": "Schöne Träume",
+     "mood": "nacht",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_gute_nacht_6",
+     "category": "gute_nacht",
+     "text": "Alles darf jetzt ruhen. Schenk deinem Körper die Pause, die er verdient hat. Schlaf behütet!",
+     "heading": "Gute Nacht",
+     "mood": "mond",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_motivation_1",
+     "category": "motivation",
+     "text": "Bäume werfen im Herbst ab, was sie nicht mehr nähren können. Manchmal tut Loslassen einfach der Seele gut.",
+     "heading": "Gedanke des Tages",
+     "mood": "wald",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_motivation_2",
+     "category": "motivation",
+     "text": "Du musst nicht perfekt sein, um wertvoll zu sein. Deine Aufrichtigkeit ist deine größte Stärke. 🌿",
+     "heading": "Glaub an dich",
+     "mood": "natur",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_motivation_3",
+     "category": "motivation",
+     "text": "Jeder neue Morgen ist wie ein leeres Blatt Papier. Schreib heute etwas Schönes darauf, nur für dich.",
+     "heading": "Neuer Mut",
+     "mood": "sonnenaufgang",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_motivation_4",
+     "category": "motivation",
+     "text": "Wer den Blick hebt, sieht mehr Himmel als Hindernisse. Geh mit offenem Herzen durch diesen Tag.",
+     "heading": "Zuversicht",
+     "mood": "berge",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_motivation_5",
+     "category": "motivation",
+     "text": "Selbst die kleinste Kerze erhellt einen ganzen Raum. Sei heute einfach du selbst, das reicht völlig aus.",
+     "heading": "Innere Stärke",
+     "mood": "kerzen",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_wochentage_1",
+     "category": "wochentage",
+     "text": "Ein neuer Montag steht vor der Tür! Nimm ihn heiter an die Hand und lass dich von nichts aus der Ruhe bringen.",
+     "heading": "Schönen Montag",
+     "mood": "kaffee",
+     "date": "2026-11-09",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261109_wochentage_2",
+     "category": "wochentage",
+     "text": "Montagsgrüße aus der Ferne: Setz dir kleine Ziele und feiere jeden Fortschritt. Komm gut durch den Tag! ☕",
+     "heading": "Froher Montag",
+     "mood": "herbst",
+     "date": "2026-11-09",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261109_wochentage_3",
+     "category": "wochentage",
+     "text": "Die Woche beginnt, und mit ihr viele neue Chancen. Ich wünsche dir einen schwungvollen Start voller Energie.",
+     "heading": "Guter Wochenstart",
+     "mood": "sonnenaufgang",
+     "date": "2026-11-09",
+     "tag": "montag"
+    },
+    {
+     "id": "ai20261109_freundschaft_1",
+     "category": "freundschaft",
+     "text": "Es gibt Menschen, bei denen man einfach ankommen darf. Danke, dass du einer dieser Herzensmenschen bist.",
+     "heading": "Von Herzen",
+     "mood": "herz",
+     "date": "2026-11-09"
+    },
+    {
+     "id": "ai20261109_freundschaft_2",
+     "category": "freundschaft",
+     "text": "Egal wie viele Kilometer uns trennen, in Gedanken trinken wir heute zusammen Kaffee. Schön, dass es dich gibt! 🌸",
+     "heading": "Für dich",
+     "mood": "rosen",
+     "date": "2026-11-09"
+    }
+   ]
   }
  },
  "weather": {
   "sonne": [
+   {
+    "id": "aiw20261109_sonne_1",
+    "text": "Goldener Sonnenschein lässt alles strahlen. Geh hinaus ins Freie und tanke pure Lebensfreude. ☀️",
+    "heading": "Sonniger Tag",
+    "mood": "natur",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_sonne_0",
+    "text": "Die Sonne lacht vom Himmel und wärmt die Nase. Schnapp dir ein paar Sonnenstrahlen für die Seele!",
+    "heading": "Sonnengruß",
+    "mood": "himmel",
+    "date": "2026-11-09"
+   },
    {
     "id": "aiw20261103_sonne_1",
     "text": "Wenn die Sonne so strahlt, lacht auch das Herz. Lass dir das Licht auf die Nase scheinen und genieße diesen Prachtmorgen.",
@@ -2195,6 +2394,20 @@
   ],
   "wolken": [
    {
+    "id": "aiw20261109_wolken_3",
+    "text": "Der Himmel zieht sich zu, doch das Lächeln bleibt. Ein Tag zum Einkuscheln mit Tee und Wolldecke.",
+    "heading": "Wolkengruß",
+    "mood": "kaffee",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_wolken_2",
+    "text": "Draußen hängen graue Wolken, drinnen machen wir es uns umso gemütlicher. Mach dir warme Gedanken!",
+    "heading": "Grauer Himmel",
+    "mood": "himmel",
+    "date": "2026-11-09"
+   },
+   {
     "id": "aiw20261103_wolken_3",
     "text": "Graue Wolken da draußen stören uns gar nicht. Wir tragen den Sonnenschein einfach im Herzen und machen das Beste daraus.",
     "heading": "Gemütlich daheim",
@@ -2350,6 +2563,20 @@
    }
   ],
   "regen": [
+   {
+    "id": "aiw20261109_regen_5",
+    "text": "Gummistiefel an oder drinnen bleiben: Regen wäscht den Staub fort und schenkt der Natur neues Leben. 🌧️",
+    "heading": "Regenwetter",
+    "mood": "regen",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_regen_4",
+    "text": "Wenn die Tropfen ans Fenster klopfen, hat Gemütlichkeit Hochkonjunktur. Hab einen behaglichen Regentag!",
+    "heading": "Regengruß",
+    "mood": "regen",
+    "date": "2026-11-09"
+   },
    {
     "id": "aiw20261103_regen_5",
     "text": "Die Natur trinkt sich satt und wir machen es uns behaglich. Zieh die Gummistiefel an oder bleib einfach entspannt auf dem Sofa. 🌧️",
@@ -2507,6 +2734,20 @@
   ],
   "schnee": [
    {
+    "id": "aiw20261109_schnee_7",
+    "text": "Alles glitzert wie im Märchen. Zieh die Mütze tief ins Gesicht und freu dich an der weißen Pracht!",
+    "heading": "Schneegruß",
+    "mood": "schnee",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_schnee_6",
+    "text": "Weiße Flocken tanzen leise vom Himmel und decken die Welt zu. Genieße die friedliche Stille draußen.",
+    "heading": "Winterzauber",
+    "mood": "schnee",
+    "date": "2026-11-09"
+   },
+   {
     "id": "aiw20261103_schnee_7",
     "text": "Alles glitzert im frischen Schnee. Warm einpacken, tief durchatmen und die märchenhafte Winterlandschaft bewundern!",
     "heading": "Schneegrüße",
@@ -2662,6 +2903,20 @@
    }
   ],
   "nebel": [
+   {
+    "id": "aiw20261109_nebel_9",
+    "text": "Schritt für Schritt durch den Schleier: Auch wenn man nicht weit sieht, geht es immer voran.",
+    "heading": "Im Nebel",
+    "mood": "wald",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_nebel_8",
+    "text": "Dichter Nebel hüllt die Landschaft in geheimnisvolle Watte. Ein stiller Tag zum Innehalten und Träumen.",
+    "heading": "Nebelzauber",
+    "mood": "nebel",
+    "date": "2026-11-09"
+   },
    {
     "id": "aiw20261103_nebel_9",
     "text": "Im Nebel verliert alle Hektik ihre Kraft. Fahr vorsichtig, lass dich nicht drängen und genieße die stille Stimmung.",
@@ -2819,6 +3074,20 @@
   ],
   "wind": [
    {
+    "id": "aiw20261109_wind_11",
+    "text": "Stürmische Böen rütteln an den Zweigen. Drinnen brennt die Kerze und es duftet nach Geborgenheit. 🍂",
+    "heading": "Herbststurm",
+    "mood": "kerzen",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_wind_10",
+    "text": "Der Herbstwind saust um die Hausecken und wirbelt bunte Blätter auf. Lass dir die Gedanken durchpusten!",
+    "heading": "Windiger Tag",
+    "mood": "herbst",
+    "date": "2026-11-09"
+   },
+   {
     "id": "aiw20261103_wind_11",
     "text": "Ein kräftiger Wind weht alte Sorgen davon. Halt deine Mütze fest und spüre die pure Energie der herbstlichen Natur. 🍂",
     "heading": "Stürmische Grüße",
@@ -2975,6 +3244,20 @@
   ],
   "hitze": [
    {
+    "id": "aiw20261109_hitze_13",
+    "text": "Flirrende Luft und hochsommerliche Wärme: Heute regiert die Siesta. Mach einfach herrlich langsam!",
+    "heading": "Heiße Grüße",
+    "mood": "meer",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_hitze_12",
+    "text": "Das Thermometer klettert unermüdlich! Such dir ein kühles Schattenplätzchen und trink reichlich Wasser.",
+    "heading": "Sommerhitze",
+    "mood": "sommer",
+    "date": "2026-11-09"
+   },
+   {
     "id": "aiw20261103_hitze_12",
     "text": "Bei dieser Wärme hilft nur eine Siesta im Schatten. Mach langsam, schone deine Kräfte und genieß eine kühle Erfrischung.",
     "heading": "Heißer Sommertag",
@@ -3123,6 +3406,20 @@
    }
   ],
   "kaelte": [
+   {
+    "id": "aiw20261109_kaelte_15",
+    "text": "Die Luft ist eisig klar und schneidend frisch. Ein zügiger Spaziergang und danach eine dampfende Tasse Tee!",
+    "heading": "Frostiger Tag",
+    "mood": "kaffee",
+    "date": "2026-11-09"
+   },
+   {
+    "id": "aiw20261109_kaelte_14",
+    "text": "Väterchen Frost hat Eisblumen ans Fenster gezeichnet. Hüll dich in einen dicken Schal und wärme dein Herz.",
+    "heading": "Klirrende Kälte",
+    "mood": "winter",
+    "date": "2026-11-09"
+   },
    {
     "id": "aiw20261103_kaelte_14",
     "text": "Draußen ist es eisig kalt, aber drinnen brennt die Kerze und der Ofen wärmt. Mach es dir so richtig behaglich heute.",
