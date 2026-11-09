@@ -1,8 +1,7 @@
-== Sonntag, 8. November 2026  special=None
+skip (already have): 2026-11-09
+== Dienstag, 10. November 2026  special=None
 Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-1.2-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
 Using Gemini model: gemini-3.8-flash
-!! generation failed for 2026-11-08: The read operation timed out
-== Montag, 9. November 2026  special=None
 HTTP 503: {
   "error": {
     "code": 503,
@@ -11,6 +10,13 @@ HTTP 503: {
   }
 }
 
+!! generation failed for 2026-11-10: The read operation timed out
+photos: christmas candles
+photos: sunset lake
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
 HTTP 503: {
   "error": {
     "code": 503,
@@ -19,31 +25,7 @@ HTTP 503: {
   }
 }
 
-[gemini gemini-3.8-flash] in=4331 out=2592
-[gemini gemini-3.8-flash] in=1332 out=395
-  fix 3: Wach auf, streck dich aus und lass dich von nichts hetzen. Heute warten lauter kleine Freuden auf dich.  ->  Wach auf, streck dich und lass dich von nichts hetzen. Heute warten lauter kleine Freuden auf dich.
-  fix 6: Zieh die Bettdecke bis ans Kinn und spüre die wohlige Wärme. Der Tag ist vollbracht, schlaf tief und fest.  ->  Zieh die Bettdecke bis ans Kinn und spüre die wohlige Wärme. Der Tag ist geschafft, schlaf tief und fest.
-  fix 7: Eine friedliche Nacht senkt sich hernieder. Lass alle Gedanken los und gleite sanft in schöne Träume. 🌙  ->  Eine friedliche Nacht senkt sich herab. Lass alle Gedanken los und gleite sanft in schöne Träume. 🌙
-  fix 8: Das Kerzenlicht ist gelöscht, die Dunkelheit schützt deinen Schlummer. Erhol dich von Herzen bis zum Morgen.  ->  Das Kerzenlicht ist gelöscht, die Dunkelheit schützt deinen Schlummer. Erhol dich gut bis zum Morgen.
-  fix 12: Bäume werfen im Herbst ab, was sie nicht mehr nähren kann. Manchmal tut Loslassen einfach der Seele gut.  ->  Bäume werfen im Herbst ab, was sie nicht mehr nähren können. Manchmal tut Loslassen einfach der Seele gut.
-  fix 23: Goldener Sonnenschein lässt alles strahlen. Geh hinaus ins Freie und tanke pure Lebensfreude auf. ☀️  ->  Goldener Sonnenschein lässt alles strahlen. Geh hinaus ins Freie und tanke pure Lebensfreude. ☀️
-  fix 31: Schritt für Schritt durch den Schleier: Auch wenn man den Weg nicht weit sieht, geht es immer voran.  ->  Schritt für Schritt durch den Schleier: Auch wenn man nicht weit sieht, geht es immer voran.
-  fix 36: Väterchen Frost hat Eisblumen ans Fenster gezeichnet. Hüll dich in dicke Schals und wärm dein Herz.  ->  Väterchen Frost hat Eisblumen ans Fenster gezeichnet. Hüll dich in einen dicken Schal und wärme dein Herz.
-   saved 22 quotes, 16 weather
-photos: forest light
-   skip download: HTTP Error 403: Forbidden
-   skip download: HTTP Error 403: Forbidden
-   skip download: HTTP Error 403: Forbidden
-photos: blue sky clouds
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-[gemini gemini-3.8-flash] in=5820 out=265
+!! photos failed: The read operation timed out
 landing: index.html
 legal: datenschutz.html + impressum.html
 feed: 12 days, 264 quotes, 191 weather, 29 photos
