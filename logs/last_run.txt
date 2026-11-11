@@ -1,40 +1,53 @@
-== Dienstag, 10. November 2026  special=None
-Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-1.2-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
-Using Gemini model: gemini-3.8-flash
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-!! generation failed for 2026-11-10: HTTP Error 503: Service Unavailable
 == Mittwoch, 11. November 2026  special={'name': 'Martinstag', 'heading': 'Schönen Martinstag', 'mood': 'kerzen', 'tone': 'warm, teilen'}
-!! generation failed for 2026-11-11: The read operation timed out
-photos: coffee cup morning
+Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-4-carbon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-1.2-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
+Using Gemini model: gemini-3.8-flash
+[gemini gemini-3.8-flash] in=4338 out=2934
+[gemini gemini-3.8-flash] in=1529 out=164
+  fix 11: Lösche das Nachtlicht und gib deine Gedanken der Dunkelheit ab. Schlaf tief, fest und vollkommen unbeschwert.  ->  Lösche das Nachtlicht und überlass deine Gedanken der Dunkelheit. Schlaf tief, fest und vollkommen unbeschwert.
+  fix 19: Ein fröhlicher Mittwochsgruss für dich: Nimm dir Zeit für ein Päuschen und lass dich von nichts hetzen.  ->  Ein fröhlicher Mittwochsgruß für dich: Nimm dir Zeit für ein Päuschen und lass dich von nichts hetzen.
+  fix 32: Lautlos fallen die Flocken und verwandeln alles in eine weiße Decke. Genieße diesen zauberhaften Winterfrieden.  ->  Lautlos fallen die Flocken und hüllen alles in eine weiße Decke. Genieße diesen zauberhaften Winterfrieden.
+   saved 26 quotes, 16 weather
+== Donnerstag, 12. November 2026  special=None
+[gemini gemini-3.8-flash] in=4291 out=2597
+  drop weather: None Wenn die Sonne so herrlich strahlt, hebt sich das Gemüt wie 
+  drop weather: None Goldene Sonnenstrahlen wärmen die Luft. Nutze die helle Zeit
+  drop weather: None Der Himmel trägt heute Grau, doch drinnen machen wir es uns 
+  drop weather: None Wolken verhüllen die Weite, aber sie erinnern uns daran, wie
+  drop weather: None Der Regen trommelt an die Fenster. Perfektes Wetter für eine
+  drop weather: None Regentropfen waschen die Natur rein. Lass dich vom Wetter ni
+  drop weather: None Dicke Flocken verwandeln die Welt in ein leises Wintermärche
+  drop weather: None Wenn alles unter Schnee versinkt, wird die Welt friedlich un
+  drop weather: None Dichte Nebelschwaden hüllen die Landschaft ein. Ein geheimni
+  drop weather: None Der Nebel dämpft alle Geräusche und schenkt uns Stille. Manc
+  drop weather: None Draußen pfeift der Wind um die Ecken. Lass dir alle trüben G
+  drop weather: None Wenn der Sturm an den Bäumen rüttelt, spürt man die wilde Kr
+  drop weather: None Das Thermometer klettert hoch hinauf. Such dir ein schattige
+  drop weather: None Große Hitze fordert gemütliches Tempo. Schalte heute einen G
+  drop weather: None Klirrende Kälte liegt in der Luft. Schal und Handschuhe einp
+  drop weather: None Väterchen Frost hat alles fest im Griff. Umso schöner ist da
+HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[gemini gemini-3.8-flash] in=831 out=252
+  fix 3: Guten Morgen! Ein Lächeln im Spiegel ist der beste Start, um diesen Tag heiter und gelassen zu beginnen.  ->  Guten Morgen! Ein Lächeln im Spiegel ist der beste Start, um diesen Tag heiter und gelassen zu erleben.
+  fix 4: Schüttel die Müdigkeit aus den Knochen. Ein frischer Tag liegt vor dir, bereit für lauter kleine Glückssekunden.  ->  Schüttle die Müdigkeit aus den Knochen. Ein frischer Tag liegt vor dir, bereit für lauter kleine Glückssekunden.
+  fix 5: Guten Morgen für dich! Mögen dir heute all die kleinen Dinge gelingen, die dir am Herzen liegen.  ->  Guten Morgen! Mögen dir heute all die kleinen Dinge gelingen, die dir am Herzen liegen.
+  fix 12: Vertraue darauf, dass jeder Schritt zählt, ganz egal wie klein er heute scheint. Beständigkeit trägt dich weit.  ->  Vertraue darauf, dass jeder Schritt zählt, ganz egal, wie klein er heute scheint. Beständigkeit trägt dich weit.
+  fix 13: Das Schönste am Älterwerden ist die Gelassenheit zu wissen, dass man nicht mehr jedem gefallen muss. 🌿  ->  Das Schönste am Älterwerden ist die Gelassenheit, zu wissen, dass man nicht mehr jedem gefallen muss. 🌿
+   saved 22 quotes, 0 weather
+photos: umbrella rain street
    skip download: HTTP Error 403: Forbidden
-photos: rain window drops
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
-   skip download: HTTP Error 403: Forbidden
+photos: foggy forest morning
+[gemini gemini-3.8-flash] in=2515 out=112
+   + ph_40dc6cc3c8 ['wald', 'nebel', 'natur'] score=7
 landing: index.html
 legal: datenschutz.html + impressum.html
-feed: 12 days, 264 quotes, 191 weather, 29 photos
+feed: 14 days, 312 quotes, 207 weather, 30 photos
