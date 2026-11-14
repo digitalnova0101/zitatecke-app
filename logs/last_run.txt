@@ -1,4 +1,4 @@
-== Freitag, 13. November 2026  special=None
+== Samstag, 14. November 2026  special=None
 Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, deep-research-pro-preview-12-2025, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-4-carbon, gemini-4-hydrogen, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-1.2-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
 Using Gemini model: gemini-3.8-flash
 HTTP 503: {
@@ -9,46 +9,31 @@ HTTP 503: {
   }
 }
 
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-!! generation failed for 2026-11-13: The read operation timed out
-== Samstag, 14. November 2026  special=None
-!! generation failed for 2026-11-14: The read operation timed out
-photos: snow landscape
+[gemini gemini-3.8-flash] in=4243 out=2664
+  drop weather: hitze Das Thermometer klettert in die Höhe. Such dir ein schattige
+[gemini gemini-3.8-flash] in=1376 out=231
+  fix 5: Der Duft von frischem Brot und heißem Kaffee liegt in der Luft. Lass es dir schmecken und geh frohgemut voran.  ->  Der Duft von frischem Brot und heißem Kaffee liegt in der Luft. Lass es dir schmecken und starte frohgemut in den Tag.
+  fix 22: Der Himmel strahlt im reinsten Blau und schickt goldene Wärme. Lass dir von den Sonnenstrahlen das Gesicht wärmen.  ->  Der Himmel strahlt im reinsten Blau und schickt goldenes Licht. Lass dir von den Sonnenstrahlen das Gesicht wärmen.
+  fix 23: Wenn die Sonne so herrlich scheint, lacht das Gemüt gleich mit. Geh hinaus und tanke ein paar heitere Stunden.  ->  Wenn die Sonne so herrlich scheint, lacht das Gemüt gleich mit. Geh hinaus und sammle ein paar heitere Stunden.
+  fix 30: Geheimnisvolle Nebelschwaden hüllen die Landschaft ein. Alles wirkt so wunderbar still, geheimnisvoll und gedämpft.  ->  Dichte Nebelschwaden hüllen die Landschaft ein. Alles wirkt so wunderbar still, geheimnisvoll und gedämpft.
+  fix 32: Eine frische Brise weht die letzten Gedanken frei. Zieh die Jacke fest zu und lass dich vom Wind ordentlich durchpusten.  ->  Eine frische Brise weht den Kopf frei. Zieh die Jacke fest zu und lass dich vom Wind ordentlich durchpusten.
+  fix 35: Der Frost malt zarte Eisblumen an die Scheiben. Zieh Mütze und Schal über und genieße die glasklare Kälte.  ->  Der Frost malt zarte Eisblumen an die Scheiben. Zieh Mütze und Schal an und genieße die glasklare Kälte.
+   saved 22 quotes, 15 weather
+== Sonntag, 15. November 2026  special=None
+[gemini gemini-3.8-flash] in=4242 out=2827
+  drop weather: hitze Das Thermometer klettert munter nach oben! Such dir ein kühl
+[gemini gemini-3.8-flash] in=1493 out=124
+  reject: {'i': 16, 'reason': "Bekanntes Zitat von Ruth E. Renkel ('Never fear shadows; they simply mean there's a light shining somewhere nearby')."}
+  fix 21: Wahre Freundschaft braucht keine großen Gesten, sondern spürt man selbst über weite Entfernungen. Ich denk ganz fest an dich! 🌸  ->  Wahre Freundschaft braucht keine großen Gesten – man spürt sie selbst über weite Entfernungen. Ich denk ganz fest an dich! 🌸
+   saved 21 quotes, 15 weather
+photos: red roses
    skip download: HTTP Error 403: Forbidden
    skip download: HTTP Error 403: Forbidden
-photos: sunrise landscape
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-!! photos failed: HTTP Error 503: Service Unavailable
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+   skip download: HTTP Error 403: Forbidden
+photos: wildflowers meadow
+[gemini gemini-3.8-flash] in=6933 out=322
 landing: index.html
 legal: datenschutz.html + impressum.html
-feed: 14 days, 312 quotes, 207 weather, 30 photos
+feed: 16 days, 355 quotes, 237 weather, 30 photos
