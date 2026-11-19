@@ -1,6 +1,6 @@
 secret_len=20 cleaned_len=20 cleaned_resolves=no
 ftp.cameraclickz.com: 
-cameraclickz.com: 2606:4700:3030::6815:ec4
+cameraclickz.com: 2606:4700:3032::ac43:a04c
 ftp.moezzadigital.com: 162.249.172.230
 moezzadigital.com: 162.249.172.230
 zitatecke.moezzadigital.com: 162.249.172.230
