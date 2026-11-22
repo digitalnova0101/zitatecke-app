@@ -1,55 +1,19 @@
-== Samstag, 21. November 2026  special=None
+skip (already have): 2026-11-22
+== Montag, 23. November 2026  special=None
 Gemini models: antigravity-preview-05-2026, antigravity-preview-09-2026, antigravity-preview-latest, deep-research-max-preview-04-2026, deep-research-preview-04-2026, gemini-2.5-computer-use-preview-10-2025, gemini-2.5-flash, gemini-2.5-flash-image, gemini-2.5-flash-lite, gemini-2.5-flash-preview-tts, gemini-2.5-pro, gemini-2.5-pro-preview-tts, gemini-3-flash-preview, gemini-3-pro-image, gemini-3-pro-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-lite, gemini-3.1-flash-lite-image, gemini-3.1-flash-lite-preview, gemini-3.1-flash-tts-preview, gemini-3.1-pro-preview, gemini-3.1-pro-preview-customtools, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.5-transcribe, gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash, gemini-3.8-flash-lite-tts, gemini-3.8-flash-tts, gemini-4-argon, gemini-4-carbon, gemini-4-hydrogen, gemini-4-neon, gemini-flash-latest, gemini-flash-lite-latest, gemini-nano-banana-2.1, gemini-omni-1.1-flash, gemini-omni-1.2-flash, gemini-omni-flash-preview, gemini-pro-latest, gemini-robotics-er-2-preview, gemma-4-26b-a4b-it, gemma-4-31b-it, lyria-3-clip-preview, lyria-3-pro-preview, lyria-3.5, nano-banana-pro-preview
 Using Gemini model: gemini-3.8-flash
-[gemini gemini-3.8-flash] in=4280 out=2724
-[gemini gemini-3.8-flash] in=1465 out=430
-  reject: {'i': 16, 'reason': "Zu nah am allbekannten Zitat von Mark Twain ('Gib jedem Tag die Chance, der schönste deines Lebens zu werden')."}
-  fix 1: Ein aromatischer Becher zum Wachwerden und ein freundlicher Gedanke auf den Weg: Möge dein Tag rundum gelingen.  ->  Ein duftender Becher Kaffee zum Wachwerden und ein freundlicher Gedanke auf den Weg: Möge dein Tag rundum gelingen.
-  fix 14: Erlaube dir, stolz auf das zu sein, was du still und leise trägst. Deine stille Ausdauer ist deine größte Kraft.  ->  Erlaube dir, stolz auf das zu sein, was du im Verborgenen trägst. Deine stille Ausdauer ist deine größte Kraft.
-  fix 17: Samstagmorgen und die Zeit gehört dir! Dreh die Musik an, lass den Haushalt warten und genieß deine freie Zeit.  ->  Samstagmorgen und der Tag gehört dir! Dreh die Musik an, lass den Haushalt warten und genieß deine freie Zeit.
-  fix 18: Heute bestimmt kein Wecker deinen Rhythmus. Mach genau das, was dir gute Laune macht, und lass es dir gutgehen! ☕  ->  Heute bestimmt kein Wecker deinen Rhythmus. Tu genau das, was dir gute Laune macht, und lass es dir gutgehen! ☕
-  fix 19: Ein herrlicher Samstag zum Durchatmen, Verweilen und Pläne-Schmieden. Ich wünsche dir Stunden voller Entspannung.  ->  Ein herrlicher Samstag zum Durchatmen, Verweilen und Pläneschmieden. Ich wünsche dir Stunden voller Entspannung.
-  fix 21: Gute Freunde sind wie Leuchttürme im Alltagstrubel: Sie spenden Orientierung und Wärme. Schön, dass wir uns haben. 🌸  ->  Gute Freunde sind wie Leuchttürme im Alltagstrubel: Sie spenden Orientierung und Halt. Schön, dass wir uns haben. 🌸
-  fix 24: Ein graues Wolkenkleid am Himmel lädt zum Kuscheln ein. Mach es dir drinnen warm und mach dir einen gemütlichen Nachmittag.  ->  Ein graues Wolkenkleid am Himmel lädt zum Kuscheln ein. Mach es dir drinnen gemütlich und verbringe einen ruhigen Nachmittag.
-   saved 21 quotes, 16 weather
-== Sonntag, 22. November 2026  special=None
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-[gemini gemini-3.8-flash] in=4325 out=2769
-HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-[gemini gemini-3.8-flash] in=1492 out=268
-  fix 6: Puste die Sorgen des Tages einfach wie ein Kerzenlicht aus. Ich wünsche dir wohlige Wärme und einen friedvollen Schlaf.  ->  Puste die Sorgen des Tages einfach wie eine Kerze aus. Ich wünsche dir wohlige Wärme und einen friedvollen Schlaf.
-  fix 8: Der Tag verabschiedet sich in aller Stille. Hülle dich fest in deine Decke und genieße das herrliche Gefühl der Entlastung.  ->  Der Tag verabschiedet sich in aller Stille. Hülle dich fest in deine Decke und genieße das herrliche Gefühl der Entspannung.
-  fix 10: Ein weiter Nachthimmel breitet seinen Schutz über dir aus. Lass dich von schönen Träumen sanft durch die Dunkelheit tragen.  ->  Ein weiter Nachthimmel breitet seinen Schutz über dich aus. Lass dich von schönen Träumen sanft durch die Dunkelheit tragen.
-  fix 23: Die Sonne lacht vom Himmel und vertreibt jede Trübsinnigkeit. Ich wünsche dir einen strahlend schönen Tag im Freien! ☀️  ->  Die Sonne lacht vom Himmel und vertreibt jeden Trübsinn. Ich wünsche dir einen strahlend schönen Tag im Freien! ☀️
-  fix 31: Die Welt versteckt sich heute hinter einem weichen Schleier. Mach es dir drinnen kuschlig und lass es dir gutgehen.  ->  Die Welt versteckt sich heute hinter einem weichen Schleier. Mach es dir drinnen kuschelig und lass es dir gut gehen.
-   saved 22 quotes, 16 weather
-photos: umbrella rain street
-   skip download: HTTP Error 403: Forbidden
-   skip download: HTTP Error 403: Forbidden
-photos: foggy forest morning
-!! photos failed: The read operation timed out
+[gemini gemini-3.8-flash] in=4368 out=2638
+  drop: motivation Vergleiche deinen Weg nicht mit dem anderer. Deine eigene Re
+  drop weather: hitze Das Thermometer klettert steil nach oben! Such dir ein kühle
+[gemini gemini-3.8-flash] in=1306 out=164
+  fix 1: Guten Morgen! Ein neuer Morgen hält viele kleine Überraschungen bereit. Geh einfach mit neugierigem Blick hinaus.  ->  Guten Morgen! Der neue Tag hält viele kleine Überraschungen bereit. Geh einfach mit neugierigem Blick hinaus.
+  fix 19: Egal wie viel Zeit vergeht: Ein Gespräch mit dir fühlt sich immer sofort vertraut an. Schön, dass wir uns haben!  ->  Egal, wie viel Zeit vergeht: Ein Gespräch mit dir fühlt sich immer sofort vertraut an. Schön, dass wir uns haben!
+  fix 22: Was für ein herrlicher Tag! Lass dich von der Sonne wärmen und nimm ein Stück von ihrem Strahlen mit ins Herz.  ->  Was für ein herrlicher Tag! Lass dich von der Sonne wärmen und nimm ein Stück von ihren Strahlen mit ins Herz.
+   saved 21 quotes, 15 weather
+photos: autumn leaves
+photos: candles cozy
+[gemini gemini-3.8-flash] in=4717 out=205
+   + ph_d64acdf2a0 ['herbst', 'natur'] score=7
 landing: index.html
 legal: datenschutz.html + impressum.html
-feed: 14 days, 310 quotes, 240 weather, 30 photos
+feed: 15 days, 331 quotes, 240 weather, 31 photos
